@@ -65,7 +65,7 @@
     .nav-back svg{width:16px;height:16px}
     /* scrolled nav flips to light */
     .nav.scrolled .nav-wordmark{color:var(--dark)}
-    .nav.scrolled .nav-links a{color:rgba(28,26,22,.5)}
+    .nav.scrolled .nav-links a{color:rgba(28,26,22,.6)}
     .nav.scrolled .nav-links a:hover{color:var(--dark)}
     .nav.scrolled .nav-links a::after{background:var(--accent)}
     .nav.scrolled .nav-cta{border-color:rgba(28,26,22,.2);color:var(--dark)}
@@ -117,14 +117,14 @@
     .p-card-ov{position:absolute;inset:0;background:linear-gradient(170deg,transparent 25%,rgba(16,20,26,.5) 75%,rgba(16,20,26,.72) 100%)}
     .p-card-c{position:relative;z-index:2;height:100%;padding:36px;display:flex;flex-direction:column;justify-content:space-between}
     .p-card-num{font-size:11px;font-weight:300;letter-spacing:.22em;color:rgba(127,188,200,.7);font-feature-settings:'tnum'}
-    .p-card-en{font-size:9px;font-weight:400;letter-spacing:.24em;color:rgba(127,188,200,.7);text-transform:uppercase}
+    .p-card-en{font-size:10px;font-weight:400;letter-spacing:.24em;color:rgba(127,188,200,.7);text-transform:uppercase}
     .p-card-name{font-weight:900;font-size:clamp(20px,2.2vw,28px);color:#fff;line-height:1.15}
     .p-card--feat .p-card-name{font-size:clamp(24px,2.8vw,36px)}
-    .p-card-tag{font-size:14px;font-weight:300;color:rgba(255,255,255,.48);margin-top:8px;letter-spacing:.015em}
+    .p-card-tag{font-size:14px;font-weight:300;color:rgba(255,255,255,.6);margin-top:8px;letter-spacing:.02em}
     .p-card-arrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;letter-spacing:.12em;color:var(--accent-pale);margin-top:16px;transition:gap .25s,color .25s}
     .p-card:hover .p-card-arrow{gap:14px;color:#fff}
     .p-card-arrow svg{width:14px}
-    .p-card-badge{display:inline-block;padding:4px 14px;background:var(--accent-deep);font-size:9px;font-weight:500;letter-spacing:.2em;color:rgba(255,255,255,.9);text-transform:uppercase;margin-bottom:8px}
+    .p-card-badge{display:inline-block;padding:4px 14px;background:var(--accent-deep);font-size:10px;font-weight:500;letter-spacing:.22em;color:rgba(255,255,255,.9);text-transform:uppercase;margin-bottom:8px}
     .p-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-pale),var(--accent));transform:scaleX(0);transform-origin:center;transition:transform .55s var(--spring);z-index:3}
     .p-card:hover::before{transform:scaleX(1)}
 
@@ -149,23 +149,40 @@
       radial-gradient(ellipse 60% 70% at 80% 50%, rgba(43,122,140,.055) 0%, transparent 65%),
       radial-gradient(ellipse 40% 60% at 10% 80%, rgba(43,122,140,.04) 0%, transparent 60%);
       pointer-events:none}
-    .proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:72px;border-top:1px solid rgba(28,26,22,.1)}
-    .proc-step{position:relative;padding:40px 40px 48px 0;border-inline-start:none}
-    .proc-step:not(:last-child){border-inline-end:1px solid rgba(28,26,22,.09)}
-    .proc-step:not(:first-child){padding-inline-start:40px}
-    .proc-num-large{font-size:72px;font-weight:900;line-height:1;color:rgba(43,122,140,.12);font-feature-settings:'tnum';margin-bottom:28px;letter-spacing:-.02em;font-family:inherit}
-    .proc-num{font-size:10px;font-weight:400;letter-spacing:.28em;color:var(--accent);margin-bottom:14px;font-feature-settings:'tnum'}
-    .proc-name{font-weight:900;font-size:18px;color:var(--dark);line-height:1.3;margin-bottom:12px}
+    .proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:72px}
+    .proc-step{position:relative;padding:40px 32px 44px;background:#fff;border-radius:12px;border:1px solid rgba(43,122,140,.1);box-shadow:0 2px 12px rgba(26,30,36,.04);transition:transform .35s var(--spring),box-shadow .35s var(--spring),border-color .35s}
+    .proc-step:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(26,30,36,.08);border-color:rgba(43,122,140,.18)}
+    .proc-num-large{font-size:56px;font-weight:900;line-height:1;background:linear-gradient(160deg,rgba(43,122,140,.35),rgba(43,122,140,.15));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-feature-settings:'tnum';margin-bottom:24px;letter-spacing:-.02em}
+    .proc-num{font-size:10px;font-weight:400;letter-spacing:.30em;color:var(--accent);margin-bottom:14px;font-feature-settings:'tnum'}
+    .proc-name{font-weight:700;font-size:17px;color:var(--dark);line-height:1.35;margin-bottom:12px}
     .proc-desc{font-size:14px;font-weight:300;line-height:1.75;color:var(--stone)}
-    .proc-accent{width:32px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-pale));margin-top:24px;border-radius:1px}
-    @media(max-width:1100px){.proc-grid{grid-template-columns:repeat(2,1fr)}.proc-step:nth-child(2){border-inline-end:none}.proc-step:nth-child(3){border-top:1px solid rgba(28,26,22,.09)}.proc-step:nth-child(4){border-top:1px solid rgba(28,26,22,.09)}}
-    @media(max-width:768px){.proc-grid{grid-template-columns:1fr}.process{padding:80px 24px 100px}.proc-step:not(:last-child){border-inline-end:none;border-bottom:1px solid rgba(28,26,22,.09)}.proc-step:nth-child(3){border-top:none}.proc-step:nth-child(4){border-top:none}}
+    .proc-accent{width:32px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-pale));margin-top:24px;border-radius:1px;transition:width .3s var(--spring)}
+    .proc-step:hover .proc-accent{width:48px}
+    /* ═══ WATER PHILOSOPHY ═══ */
+    .water{background:var(--dark);padding:120px 80px;position:relative;overflow:hidden}
+    .water::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(43,122,140,.08) 0%,transparent 60%);pointer-events:none}
+    .water-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+    .water-label{font-size:10px;font-weight:400;letter-spacing:.30em;color:var(--accent-pale);margin-bottom:28px}
+    .water-quote{font-weight:900;font-size:clamp(24px,3vw,38px);line-height:1.25;color:#fff;margin-bottom:32px}
+    .water-quote em{font-style:normal;color:var(--accent-pale)}
+    .water-lead{font-size:17px;font-weight:300;line-height:1.85;color:rgba(255,255,255,.55);margin-bottom:40px}
+    .water-points{display:grid;gap:28px}
+    .water-point{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start}
+    .water-point-num{font-size:32px;font-weight:900;color:rgba(43,122,140,.35);line-height:1;font-feature-settings:'tnum'}
+    .water-point-name{font-size:15px;font-weight:500;color:#fff;margin-bottom:4px}
+    .water-point-desc{font-size:14px;font-weight:300;line-height:1.75;color:rgba(255,255,255,.45)}
+    .water-divider{width:48px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);margin-bottom:40px}
+    @media(max-width:900px){.water-inner{grid-template-columns:1fr;gap:48px}.water{padding:80px 32px}}
+    @media(max-width:480px){.water{padding:56px 24px}}
+
+    @media(max-width:1100px){.proc-grid{grid-template-columns:repeat(2,1fr);gap:20px}}
+    @media(max-width:768px){.proc-grid{grid-template-columns:1fr;gap:16px}.process{padding:80px 24px 100px}}
 
     /* ═══ CLIENTS LOGO STRIP ═══ */
-    .clients{background:var(--linen);padding:80px 48px 72px;border-top:1px solid rgba(28,26,22,.06);border-bottom:1px solid rgba(28,26,22,.06)}
-    .clients-label{font-size:10px;font-weight:400;letter-spacing:.30em;color:var(--stone);text-transform:uppercase;text-align:center;margin-bottom:52px}
+    .clients{background:var(--chalk);padding:80px 48px 72px;border-top:1px solid rgba(28,26,22,.06);border-bottom:1px solid rgba(28,26,22,.06)}
+    .clients-label{font-size:10px;font-weight:400;letter-spacing:.30em;color:var(--dark);text-transform:uppercase;text-align:center;margin-bottom:52px}
     .clients-grid{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:40px 56px;max-width:1100px;margin:0 auto}
-    .clients-grid img{height:40px;width:auto;object-fit:contain;filter:grayscale(1) opacity(.46);transition:filter .5s var(--spring)}
+    .clients-grid img{height:40px;width:auto;object-fit:contain;filter:grayscale(1) opacity(.6);transition:filter .5s var(--spring)}
     .clients-grid img:hover{filter:grayscale(0) opacity(1)}
     @media(max-width:768px){.clients{padding:60px 24px 52px}.clients-grid{gap:28px 36px}.clients-grid img{height:28px}}
 
@@ -197,13 +214,13 @@
     footer{background:var(--dark);padding:64px 48px 60px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:60px;border-top:1px solid rgba(43,122,140,.22)}
     .f-brand{display:flex;flex-direction:column;gap:14px}
     .f-name{font-weight:300;font-size:15px;letter-spacing:.3em;color:#fff;text-transform:uppercase}
-    .f-tag{font-size:13px;font-weight:300;color:rgba(255,255,255,.28);line-height:1.7;letter-spacing:.01em}
+    .f-tag{font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.7;letter-spacing:.01em}
     .f-links{display:flex;flex-direction:column;gap:10px}
-    .f-links a{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);transition:color .2s;letter-spacing:.04em}
-    .f-links a:hover{color:rgba(255,255,255,.75)}
-    .f-contact p{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.6}
+    .f-links a{font-size:13px;font-weight:300;color:rgba(255,255,255,.55);transition:color .2s;letter-spacing:.04em}
+    .f-links a:hover{color:rgba(255,255,255,.85)}
+    .f-contact p{font-size:13px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.6}
     .f-bottom{background:var(--dark);padding:0 48px 32px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;padding-top:24px}
-    .f-copy{font-size:11px;font-weight:300;color:rgba(255,255,255,.2);letter-spacing:.05em}
+    .f-copy{font-size:11px;font-weight:300;color:rgba(255,255,255,.35);letter-spacing:.05em}
 
     /* ═══ PRODUCT PAGE ═══ */
     .pp{display:none}
@@ -212,7 +229,7 @@
     .pp-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.84) saturate(1.04) contrast(1.03);will-change:transform}
     .pp-hero-ov{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 110%,rgba(43,122,140,.08) 0%,transparent 50%),linear-gradient(180deg,rgba(26,30,36,.12) 0%,transparent 32%,rgba(26,30,36,.56) 100%)}
     .pp-hero-c{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 80px 72px;z-index:2}
-    .pp-hero-cat{font-size:10px;font-weight:400;letter-spacing:.32em;color:var(--accent-pale);text-transform:uppercase;margin-bottom:18px}
+    .pp-hero-cat{font-size:10px;font-weight:400;letter-spacing:.30em;color:var(--accent-pale);text-transform:uppercase;margin-bottom:18px}
     .pp-hero-name{font-weight:900;font-size:clamp(38px,5vw,68px);color:#fff;line-height:.95;margin-bottom:16px;text-shadow:0 2px 40px rgba(0,0,0,.2)}
     .pp-hero-tag{font-size:clamp(16px,1.8vw,22px);font-weight:300;color:rgba(255,255,255,.55)}
 
@@ -308,13 +325,13 @@
     .tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
     .tech-card{background:var(--cream);padding:36px;border:1px solid var(--warm-gray);transition:box-shadow .4s var(--spring),border-color .35s,transform .4s var(--spring)}
     .tech-card:hover{box-shadow:0 16px 48px rgba(26,30,36,.09);border-color:var(--accent-pale);transform:translateY(-3px)}
-    .tech-card-icon{width:40px;height:40px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;background:var(--sand);border-radius:6px}
+    .tech-card-icon{width:40px;height:40px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;background:var(--dark);border-radius:6px}
     .tech-card-icon svg{width:20px;height:20px;color:var(--accent)}
     .tech-card-name{font-weight:700;font-size:16px;color:var(--dark);margin-bottom:8px}
     .tech-card-desc{font-size:14px;font-weight:300;line-height:1.65;color:var(--stone)}
     .tech-card-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--accent);margin-top:16px;letter-spacing:.06em;transition:gap .2s}
     .tech-card-link:hover{gap:10px}
-    .tech-specs{background:var(--sand);padding:80px 80px 100px}
+    .tech-specs{background:var(--dark);padding:80px 80px 100px}
     .tech-specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px}
     .tech-spec{padding:28px 0;border-top:1px solid var(--warm-gray)}
     .tech-spec-name{font-weight:700;font-size:15px;color:var(--dark);margin-bottom:8px}
@@ -379,7 +396,7 @@
     #lb-img{max-width:92vw;max-height:82vh;width:auto;height:auto;object-fit:contain;display:block;border-radius:2px}
     .lb-meta{display:flex;justify-content:space-between;align-items:center;width:100%;margin-top:14px;padding:0 4px}
     #lb-cap{color:rgba(255,255,255,.55);font-size:11px;letter-spacing:.12em;font-weight:300}
-    #lb-counter{color:rgba(255,255,255,.28);font-size:11px;font-feature-settings:'tnum';letter-spacing:.06em}
+    #lb-counter{color:rgba(255,255,255,.45);font-size:11px;font-feature-settings:'tnum';letter-spacing:.06em}
     .lb-close{position:fixed;top:22px;right:28px;background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:18px;line-height:1;width:36px;height:36px;border-radius:50%;cursor:pointer;z-index:2;transition:all .2s;display:flex;align-items:center;justify-content:center}
     .lb-close:hover{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.4)}
     .lb-nav{position:fixed;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.55);font-size:28px;line-height:1;width:44px;height:44px;border-radius:50%;cursor:pointer;z-index:2;transition:all .2s;display:flex;align-items:center;justify-content:center}
@@ -429,6 +446,7 @@
     </div>
   </div>
   <button class="lb-nav lb-next" onclick="lbNav(1)">&#8250;</button>
+</div>
 
 <!-- Contact Modal -->
 <div id="contact-modal">
@@ -459,9 +477,9 @@
 
 <nav class="nav" id="mn">
   <div class="nav-logo">
-    <svg class="logo-hero" viewBox="0 0 50 50" fill="none"><rect width="50" height="50" fill="#1A1E24"/><polygon points="26,0 50,0 50,30" fill="#E9EEF2"/><polygon points="33,0 50,0 50,20" fill="#E9EEF2" opacity=".35"/></svg>
-    <svg class="logo-scroll" viewBox="0 0 50 50" fill="none" style="display:none"><rect width="50" height="50" fill="#E9EEF2"/><polygon points="26,0 50,0 50,30" fill="#1A1E24"/><polygon points="33,0 50,0 50,20" fill="#1A1E24" opacity=".35"/></svg>
-    <span class="nav-wordmark">Skylite</span>
+    <svg class="logo-hero" viewBox="0 0 50 50" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg>
+    <svg class="logo-scroll" viewBox="0 0 50 50" fill="none" style="display:none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg>
+    <span class="nav-wordmark">SKYLITE</span>
   </div>
   <ul class="nav-links">
     <li><a href="#products">מוצרים</a></li>
@@ -493,7 +511,6 @@
   <div class="rv rv-d2">
     <p style="font-size:17px;font-weight:300;line-height:1.85;color:var(--stone);margin-bottom:20px">40 שנה של תכנון, ייצור והתקנה בפרויקטים מגורים, ציבוריים ומסחריים בישראל. מהפנטהאוז בתל אביב ועד הספריה הלאומית — אנחנו מלווים כל פרויקט מהסקיצה ועד ההתקנה.</p>
     <p style="font-size:17px;font-weight:300;line-height:1.85;color:var(--stone);margin-bottom:20px">האור והשמיים כעיקרון תכנוני אינטגרלי במעטפת המבנה — לא תוספת לה.</p>
-    <p style="font-size:15px;font-weight:300;line-height:1.85;color:var(--accent);font-style:italic">״מים תמיד ימצאו את הדרך דרך מעטפת האיטום.״ — לכן המערכות שלנו כוללות תעלות ניקוז פנימיות בפרופילי האלומיניום, פתרון הנדסי שמאפשר ניהול מים מבוקר במקום הסתמכות על סיליקון בלבד.</p>
     <a class="statement-link" href="#projects">
       לפרויקטים שלנו
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
@@ -547,6 +564,48 @@
   </div>
 </section>
 
+<section class="water" id="water-philosophy">
+  <div class="water-inner">
+    <div>
+      <div class="water-label rv">פילוסופיית המים</div>
+      <h2 class="water-quote rv rv-d1">״מים תמיד ימצאו את הדרך<br>דרך מעטפת האיטום.״</h2>
+      <p class="water-lead rv rv-d2">זו לא סתם אמרה — זה העיקרון שמנחה כל תכנון שלנו. במקום לנסות לחסום מים בכוח, אנחנו מתכננים מערכות שמנהלות אותם. תעלות ניקוז פנימיות בתוך פרופילי האלומיניום מובילות כל טיפה החוצה — בלי להסתמך על סיליקון בלבד.</p>
+      <div class="water-divider rv rv-d2"></div>
+      <p class="rv rv-d3" style="font-size:14px;font-weight:300;line-height:1.85;color:rgba(255,255,255,.4)">40 שנה של התקנות בפרויקטים חשופים לתנאי מזג אוויר קיצוניים לימדו אותנו שאטימות מתחילה בתכנון — לא בשלב האחרון של ההתקנה.</p>
+    </div>
+    <div class="water-points rv rv-d2">
+      <div class="water-point">
+        <div class="water-point-num">01</div>
+        <div>
+          <div class="water-point-name">ניקוז פנימי בפרופילים</div>
+          <div class="water-point-desc">הפרופילים כוללים תעלות ניקוז פנימי המונעות חדירת מים לחלל המבנה, כולל תעלות ייעודיות לנוזלים הנוצרים מהתעבות.</div>
+        </div>
+      </div>
+      <div class="water-point">
+        <div class="water-point-num">02</div>
+        <div>
+          <div class="water-point-name">אטמי EPDM אינטגרליים</div>
+          <div class="water-point-desc">אטמי EPDM משולבים כחלק אינטגרלי בפרופילי האלומיניום — לא מודבקים, לא נדחסים. אסור להדק אטמים לפרופילים באמצעות דבק.</div>
+        </div>
+      </div>
+      <div class="water-point">
+        <div class="water-point-num">03</div>
+        <div>
+          <div class="water-point-name">הפרדה מוחלטת זכוכית-אלומיניום</div>
+          <div class="water-point-desc">בשום נקודה חומר הזיגוג לא בא במגע ישיר עם האלומיניום. הזכוכית מהודקת אך ורק באמצעות פרופילי האלומיניום.</div>
+        </div>
+      </div>
+      <div class="water-point">
+        <div class="water-point-num">04</div>
+        <div>
+          <div class="water-point-name">תנועה תרמית מבוקרת</div>
+          <div class="water-point-desc">המערכת מתוכננת לאטימות מוחלטת ובו זמנית לתנועה של חומר הזיגוג — למניעת דפורמציות ועיוותים, גם בתנאי קיצון.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="projects" id="projects">
   <div class="sec-header"><div><div class="sec-label">03 — לקוחות ופרויקטים</div><h2 class="sec-title">עבודות נבחרות</h2></div></div>
   <div class="strip" id="strip">
@@ -562,7 +621,7 @@
 </section>
 
 <section class="process">
-  <div class="sec-header" style="border-color:rgba(28,26,22,.08)"><div><div class="sec-label">04 — למה סקיילייט</div><h2 class="sec-title" style="color:var(--dark)">הנדסת האור</h2></div><p style="font-size:15px;font-weight:300;color:var(--stone);line-height:1.75;max-width:320px;text-align:right">ארבעה עקרונות שמגדירים את הדרך שבה אנחנו חושבים, מתכננים ומבצעים — בכל פרויקט, בכל קנה מידה.</p><p style="font-size:13px;font-weight:300;color:var(--accent);line-height:1.75;max-width:320px;text-align:right;margin-top:12px;letter-spacing:.04em">פילוסופיית המים: כל מוצר שלנו מתוכנן כך שהמים לא נכנסים — לעולם. אטימות מוחלטת, מסלולי ניקוז מחושבים, וחומרים שלא מתדרדרים עם השנים.</p></div>
+  <div class="sec-header" style="border-color:rgba(28,26,22,.08)"><div><div class="sec-label">04 — למה סקיילייט</div><h2 class="sec-title" style="color:var(--dark)">הנדסת האור</h2></div><p style="font-size:14px;font-weight:300;color:var(--stone);line-height:1.75;max-width:320px;text-align:right">ארבעה עקרונות שמגדירים את הדרך שבה אנחנו חושבים, מתכננים ומבצעים — בכל פרויקט, בכל קנה מידה.</p></div>
   <div class="proc-grid">
     <div class="proc-step rv">
       <div class="proc-num-large">01</div>
@@ -643,7 +702,7 @@
 </section>
 
 <footer>
-  <div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><polygon points="26,0 50,0 50,30" fill="#E9EEF2"/><polygon points="33,0 50,0 50,20" fill="#E9EEF2" opacity=".35"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div>
+  <div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div>
   <div class="f-links"><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('penthouse');return false">יציאה לגג — פנטהאוז</a><a href="#" onclick="go('walkon');return false">סקיילייט מדרך</a><a href="#" onclick="go('structural');return false">מבנים מרחביים</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div>
   <div class="f-contact">
     <p><strong>סקיילייט בע"מ</strong></p>
@@ -661,7 +720,7 @@
 
 <!-- ════ PENTHOUSE ════ -->
 <div id="page-penthouse" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><polygon points="26,0 50,0 50,30" fill="#1A1E24"/><polygon points="33,0 50,0 50,20" fill="#1A1E24" opacity=".35"/></svg><span class="nav-wordmark">Skylite</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לכל המוצרים</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לכל המוצרים</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/06 — יציאה לגג/Hero copy.jpg" alt=""><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">06 — Roof Access</div><h1 class="pp-hero-name">יציאה לגג</h1><div class="pp-hero-tag">הדלת שפותחת שמיים</div></div></section>
 <section class="pp-content">
   <div><div class="pp-desc-label rv">על המוצר</div><div class="pp-desc rv rv-d1"><p>חלונות סקיילייט המשמשים ליציאה לגג, לסוכה, לאיוורור ושחרור עשן. מופעלים באמצעות מפסק חשמלי, שלט או רכזת הפעלה. החלון בנוי ממערכת אלומיניום בעלת דופן כפולה ייעודית, צירים אטמים ומנוע.</p><p>מידות לפי הזמנה — לפרויקטים ויישומים מיוחדים ולבתים פרטיים. התקנה מתבצעת על ידי חברת סקיילייט.</p></div></div>
@@ -676,26 +735,26 @@
 <section class="pp-gallery"><div class="pp-gallery-t">גלריית פרויקטים</div><div class="pp-gal-grid grid-dyn" id="gal-penthouse"></div></section>
 
 <section class="pp-cta"><h2 class="rv">מתכננים יציאה לגג?<br><em>בואו נדבר</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
-<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><polygon points="26,0 50,0 50,30" fill="#E9EEF2"/><polygon points="33,0 50,0 50,20" fill="#E9EEF2" opacity=".35"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: 03-9343159 | פקס: 03-9311921</p><p>skylite@skylite.co.il</p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
+<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: 03-9343159 | פקס: 03-9311921</p><p>skylite@skylite.co.il</p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
 </div>
 
 <!-- ════ FIXED ════ -->
 <div id="page-fixed" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><polygon points="26,0 50,0 50,30" fill="#1A1E24"/><polygon points="33,0 50,0 50,20" fill="#1A1E24" opacity=".35"/></svg><span class="nav-wordmark">Skylite</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לכל המוצרים</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לכל המוצרים</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/02 — סקיילייט קבוע/חד שיפועי/Edited-2.jpg" alt=""><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">02 — Fixed Skylights</div><h1 class="pp-hero-name">סקיילייט קבוע</h1><div class="pp-hero-tag">הידוע — המוכח</div></div></section>
 <section class="pp-content">
-  <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>הסקיילייט הקבוע מתאפיין במגוון רחב של צורות ושימושים — על פי דרישות הלקוח והתכנון האדריכלי. מורכב מקונסטרוקציית אלומיניום עם זכוכית, Photovoltaic glass או פוליקרבונט.</p><p>מגיע בתצורה חד-שיפועית לגגות שטוחים ודו-שיפועית לגגות בעלי מרכז. מתאים למגורים ולמסחרי כאחד.</p></div></div>
-  <div><div class="pp-chars-title">מאפיינים עיקריים</div><div class="pp-char"><div class="pp-char-n">01</div><div><div class="pp-char-name">חד-שיפועי או דו-שיפועי</div><div class="pp-char-desc">מתאים לגג שטוח (חד-שיפועי) ולגג עם שיפוע כפול — בחירה לפי האדריכלות הקיימת.</div></div></div><div class="pp-char"><div class="pp-char-n">02</div><div><div class="pp-char-name">קונסטרוקציית אלומיניום</div><div class="pp-char-desc">מסגרת אלומיניום עם זיגוג זכוכית, Photovoltaic glass או פוליקרבונט — לפי דרישות הפרויקט.</div></div></div><div class="pp-char"><div class="pp-char-n">03</div><div><div class="pp-char-name">מידות לפי הזמנה</div><div class="pp-char-desc">מידות סטנדרטיות ומותאמות אישית — לפרויקטים ויישומים מיוחדים ולבתים פרטיים.</div></div></div><div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">מגוון צורות ושימושים</div><div class="pp-char-desc">צבע סטנדרטי לבן, בהזמנה מיוחדת לפי גוון RAL. מגוון חלופות זיגוג — שקוף, חלבי או עמום.</div></div></div></div>
+  <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>הסקיילייט הקבוע מתאפיין במגוון רחב של צורות ושימושים — על פי דרישות הלקוח והתכנון האדריכלי. מורכב מקונסטרוקציית אלומיניום עם זכוכית, Photovoltaic glass או פוליקרבונט.</p><p>מגיע בתצורה חד-שיפועית לגגות שטוחים ודו-שיפועית לגגות בעלי מרכז. מתאים למגורים ולמסחרי כאחד.</p><p>מערכות הזיגוג מותקנות בשיטת FLUSH GLAZING — הזכוכית מהודקת אך ורק באמצעות פרופילי האלומיניום, ללא מגע ישיר בין חומר הזיגוג לאלומיניום. הפרופילים כוללים תעלות ניקוז פנימי המונעות חדירת מים לחלל המבנה.</p></div></div>
+  <div><div class="pp-chars-title">מאפיינים עיקריים</div><div class="pp-char"><div class="pp-char-n">01</div><div><div class="pp-char-name">חד-שיפועי או דו-שיפועי</div><div class="pp-char-desc">מתאים לגג שטוח (חד-שיפועי) ולגג עם שיפוע כפול — בחירה לפי האדריכלות הקיימת.</div></div></div><div class="pp-char"><div class="pp-char-n">02</div><div><div class="pp-char-name">פרופילי אלומיניום 6063 TF</div><div class="pp-char-desc">פרופילים קונסטרוקטיביים עם איטום ומירזוב עצמיים. אטמי EPDM משולבים כחלק אינטגרלי — לא מודבקים, לא נדחסים.</div></div></div><div class="pp-char"><div class="pp-char-n">03</div><div><div class="pp-char-name">חלופות זיגוג מגוונות</div><div class="pp-char-desc">זכוכית ביטחון מרובדת, זכוכית בידודית, Photovoltaic glass או פוליקרבונט — שקוף, חלבי או עמום.</div></div></div><div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">תנועה תרמית מבוקרת</div><div class="pp-char-desc">המערכת מתוכננת לאטימות מוחלטת ובו זמנית לתנועה של חומר הזיגוג — למניעת דפורמציות גם בתנאי קיצון.</div></div></div><div class="pp-char"><div class="pp-char-n">05</div><div><div class="pp-char-name">מידות וגמר לפי הזמנה</div><div class="pp-char-desc">מידות מותאמות אישית. צבע סטנדרטי לבן, בהזמנה מיוחדת לפי גוון RAL. צביעה אלקטרוסטטית בתנור.</div></div></div></div>
 </section>
 <div class="pp-subs"><div class="pp-subs-inner"><button class="pp-sub-tab active" onclick="subTab(this,'fixed')">חד שיפועי</button><button class="pp-sub-tab" onclick="subTab(this,'fixed')">דו שיפועי</button><button class="pp-sub-tab" onclick="subTab(this,'fixed')">חלונות סקיילייט</button><button class="pp-sub-tab" onclick="subTab(this,'fixed')">חצר אנגלית</button></div></div>
 <section class="pp-gallery"><div class="pp-gallery-t">גלריית פרויקטים</div><div class="pp-gal-grid grid-dyn" id="gal-fixed"></div></section>
 <section class="pp-cta"><h2 class="rv">מחפשים פתרון קבוע?<br><em>נשמח לייעץ</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
-<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><polygon points="26,0 50,0 50,30" fill="#E9EEF2"/><polygon points="33,0 50,0 50,20" fill="#E9EEF2" opacity=".35"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: 03-9343159 | פקס: 03-9311921</p><p>skylite@skylite.co.il</p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
+<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: 03-9343159 | פקס: 03-9311921</p><p>skylite@skylite.co.il</p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
 </div>
 
 <!-- ════ RETRACTABLE ════ -->
 <div id="page-retractable" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><polygon points="26,0 50,0 50,30" fill="#1A1E24"/><polygon points="33,0 50,0 50,20" fill="#1A1E24" opacity=".35"/></svg><span class="nav-wordmark">Skylite</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/01 — סקיילייט נוסע/חד שיפועי/DOR_6764-HDR.jpg" alt="סקיילייט נוסע — קירוי בריכה, מלון מצפה הימים"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">01 — Retractable Systems</div><h1 class="pp-hero-name">סקיילייט נוסע</h1><div class="pp-hero-tag">גג שנפתח — שמיים שנכנסים</div></div></section>
 <section class="pp-content">
   <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>סקיילייט נפתח בהסעה, ניתן לפתיחה וסגירה חשמלית או ידנית. ההנעה בהחלקה או בגלילה — מותנה בדגם ובצרכי הלקוח. שיטת הגלילה מאפשרת פתיחה חלקית או מלאה, עם חשיפה מלאה לשמיים ללא השארת פרופילים בחלל.</p><p>הסקיילייט יכול להיות יחידה אחת או מורכב ממספר חלקים הנעים אחד לתוך השני. צורת הסקיילייט אינה מוגבלת ומאפשרת ביצוע קמרונות, שיפועים ופירמידות.</p></div></div>
@@ -705,40 +764,40 @@
 <section class="pp-gallery"><div class="pp-gallery-t">גלריית פרויקטים</div><div class="pp-gal-grid grid-dyn" id="gal-retractable"></div></section>
 
 <section class="pp-cta"><h2 class="rv">יש לכם מרחב שצריך לנשום?<br><em>בואו נתכנן יחד</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
-<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><polygon points="26,0 50,0 50,30" fill="#E9EEF2"/><polygon points="33,0 50,0 50,20" fill="#E9EEF2" opacity=".35"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: 03-9343159 | פקס: 03-9311921</p><p>skylite@skylite.co.il</p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
+<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: 03-9343159 | פקס: 03-9311921</p><p>skylite@skylite.co.il</p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
 </div>
 
 <!-- ════ WALKON ════ -->
 <div id="page-walkon" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><polygon points="26,0 50,0 50,30" fill="#1A1E24"/><polygon points="33,0 50,0 50,20" fill="#1A1E24" opacity=".35"/></svg><span class="nav-wordmark">Skylite</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/03 — סקיילייט מדרך/Hero.jpg" alt="סקיילייט מדרך — רצפת זכוכית מוארת"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">03 — Walk-On Glass</div><h1 class="pp-hero-name">סקיילייט מדרך</h1><div class="pp-hero-tag">אפס קו — מקסימום עומק</div></div></section>
 <section class="pp-content">
-  <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>סקיילייט ייחודי המורכב במישור הרצפה ללא הפרעה להליכה או לזרימת מים. המבנה מתאפיין באיטום ומירזוב בין הזיגוגים ובינם לבין הריצוף, וכן קונסטרוקציה וזיגוג המתאימים לעומסי הליכה.</p><p>מיוחד לחצרות פנימיות, אתרי מורשת, גשרים מזוגגים ומרחבים אדריכליים ייחודיים.</p></div></div>
-  <div><div class="pp-chars-title">מאפיינים עיקריים</div><div class="pp-char"><div class="pp-char-n">01</div><div><div class="pp-char-name">התקנה במישור הרצפה</div><div class="pp-char-desc">ללא הפרעה להליכה או לזרימת מים — שילוב חלק עם משטח הריצוף הקיים.</div></div></div><div class="pp-char"><div class="pp-char-n">02</div><div><div class="pp-char-name">איטום ומירזוב</div><div class="pp-char-desc">מבנה ייחודי עם איטום בין הזיגוגים ובינם לבין הריצוף — מותאם לתנאי חוץ.</div></div></div><div class="pp-char"><div class="pp-char-n">03</div><div><div class="pp-char-name">עמידה לעומסי הליכה</div><div class="pp-char-desc">קונסטרוקציה וזיגוג המתאימים לעומסי הליכה — מחושב לפי דרישות הפרויקט.</div></div></div><div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">שילוב חלק עם כל ריצוף</div><div class="pp-char-desc">מסגרת flush — מותאמת לעובי אבן, קרמיקה, עץ ועוד.</div></div></div></div>
+  <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>סקיילייט ייחודי המורכב במישור הרצפה ללא הפרעה להליכה או לזרימת מים. המבנה מתאפיין באיטום ומירזוב בין הזיגוגים ובינם לבין הריצוף, וכן קונסטרוקציה וזיגוג המתאימים לעומסי הליכה.</p><p>מיוחד לחצרות פנימיות, אתרי מורשת, גשרים מזוגגים ומרחבים אדריכליים ייחודיים.</p><p>הזיגוג עשוי זכוכית ביטחון מרובדת המתאימה לעומסי דריכה — בשום נקודה חומר הזיגוג לא בא במגע ישיר עם האלומיניום. תעלות ניקוז פנימיות בפרופילים מונעות הצטברות מים מתחת למשטח ההליכה.</p></div></div>
+  <div><div class="pp-chars-title">מאפיינים עיקריים</div><div class="pp-char"><div class="pp-char-n">01</div><div><div class="pp-char-name">התקנה במישור הרצפה</div><div class="pp-char-desc">ללא הפרעה להליכה או לזרימת מים — שילוב חלק עם משטח הריצוף הקיים.</div></div></div><div class="pp-char"><div class="pp-char-n">02</div><div><div class="pp-char-name">זכוכית ביטחון מרובדת</div><div class="pp-char-desc">זיגוג העומד בעומסי דריכה — מחושב לפי דרישות הפרויקט. הזכוכית מהודקת באמצעות פרופילי אלומיניום בלבד.</div></div></div><div class="pp-char"><div class="pp-char-n">03</div><div><div class="pp-char-name">איטום, ניקוז ומירזוב</div><div class="pp-char-desc">אטמי EPDM אינטגרליים בפרופילים, תעלות ניקוז פנימי ומירזוב בין הזיגוגים לריצוף — מותאם לתנאי חוץ.</div></div></div><div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">שילוב חלק עם כל ריצוף</div><div class="pp-char-desc">מסגרת flush — מותאמת לעובי אבן, קרמיקה, עץ ועוד. צבע RAL לבחירת האדריכל.</div></div></div></div>
 </section>
 <div class="pp-subs"><div class="pp-subs-inner"><button class="pp-sub-tab active" onclick="subTab(this,'walkon')">ספריה לאומית</button><button class="pp-sub-tab" onclick="subTab(this,'walkon')">פרויקטים נוספים</button></div></div>
 <section class="pp-gallery"><div class="pp-gallery-t">גלריית פרויקטים</div><div class="pp-gal-grid grid-dyn" id="gal-walkon"></div></section>
 <section class="pp-cta"><h2 class="rv">מחפשים לחשוף עומק?<br><em>נשמח לייעץ</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
-<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><polygon points="26,0 50,0 50,30" fill="#E9EEF2"/><polygon points="33,0 50,0 50,20" fill="#E9EEF2" opacity=".35"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: 03-9343159 | פקס: 03-9311921</p><p>skylite@skylite.co.il</p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
+<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: 03-9343159 | פקס: 03-9311921</p><p>skylite@skylite.co.il</p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
 </div>
 
 <!-- ════ STRUCTURAL ════ -->
 <div id="page-structural" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><polygon points="26,0 50,0 50,30" fill="#1A1E24"/><polygon points="33,0 50,0 50,20" fill="#1A1E24" opacity=".35"/></svg><span class="nav-wordmark">Skylite</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/04 — מבנים מרחביים/כיפה/Edited-1.jpg" alt="מבנים מרחביים — כיפה פנימית"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">04 — Structural Glazing</div><h1 class="pp-hero-name">מבנים מרחביים / מורכבים</h1><div class="pp-hero-tag">כאשר הגיאומטריה הופכת לשירה</div></div></section>
 <section class="pp-content">
-  <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>כיפות, קמרונות, פירמידות ומבנים מורכבים — כל פרויקט מתוכנן ומיוצר בהתאמה אישית מלאה. מהסקיצה ועד ההתקנה.</p><p>אנחנו עובדים צמוד לאדריכל ולמהנדס הקונסטרוקציה — ומספקים פתרון מלא.</p></div></div>
-  <div><div class="pp-chars-title">מאפיינים עיקריים</div><div class="pp-char"><div class="pp-char-n">01</div><div><div class="pp-char-name">תכנון קונסטרוקטיבי מלא</div><div class="pp-char-desc">תכנון מבנה הפלדה / האלומיניום בתוך הבית, כולל תיאום עם מהנדסי הפרויקט.</div></div></div><div class="pp-char"><div class="pp-char-n">02</div><div><div class="pp-char-name">כיפות, קמרונות, פירמידות</div><div class="pp-char-desc">כל גיאומטריה אפשרית — מהצורה הפשוטה ועד צורות מורכבות ועקומות.</div></div></div><div class="pp-char"><div class="pp-char-n">03</div><div><div class="pp-char-name">עבודה צמודה עם האדריכל</div><div class="pp-char-desc">שותפות מלאה — מפגישות תכנון, דגמי 3D, ועד פיקוח בשטח.</div></div></div><div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">אין שני פרויקטים זהים</div><div class="pp-char-desc">כל עבודה ייחודית — הניסיון שצברנו מאפשר להתמודד עם כל אתגר.</div></div></div></div>
+  <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>כיפות, קמרונות, פירמידות ומבנים מורכבים — כל פרויקט מתוכנן ומיוצר בהתאמה אישית מלאה. מהסקיצה ועד ההתקנה.</p><p>אנחנו עובדים צמוד לאדריכל ולמהנדס הקונסטרוקציה — ומספקים פתרון מלא. 40 שנה של ניסיון בפרויקטים מורכבים — מיקב רקנאטי ועד אוניברסיטת בר אילן — מאפשרים לנו להתמודד עם כל אתגר גיאומטרי.</p><p>הקונסטרוקציה בנויה מפרופילי אלומיניום 6063 TF עם איטום ומירזוב עצמיים, מערכות זיגוג בשיטת FLUSH GLAZING, ותעלות ניקוז פנימיות. כל חלקי האלומיניום החשופים בגימור צביעה אלקטרוסטטית בתנור — צבע RAL לבחירת האדריכל.</p></div></div>
+  <div><div class="pp-chars-title">מאפיינים עיקריים</div><div class="pp-char"><div class="pp-char-n">01</div><div><div class="pp-char-name">תכנון קונסטרוקטיבי מלא</div><div class="pp-char-desc">תכנון מבנה הפלדה / האלומיניום בתוך הבית, כולל תיאום עם מהנדסי הפרויקט. מתוכנן לעמוד בכוחות הרוח באזור.</div></div></div><div class="pp-char"><div class="pp-char-n">02</div><div><div class="pp-char-name">כיפות, קמרונות, פירמידות</div><div class="pp-char-desc">כל גיאומטריה אפשרית — מהצורה הפשוטה ועד צורות מורכבות ועקומות. שיפועים, קשתות וחרוטים.</div></div></div><div class="pp-char"><div class="pp-char-n">03</div><div><div class="pp-char-name">פרופילי אלומיניום 6063 TF</div><div class="pp-char-desc">פרופילים קונסטרוקטיביים עם אטמי EPDM אינטגרליים. תעלות ניקוז פנימי למניעת חדירת מים ולטיפול בעיבוי.</div></div></div><div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">עבודה צמודה עם האדריכל</div><div class="pp-char-desc">שותפות מלאה — מפגישות תכנון, דגמי 3D, ועד פיקוח בשטח. תכנון וביצוע של חברת סקיילייט.</div></div></div><div class="pp-char"><div class="pp-char-n">05</div><div><div class="pp-char-name">חלופות זיגוג לכל שימוש</div><div class="pp-char-desc">זכוכית ביטחון מרובדת, זכוכית בידודית, פוליקרבונט Solar Control או Solar Olympic — לפי דרישות הפרויקט.</div></div></div></div>
 </section>
 <div class="pp-subs"><div class="pp-subs-inner"><button class="pp-sub-tab active" onclick="subTab(this,'structural')">כיפה</button><button class="pp-sub-tab" onclick="subTab(this,'structural')">פירמידה</button><button class="pp-sub-tab" onclick="subTab(this,'structural')">חרוט</button><button class="pp-sub-tab" onclick="subTab(this,'structural')">קשת</button></div></div>
 <section class="pp-gallery"><div class="pp-gallery-t">גלריית פרויקטים</div><div class="pp-gal-grid grid-dyn" id="gal-structural"></div></section>
 <section class="pp-cta"><h2 class="rv">יש לכם חלום אדריכלי?<br><em>נממש אותו יחד</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
-<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><polygon points="26,0 50,0 50,30" fill="#E9EEF2"/><polygon points="33,0 50,0 50,20" fill="#E9EEF2" opacity=".35"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: 03-9343159 | פקס: 03-9311921</p><p>skylite@skylite.co.il</p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
+<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: 03-9343159 | פקס: 03-9311921</p><p>skylite@skylite.co.il</p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
 </div>
 
 <!-- ════ SMOKE ════ -->
 <div id="page-smoke" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><polygon points="26,0 50,0 50,30" fill="#1A1E24"/><polygon points="33,0 50,0 50,20" fill="#1A1E24" opacity=".35"/></svg><span class="nav-wordmark">Skylite</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/05 — כיפות תאורה, אוורור ושחרור עשן/גפני1.jpg" alt="כיפות תאורה ושחרור עשן — בית חולים זיו"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">05 — Light Domes & Smoke Vents</div><h1 class="pp-hero-name">כיפות תאורה, אוורור ושחרור עשן</h1><div class="pp-hero-tag">בטיחות שלא מוותרת על עיצוב</div></div></section>
 <section class="pp-content">
   <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>כיפות תאורה של חברת ESSERTEC הגרמנית, מיועדות להחדרת אור טבעי ואוויר לחלל המבנה. מבנה מודולרי הכולל בסיס וזיגוגים — בסיסים ריבועיים, מלבניים ועגולים, עם זיגוגים בצורת כיפה או פירמידה.</p><p>בסיס PVC דופן כפול עם מילוי לבידוד וזיגוג כפול עם מרווח אוויר — אקרילי או פוליקרבונט בגוון מט או שקוף, מותקן בתוך מסגרת אטומה ומבודדת. ניתן להוסיף רשת נגד יתושים.</p></div></div>
@@ -756,12 +815,12 @@
 <div class="pp-subs"><div class="pp-subs-inner"><button class="pp-sub-tab active" onclick="subTab(this,'smoke')">כיפות תאורה</button><button class="pp-sub-tab" onclick="subTab(this,'smoke')">אוורור ושחרור עשן</button></div></div>
 <section class="pp-gallery"><div class="pp-gallery-t">גלריית פרויקטים</div><div class="pp-gal-grid grid-dyn" id="gal-smoke"></div></section>
 <section class="pp-cta"><h2 class="rv">פרויקט עם דרישות בטיחות?<br><em>נדאג לכל הפרטים</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
-<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><polygon points="26,0 50,0 50,30" fill="#E9EEF2"/><polygon points="33,0 50,0 50,20" fill="#E9EEF2" opacity=".35"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: 03-9343159 | פקס: 03-9311921</p><p>skylite@skylite.co.il</p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
+<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: 03-9343159 | פקס: 03-9311921</p><p>skylite@skylite.co.il</p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
 </div>
 
 <!-- ════ TECH ════ -->
 <div id="page-tech" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><polygon points="26,0 50,0 50,30" fill="#1A1E24"/><polygon points="33,0 50,0 50,20" fill="#1A1E24" opacity=".35"/></svg><span class="nav-wordmark">Skylite</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לדף הבית</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לדף הבית</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 
 <section class="tech-hero">
   <div class="tech-hero-label rv">מרכז מידע טכני</div>
@@ -872,7 +931,7 @@
 </section>
 
 <section class="pp-cta"><h2 class="rv">צריכים מפרט ספציפי?<br><em>נשמח לסייע</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
-<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><polygon points="26,0 50,0 50,30" fill="#E9EEF2"/><polygon points="33,0 50,0 50,20" fill="#E9EEF2" opacity=".35"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: 03-9343159 | פקס: 03-9311921</p><p>skylite@skylite.co.il</p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
+<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: 03-9343159 | פקס: 03-9311921</p><p>skylite@skylite.co.il</p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
 </div>
 
 <!-- ════ JS ════ -->
@@ -1129,6 +1188,27 @@ function techNav(btn,id){
   const el=document.getElementById(id);
   if(el){el.scrollIntoView({behavior:'smooth',block:'start'})}
 }
+
+// ── Tech nav: highlight active tab on scroll ──
+(function(){
+  const techSections=['tech-docs','tech-construction','tech-glazing','tech-motors','tech-domes'];
+  const techTabs=document.querySelectorAll('.tech-nav-tab');
+  if(!techTabs.length)return;
+  const techObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id=e.target.id;
+        techTabs.forEach((t,i)=>{
+          t.classList.toggle('active',techSections[i]===id);
+        });
+      }
+    });
+  },{rootMargin:'-120px 0px -60% 0px',threshold:0});
+  techSections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)techObs.observe(el);
+  });
+})();
 
 go('home');
 
