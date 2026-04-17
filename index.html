@@ -152,7 +152,7 @@
     .proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:72px}
     .proc-step{position:relative;padding:40px 32px 44px;background:#fff;border-radius:12px;border:1px solid rgba(43,122,140,.1);box-shadow:0 2px 12px rgba(26,30,36,.04);transition:transform .35s var(--spring),box-shadow .35s var(--spring),border-color .35s}
     .proc-step:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(26,30,36,.08);border-color:rgba(43,122,140,.18)}
-    .proc-num-large{font-size:56px;font-weight:900;line-height:1;background:linear-gradient(160deg,rgba(43,122,140,.35),rgba(43,122,140,.15));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-feature-settings:'tnum';margin-bottom:24px;letter-spacing:-.02em}
+    .proc-num-large{font-size:56px;font-weight:900;line-height:1;color:rgba(43,122,140,.28);font-feature-settings:'tnum';margin-bottom:24px;letter-spacing:-.02em}
     .proc-num{font-size:10px;font-weight:400;letter-spacing:.30em;color:var(--accent);margin-bottom:14px;font-feature-settings:'tnum'}
     .proc-name{font-weight:700;font-size:17px;color:var(--dark);line-height:1.35;margin-bottom:12px}
     .proc-desc{font-size:14px;font-weight:300;line-height:1.75;color:var(--stone)}
@@ -325,8 +325,7 @@
     .tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
     .tech-card{background:var(--cream);padding:36px;border:1px solid var(--warm-gray);transition:box-shadow .4s var(--spring),border-color .35s,transform .4s var(--spring)}
     .tech-card:hover{box-shadow:0 16px 48px rgba(26,30,36,.09);border-color:var(--accent-pale);transform:translateY(-3px)}
-    .tech-card-icon{width:40px;height:40px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;background:var(--dark);border-radius:6px}
-    .tech-card-icon svg{width:20px;height:20px;color:var(--accent)}
+    .tech-card-icon{display:none}
     .tech-card-name{font-weight:700;font-size:16px;color:var(--dark);margin-bottom:8px}
     .tech-card-desc{font-size:14px;font-weight:300;line-height:1.65;color:var(--stone)}
     .tech-card-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--accent);margin-top:16px;letter-spacing:.06em;transition:gap .2s}
@@ -500,6 +499,10 @@
   <div class="hero-label" style="color:var(--accent-pale)">Skylite — Natural Engineering</div>
   <h1 style="color:#fff"><em style="color:var(--accent-pale);font-style:normal">הנדסת</em> האור</h1>
   <p class="hero-sub" style="color:rgba(255,255,255,.6)">תכנון מדויק שמותאם לכל פרויקט — מהלופט הפרטי ועד הספריה הלאומית</p>
+  <div style="margin-top:40px;display:flex;gap:16px;position:relative;z-index:1;flex-wrap:wrap">
+    <a href="#" onclick="openCM();return false" class="btn-p" style="width:auto;padding:16px 36px">קבלו הצעת מחיר</a>
+    <a href="#products" class="btn-s" style="width:auto;padding:16px 28px;border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.8)">לצפייה במוצרים</a>
+  </div>
   <div class="hero-scroll" style="color:rgba(255,255,255,.3)"><div class="hero-scroll-line" style="background:rgba(255,255,255,.15)"></div>SCROLL</div>
 </section>
 
@@ -515,6 +518,7 @@
       לפרויקטים שלנו
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
     </a>
+    <a href="#" onclick="openCM();return false" class="btn-p" style="width:auto;display:inline-flex;margin-top:28px;padding:15px 32px">קבלו הצעת מחיר</a>
   </div>
 </section>
 
