@@ -1,61 +1,67 @@
-# Skylite — Claude Code Project Brief
+# Skylite — Claude Project Brief
+
+> **Goal:** Ship the finished site by end of week (April 2026).
+> **Live site:** https://os84.github.io/skylite-preview/
+> **Repo:** https://github.com/OS84/skylite-preview
+> **Local preview:** `python3 -m http.server 8080` → http://localhost:8080
+
+---
 
 ## What this is
-Single-file Hebrew RTL website for **Skylite** (סקיילייט), an Israeli skylight manufacturer based in Petah Tikva. The entire site lives in `index.html` — one file, no build system, no frameworks.
 
-**Live site:** https://os84.github.io/skylite-preview/  
-**Repo:** https://github.com/OS84/skylite-preview  
-**Local preview:** `python3 -m http.server 8080` → http://localhost:8080
+Single-file Hebrew RTL website for **Skylite** (סקיילייט), an Israeli skylight manufacturer. The entire site lives in `index.html` — one file, no build system, no frameworks. ~1300 lines.
 
 ---
 
 ## Language & direction
+
 - `lang="he" dir="rtl"` — everything flows right-to-left
 - Font: **Heebo** (Google Fonts) — weights 300, 400, 500, 700, 900
-- All copy is in Hebrew. Don't translate or change Hebrew text unless explicitly asked.
+- All copy is Hebrew. **Never translate or change Hebrew text unless explicitly asked.**
 
 ---
 
 ## Design system
 
-### Color tokens (CSS vars in `:root`)
+### Color tokens (`:root` CSS vars)
 ```
---cream:      #F4F6F8   (page background)
---chalk:      #E9EEF2   (subtle sections)
---dark:       #1A1E24   (primary text / dark backgrounds)
---dark-mid:   #252A32   (footers)
---accent:     #2B7A8C   (primary brand color — teal)
+--cream:      #F4F6F8   page background
+--chalk:      #E9EEF2   subtle sections
+--dark:       #1A1E24   primary text / dark backgrounds
+--dark-mid:   #252A32   footers
+--accent:     #2B7A8C   primary brand teal
 --accent-2:   #34909E
---accent-pale:#7FBCC8   (lighter teal, links)
---accent-deep:#1D5F6E   (hover states)
+--accent-pale:#7FBCC8   lighter teal, links
+--accent-deep:#1D5F6E   hover states
 --sky:        #4F8FA0
---stone:      #6B7680   (secondary text)
+--stone:      #6B7680   secondary text
 --linen:      #F8FAFB
 --sand:       #EDF1F4
---warm-gray:  #DDE3E8   (dividers)
---ease:       cubic-bezier(.25,.1,.25,1)
---ease-out:   cubic-bezier(0,0,.2,1)
---spring:     cubic-bezier(.16,1,.3,1)
+--warm-gray:  #DDE3E8   dividers
 ```
 
-### Typography scale
-- Labels/eyebrows: `font-size:11px; letter-spacing:.22em; text-transform:uppercase; font-weight:300`
-- Body: `font-size:15px; font-weight:300; line-height:1.75`
-- Section titles: `font-size:clamp(28px,5vw,52px); font-weight:700`
-- Keep it light and airy — prefer weight 300/400 over heavy text
+### Typography (current — post typeset pass)
+- Labels/eyebrows: `12px; letter-spacing:.22em; text-transform:uppercase; font-weight:300`
+- Body text: `15px; font-weight:400; line-height:1.75`
+- Section titles: `clamp(28px,5vw,52px); font-weight:700`
+- Hero: weight 900 for max hierarchy contrast
 
-### Spacing philosophy
-Generous whitespace. Sections use `padding: 80px 0` on desktop, `48px 0` on tablet, `32px 0` mobile.
+### Spacing
+Generous whitespace. Sections: `padding: 80px 0` desktop, `48px 0` tablet, `32px 0` mobile.
 
 ---
 
 ## File structure
 ```
 skylite-github/
-├── index.html              ← entire site (1200 lines)
-├── CLAUDE.md               ← this file
-├── .nojekyll               ← disables Jekyll on GitHub Pages
-└── מוצרים מסווגים/         ← 104 compressed images (43MB)
+├── index.html                  ← entire site
+├── CLAUDE.md                   ← this file
+├── .impeccable.md              ← design context for impeccable skill
+├── apply-critique-fixes.py     ← apply script: CTAs, gradients, icons
+├── apply-typeset.py            ← apply script: font sizes, contrast
+├── .nojekyll                   ← disables Jekyll on GitHub Pages
+├── .claude/skills/             ← installed design skills (see Skills section)
+└── מוצרים מסווגים/             ← 104 compressed product images (43MB)
     ├── 01 — סקיילייט נוסע/
     ├── 02 — סקיילייט קבוע/
     ├── 03 — סקיילייט מדרך/
@@ -68,12 +74,8 @@ skylite-github/
 ---
 
 ## Page architecture
-JavaScript SPA — no server routing needed.
 
-```js
-showPage(pid)   // switches active product page
-subTab(el, pid) // switches sub-tabs within a page
-```
+JavaScript SPA — hash routing via `go(id)` / `showPage(pid)`.
 
 ### Page IDs
 | ID | Hebrew name |
@@ -97,24 +99,171 @@ subTab(el, pid) // switches sub-tabs within a page
 const B = './מוצרים מסווגים/';
 const GALLERIES = {
   penthouse: {
-    'project name': [
+    'tab label': [
       { s: 'folder/filename.jpg', c: 'optional caption' },
     ]
   },
-  fixed: { ... },
-  // retractable, walkon, structural, smoke
+  // fixed, retractable, walkon, structural, smoke
 };
 ```
 `renderGallery(pid)` reads `GALLERIES[pid]` and populates `#gal-{pid}`.
+`subTab(el, pid)` switches between sub-tabs within a product page.
 
 ---
 
-## Content already implemented
-1. ✅ **Water philosophy** — `פילוסופיית המים` paragraph in the process/about section
-2. ✅ **Motors section** — on smoke page: chain motor, piston motor, EN 12101 effective area, control hub
-3. ✅ **Enriched footers** — all product pages have: full address, phone, fax, hours, Instagram link
+## Critical CSS conventions
 
-### Contact info (use exactly as written)
+### Apply scripts pattern
+**Never make CSS edits directly to index.html from Cowork** — the file is large and direct edits may not sync reliably to Mac. Instead:
+1. Write the change as a Python `str.replace()` in a new `apply-[feature].py` script
+2. Give the script to the user to run from Terminal: `python3 apply-[feature].py`
+3. User runs it, git commits and pushes
+
+### ID-scoped CSS for dark/light section discrimination
+Several `.tech-specs` sections appear on the technology page. Two of them have dark backgrounds (`#tech-construction`, `#tech-motors`) — the rest are light cream. **Do NOT use `.tech-specs .rule{}` globally.** Always scope dark overrides to the specific IDs:
+```css
+#tech-construction .sec-title,
+#tech-motors .sec-title { color: #fff }
+```
+Global class-based overrides will break the light sections (`#tech-glazing`, `#tech-domes`).
+
+### Hero overlay gradient
+The hero overlay uses a bottom-weighted gradient for photography contrast + top-weighted for nav readability:
+```css
+.hero-ov {
+  background: radial-gradient(ellipse at 50% 110%, rgba(43,122,140,.10) 0%, transparent 55%),
+              linear-gradient(180deg, rgba(26,30,36,.52) 0%, rgba(26,30,36,.18) 22%,
+                             transparent 42%, rgba(26,30,36,.54) 100%);
+}
+```
+
+---
+
+## What has been completed (April 2026 session)
+
+- ✅ **Hero CTAs** — "קבלו הצעת מחיר" (primary) + "לצפייה במוצרים" (secondary) added to hero
+- ✅ **Statement section CTA** — "קבלו הצעת מחיר" button after the "לפרויקטים שלנו" link
+- ✅ **Typeset pass** — All 10–11px labels bumped to 12px; body text (proc-desc, tech-card-desc, etc.) to 15px weight-400; low-opacity white text raised throughout
+- ✅ **Process step numbers** — Gradient text removed, replaced with solid `color:rgba(43,122,140,.28)`
+- ✅ **Tech card icons** — Hidden (`display:none`), cards now lead with title
+- ✅ **Dark section text** — `#tech-construction` and `#tech-motors` scoped to white text on dark bg; light sections unaffected
+- ✅ **Nav readability** — Hero overlay gradient darkened at top for nav contrast over photography
+- ✅ **Stats section repositioned** — Moved from after clients strip to between statement and products sections
+- ✅ **Design context** — `.impeccable.md` created with brand brief, audiences, aesthetic direction
+
+---
+
+## Remaining tasks to ship (end-of-week)
+
+### P0 — Must ship
+1. **Gallery restructure** — Reorganize from arbitrary tabs to project-named groups; fix broken `subTab` linkage; add project names as image overlay captions. Brainstorm is in progress — need to align on project-first vs product-first structure.
+2. **Project pages** — Thumbnails in home strip should navigate to a dedicated project detail page (new `.pp` page template + routing + project data object needed).
+
+### P1 — Should ship
+3. **Form success message** — Generic "תודה רבה" needs copy improvement with expectation-setting (response time, next step).
+4. **Tech PDFs** — User will provide PDF files; link them in the tech documentation section.
+5. **Button variant cleanup** — 4 variants (`btn-p`, `btn-pd`, `btn-s`, `btn-od`) → consolidate to 2 to reduce visual noise.
+
+### P2 — Nice to have
+6. **Alt text on images** — Hebrew `alt` attributes for accessibility and SEO.
+7. **Meta descriptions** — Unique per product page.
+8. **Final polish pass** — Run `/polish` skill after all P0/P1 items are done.
+
+---
+
+## Installed skills
+
+Skills live in `.claude/skills/`. Invoked with `/skill-name` in any Claude session.
+
+### Design skills (impeccable suite) — use for site work
+
+| Skill | When to invoke |
+|---|---|
+| `/critique` | Full UX review with scored heuristics. Re-run after major changes. |
+| `/typeset` | If new sections are added and font sizing feels off. |
+| `/polish` | **Run last, before final deploy.** Alignment, spacing, micro-detail pass. |
+| `/audit` | Accessibility + performance check. Flags missing alt text, contrast issues. |
+| `/colorize` | If any section feels flat or monochromatic. |
+| `/redesign-existing-projects` | For deeper structural rethinks of a section. |
+| `/impeccable` | Foundation skill — run `impeccable teach` only if starting from scratch. Context already in `.impeccable.md`. |
+
+**Skip these** (wrong aesthetic for Skylite): `high-end-visual-design`, `design-taste-frontend`, `stitch-design-taste` — all assume dark/React stacks.
+
+---
+
+### Marketing skills — use for copy, SEO, and traffic
+
+**For the site now (copy + positioning):**
+
+| Skill | When to invoke |
+|---|---|
+| `/copywriting` | Write or rewrite any section — hero, product pages, CTAs, about. |
+| `/copy-editing` | Review and tighten existing Hebrew copy for clarity and tone. |
+| `/content-strategy` | Plan blog posts, case studies, or any content beyond the site itself. |
+| `/competitor-profiling` | Research and profile competing skylight companies in Israel. |
+| `/marketing-psychology` | Apply persuasion principles to copy, layout, and CTAs. |
+| `/product-marketing-context` | Define positioning, messaging hierarchy, and value props. |
+
+**For when you start pushing traffic:**
+
+| Skill | When to invoke |
+|---|---|
+| `/seo-audit` | Full SEO audit of the site — titles, meta, headings, keywords, structure. |
+| `/ai-seo` | Optimize for AI search engines (ChatGPT, Perplexity, Google AI Overviews). |
+| `/programmatic-seo` | Scale SEO with templated pages (e.g. per city, product type, use case). |
+| `/paid-ads` | Write and structure Google/Meta ad campaigns and landing pages. |
+| `/ad-creative` | Generate and iterate ad copy and creatives for campaigns. |
+| `/analytics-tracking` | Set up GA4, conversion tracking, and measurement for the site. |
+| `/site-architecture` | Audit and improve URL structure, internal linking, and crawlability. |
+
+**For growth beyond the site:**
+
+| Skill | When to invoke |
+|---|---|
+| `/social-content` | Write Instagram/LinkedIn posts for @skyliteisrael. |
+| `/lead-magnets` | Create downloadable assets (spec sheets, guides) to capture architect emails. |
+| `/marketing-ideas` | Brainstorm campaigns, partnerships, or growth ideas. |
+
+**Skip these for now**: `ab-test-setup` (need traffic first), `community-marketing` (not relevant), `aso-audit` (mobile app only).
+
+---
+
+### Use these for the remaining work:
+
+| Skill | When to invoke |
+|---|---|
+| `/critique` | Run a full UX design review with scored heuristics. Re-run after major changes to track improvement. |
+| `/typeset` | If any new sections are added and font sizing feels off. Already run once — don't re-run unless new content added. |
+| `/polish` | **Run last, before final deploy.** Catches alignment, spacing inconsistencies, micro-detail issues. |
+| `/audit` | Run for accessibility + performance check. Will flag missing alt text, contrast issues, heading hierarchy. |
+| `/colorize` | If any section feels flat or monochromatic after gallery/project page work. |
+| `/redesign-existing-projects` | If a section needs a deeper structural rethink rather than a tweak. |
+| `/impeccable` | Foundation skill — run `impeccable teach` if starting a new session from scratch. Context is already in `.impeccable.md`. |
+
+### Skip these (not relevant to this project):
+- `high-end-visual-design` — prescribes dark/glassmorphism aesthetics that contradict Skylite's light, photography-led direction
+- `design-taste-frontend` — React/Next.js focused; site is vanilla HTML
+- `stitch-design-taste` — Same issue, framework-dependent
+
+---
+
+## Deploy workflow
+```bash
+git add index.html
+git commit -m "Brief description"
+git push origin main
+# GitHub Pages updates in ~60 seconds
+```
+
+**If you get a lock error:**
+```bash
+rm ~/Downloads/skylite-github/.git/index.lock
+```
+Happens when GitHub Desktop is open alongside Terminal. Quit GitHub Desktop first.
+
+---
+
+## Contact info (use exactly)
 ```
 סקיילייט בע"מ
 אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה
@@ -126,53 +275,22 @@ Instagram: @skyliteisrael → https://instagram.com/skyliteisrael/
 
 ---
 
-## Coding conventions
-- **No frameworks** — vanilla HTML/CSS/JS only
-- **No external CSS libraries** — all styles are inline in `<style>` block in `<head>`
-- **Inline styles for one-off tweaks** — use `style="..."` for small adjustments rather than adding new CSS classes
-- **CSS classes for patterns** — if something repeats 3+ times, add a class
-- **Mobile-first breakpoints:** `768px` (tablet), `480px` (mobile)
-- **Images:** always reference as `./מוצרים מסווגים/folder/file.jpg` — keep Hebrew paths as-is
-- **No video tags** — videos were stripped (too large for GitHub Pages). Use YouTube/Vimeo embeds if video is needed.
+## Brand brief (summary of `.impeccable.md`)
+
+**Audiences (equal weight):**
+- **Professionals** (architects, designers, contractors) — need technical credibility, named projects, compliance standards
+- **Homeowners** (penthouses, villas) — need emotional inspiration, light/space photography, trust signals
+
+**Brand personality:** precise · experienced · luminous
+
+**Aesthetic:** Light mode. Teal accent on near-white. Photography leads, UI follows. Not SaaS, not corporate, not government.
+
+**Primary goal:** Generate contact/quote inquiries. Secondary: establish Skylite as Israel's category leader so architects specify them by name.
 
 ---
 
-## Deploy workflow
-```bash
-git add index.html
-git commit -m "Brief description of change"
-git push origin main
-# GitHub Pages updates in ~60 seconds
-```
-
-**If you get a lock error:**
-```bash
-rm ~/Downloads/skylite-github/.git/index.lock
-rm ~/Downloads/skylite-github/.git/HEAD.lock   # if it exists
-```
-This happens when GitHub Desktop is open alongside Terminal. Quit GitHub Desktop before running git commands.
-
----
-
-## Design goals & brand voice
-- **Premium but approachable** — luxury product, not cold or corporate
-- **Light and architectural** — lots of white space, clean lines, photography-led
-- **Trust signals** — years of experience, named projects (מלון מצפה הימים, אוניברסיטת בר אילן, etc.)
-- **Technical credibility** — EN 12101 compliance, engineering specs build confidence
-- Tone of Hebrew copy: professional, warm, direct — not salesy
-
----
-
-## SEO notes (for future work)
-- Target keywords: סקיילייט, גגון אור, חלון גג, פתח אוורור גג, שחרור עשן תקן EN 12101
-- All product pages need `<meta description>` tags
-- Images need `alt` attributes in Hebrew
-- Schema markup (LocalBusiness + Product) would be a high-value addition
-- Page titles are all "Skylite — הנדסת האור" — each page should have a unique title
-
----
-
-## Known issues (as of April 2026)
-- GitHub Pages intermittently slow to deploy after large commits (43MB image folder)
-- One unchecked div mismatch pre-exists in original HTML — not introduced by recent edits, not causing visible issues
-- Videos excluded from deploy — hosted nowhere yet
+## SEO (future work)
+- Keywords: סקיילייט, גגון אור, חלון גג, פתח אוורור גג, שחרור עשן תקן EN 12101
+- All product pages need unique `<title>` and `<meta description>`
+- Images need Hebrew `alt` attributes
+- Schema markup: LocalBusiness + Product
