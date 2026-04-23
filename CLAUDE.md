@@ -3,7 +3,7 @@
 > **Goal:** Ship the finished site by end of week (April 2026).
 > **Live site:** https://os84.github.io/skylite-preview/
 > **Repo:** https://github.com/OS84/skylite-preview
-> **Local preview:** `python3 -m http.server 8080` → http://localhost:8080
+> **Local preview:** `pkill -9 -f http.server; cd ~/Downloads/skylite-github && python3 -m http.server 8100` → http://localhost:8100
 
 ---
 
@@ -139,35 +139,76 @@ The hero overlay uses a bottom-weighted gradient for photography contrast + top-
 
 ---
 
-## What has been completed (April 2026 session)
+## What has been completed (April 2026)
 
-- ✅ **Hero CTAs** — "קבלו הצעת מחיר" (primary) + "לצפייה במוצרים" (secondary) added to hero
-- ✅ **Statement section CTA** — "קבלו הצעת מחיר" button after the "לפרויקטים שלנו" link
-- ✅ **Typeset pass** — All 10–11px labels bumped to 12px; body text (proc-desc, tech-card-desc, etc.) to 15px weight-400; low-opacity white text raised throughout
-- ✅ **Process step numbers** — Gradient text removed, replaced with solid `color:rgba(43,122,140,.28)`
-- ✅ **Tech card icons** — Hidden (`display:none`), cards now lead with title
-- ✅ **Dark section text** — `#tech-construction` and `#tech-motors` scoped to white text on dark bg; light sections unaffected
-- ✅ **Nav readability** — Hero overlay gradient darkened at top for nav contrast over photography
-- ✅ **Stats section repositioned** — Moved from after clients strip to between statement and products sections
-- ✅ **Design context** — `.impeccable.md` created with brand brief, audiences, aesthetic direction
+**Design & copy:**
+- ✅ Hero CTAs — "קבלו הצעת מחיר" (primary) + "לצפייה במוצרים" (secondary)
+- ✅ Statement headline rewritten — "סקיילייט הוא האמצעי — המוצר האמיתי הוא האור שנכנס פנימה"
+- ✅ Hero subtitle — "מהפנטהאוז הפרטי ועד הספריה הלאומית"
+- ✅ Water section rewritten — label "הנדסת אטימות", new headline, spec-accurate 4 points
+- ✅ Typeset pass — 10–11px labels → 12px; body text → 15px weight-400; low-opacity white raised
+- ✅ Process step numbers — gradient text removed → solid `color:rgba(43,122,140,.28)`
+- ✅ Tech card icons hidden; dark section text scoped to `#tech-construction` + `#tech-motors`
+- ✅ Nav readability — hero overlay gradient darkened at top
+- ✅ Stats section repositioned — between statement and products
+- ✅ `.impeccable.md` created; `.agents/product-marketing-context.md` V1 strategic doc written
+
+**Architecture (walk-on pilot — new pattern):**
+- ✅ **Media strip** — 8 image tiles with auto-derived overlays above projects section
+- ✅ **Project detail pages** — `#page-project-{slug}` with hero, metadata, full gallery. 3 live: National Library, בית הבאר, HP HQ (Mercury Building)
+- ✅ **`renderProjectGallery`** — `_filenameHint()` auto-captions tiles from filenames (מדרך/קבוע/נוסע/כיפה)
+- ✅ **Video gallery** — wired on retractable + penthouse pages via `renderVideos(pid)`; 2 live videos on retractable
+- ✅ Projects have `products:[]` array for future cross-page appearance
+
+**Strategic docs in repo:**
+- `.agents/product-marketing-context.md` — positioning, differentiators, objections, voice, proof points
+- `.agents/parked-copy-blocks.md` — "Right First Time" Hebrew copy block (legally reviewed, ready for About page)
+- `.impeccable.md` — design context
+- `CLAUDE.md` — this file
+
+---
+
+## ⚠️ Active issue — image folder sync
+
+Two copies of `מוצרים מסווגים` exist on the Mac:
+1. `~/Downloads/skylite-github/מוצרים מסווגים/` — OLD, 105 files, what the site reads
+2. `~/Downloads/מוצרים מסווגים/` — NEW, 387 files, where images have been curated (has HP HQ, בית הבאר, etc.)
+
+**Fix (run line by line):**
+```bash
+cd ~/Downloads
+mv skylite-github/"מוצרים מסווגים" skylite-github/"מוצרים מסווגים.bak"
+cp -R "מוצרים מסווגים" skylite-github/
+```
+
+**After sync:** two MEDIA.walkon paths need swapping — `HP06.jpg` and `95.jpg` only exist in the old repo copy. Swap for images that exist in the synced folder.
+
+**Verify sync worked:**
+```bash
+ls ~/Downloads/skylite-github/"מוצרים מסווגים/03 — סקיילייט מדרך/"
+```
+Should show HP HQ, בית הבאר, ספריה לאומית folders.
 
 ---
 
 ## Remaining tasks to ship (end-of-week)
 
 ### P0 — Must ship
-1. **Gallery restructure** — Reorganize from arbitrary tabs to project-named groups; fix broken `subTab` linkage; add project names as image overlay captions. Brainstorm is in progress — need to align on project-first vs product-first structure.
-2. **Project pages** — Thumbnails in home strip should navigate to a dedicated project detail page (new `.pp` page template + routing + project data object needed).
+1. **Finish walk-on pilot** — verify image sync, preview locally (`http://localhost:8100/#walkon`), fix broken MEDIA paths (HP06.jpg, 95.jpg)
+2. **Fill project TODOs** — National Library, בית הבאר, HP HQ detail pages need: year, architect, 2–3 sentence description (yellow `[TODO]` placeholders in HTML)
+3. **Roll out pilot to penthouse** — same media strip + project detail page pattern
+4. **Roll out to fixed, retractable, structural, smoke**
+5. **New project pages** — beyond the 3 walk-on ones already built
 
 ### P1 — Should ship
-3. **Form success message** — Generic "תודה רבה" needs copy improvement with expectation-setting (response time, next step).
-4. **Tech PDFs** — User will provide PDF files; link them in the tech documentation section.
-5. **Button variant cleanup** — 4 variants (`btn-p`, `btn-pd`, `btn-s`, `btn-od`) → consolidate to 2 to reduce visual noise.
+6. **Form success message** — improve "תודה רבה" with expectation-setting (response time, next step)
+7. **Tech PDFs** — user-provided files, link in tech documentation section
+8. **Button variant cleanup** — `btn-p`, `btn-pd`, `btn-s`, `btn-od` → consolidate to 2
 
 ### P2 — Nice to have
-6. **Alt text on images** — Hebrew `alt` attributes for accessibility and SEO.
-7. **Meta descriptions** — Unique per product page.
-8. **Final polish pass** — Run `/polish` skill after all P0/P1 items are done.
+9. **Alt text** — Hebrew `alt` attributes on all images (accessibility + SEO)
+10. **Meta descriptions** — unique per product page
+11. **Final `/polish` pass** — run before deploy
 
 ---
 
