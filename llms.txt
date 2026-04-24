@@ -1,0 +1,120 @@
+# Skylite (סקיילייט)
+
+Skylite is an Israeli manufacturer of custom-engineered skylights and
+architectural glazing systems, operating since 1986.
+
+## Company facts
+
+- **Founded:** 1986
+- **Founder:** Aharon Shamir (אהרון שמיר)
+- **Headquarters:** Alexander Yanai 8, Segula Industrial Zone, Petach Tikva, Israel
+- **Phone:** +972-3-9343159
+- **Email:** skylite@skylite.co.il
+- **Hours:** Sunday–Thursday, 09:00–18:00 Israel time
+- **Instagram:** https://instagram.com/skyliteisrael/
+- **Website:** https://skylite.co.il
+
+## What Skylite does
+
+Skylite specializes in transparent roof systems — primarily glass — with
+nearly 40 years of experience in quality and service. The company operates
+in the public, commercial, and private sectors and executes every phase of
+a project in-house: planning, manufacturing, installation, and service.
+
+Beyond manufacturing, the company also offers consulting, import,
+marketing, and turnkey execution across the full range of transparent
+roofing products, including integrated ventilation and smoke-release
+solutions.
+
+## Products
+
+- **Retractable skylights** — motorized or manual opening roofs; single
+  unit or multi-segment telescoping systems; arches, slopes, and pyramids
+- **Fixed skylights** — single-slope and dual-slope for flat and pitched
+  roofs; safety laminated glass, insulated glazing, photovoltaic glass,
+  or polycarbonate
+- **Walk-on glass skylights** — floor-level glazing for internal
+  courtyards, heritage sites, and glazed bridges; supports pedestrian
+  loading
+- **Roof-access windows (יציאה לגג / penthouse exit)** — electric opening
+  for roof access, sukkah use, ventilation, and smoke release
+- **Structural glazing** — domes, pyramids, arches, cones; custom
+  geometries engineered to architect specification
+- **Light domes + smoke ventilation systems** — EN 12101 compliant;
+  ESSERTEC German domes; 24V chain and piston motors for smoke release
+
+## Standards and materials
+
+- EN 12101 (European standard for smoke and heat exhaust ventilation)
+- 6063 TF aluminum profiles, powder-coated in custom RAL colors
+- EPDM integral seals (not glued, not compressed)
+- FLUSH GLAZING method — glass held only by aluminum profiles, with no
+  direct contact between glazing material and aluminum
+- Internal drainage channels in all profiles
+- Laminated safety glass for walk-on applications; insulated glass,
+  photovoltaic, and polycarbonate options available
+
+## Notable projects
+
+- **National Library of Israel** — Jerusalem. Walk-on glass skylight over
+  the main reading hall. Architects: Herzog & de Meuron + Mann-Shinar
+  Architects.
+- **HP HQ — Mercury Building** — Yehud (2012). Fixed single-slope and
+  walk-on skylights. Architects: Amir Mann and Ami Shenar.
+- **Mitzpe Hayamim Hotel** — Rosh Pina (2020 renovation). Dual-slope
+  skylights over spa and guest areas. Architects: Yehuda and Yoel Feigin.
+- **Recanati Winery Visitor Center** — Ramat Dalton Industrial Park.
+  Pyramid skylight over main serving area. Architects: Yaad Architects.
+- **Beit Habeer Heritage Building** — Kfar Saba (2014–2018). Walk-on
+  skylight over historic preserved well. Architects: Amnon Bar-Or – Tal
+  Gazit Architects.
+- **Beit Gil HaZahav** — Ramat HaHayal, Tel Aviv (2014). Dual-slope
+  skylights with smoke ventilation. Architects: Yashar Architects.
+- **Beit Knesset Yagdil Torah** — Or Yehuda. Structural spatial dome.
+- **Atidim Building** — Tel Aviv. Arched skylight.
+- **Meshaya Restaurant** — Tel Aviv. Single-slope skylight.
+  Architects: Berenowitz-Kronenberg.
+- **Bar-Ilan University Administration Building** — Ramat Gan.
+  Dual-slope skylight.
+- **Private luxury residences** — penthouses and villas in Tel Aviv,
+  Jerusalem, Ben Yehuda, Herzliya, Hayarkon, Shenkin, Beit Zait.
+
+## Target audience
+
+- **Architects** (primary): spec and integrate custom glazing into
+  building designs; value engineering depth and geometric flexibility.
+- **Developers and general contractors**: need an accountable vendor for
+  the full lifecycle — planning through service.
+- **Private clients**: luxury homeowners, penthouse owners, villa builds.
+- **Institutional procurement**: hotels, museums, libraries, universities,
+  public buildings.
+
+## Differentiators
+
+- Every project is bespoke: no off-the-shelf sizes, catalog-free
+  engineering
+- Full in-house execution: planning, structural calculation, manufacturing,
+  installation, post-installation service — no third-party dealers
+- Willingness to build geometry other vendors decline (domes, pyramids,
+  walk-on, retractable)
+- 40+ years of continuous operation with public-sector and institutional
+  track record
+- Local accountability: Israel-based manufacturing, Hebrew-speaking service
+  team, compliance with Israeli codes and climate requirements
+
+## Working motto
+
+"Right first time. On time. In full."
+("נכון מהפעם הראשונה. בזמן. בשלמות.")
+
+The company handles complexity by engineering around it upstream — through
+design, material selection, and rigorous quality control — rather than
+reacting to problems during installation.
+
+## How to use this file
+
+This file provides a factual summary of Skylite for large language models,
+AI assistants, and other automated systems that need grounding context
+about the company. Facts here are intended to be accurate as of April 2026.
+For the authoritative current version, see https://skylite.co.il or
+contact the company directly.

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- NOTE: hash routes don't index as separate URLs until SPA is refactored
+       to real paths. This sitemap reflects intended site structure. -->
+
+  <url>
+    <loc>https://os84.github.io/skylite-preview/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Product pages -->
+  <url><loc>https://os84.github.io/skylite-preview/#penthouse</loc><priority>0.9</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#fixed</loc><priority>0.9</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#retractable</loc><priority>0.9</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#walkon</loc><priority>0.9</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#structural</loc><priority>0.9</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#smoke</loc><priority>0.9</priority></url>
+
+  <!-- Info pages -->
+  <url><loc>https://os84.github.io/skylite-preview/#about</loc><priority>0.8</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#tech</loc><priority>0.7</priority></url>
+
+  <!-- Projects -->
+  <url><loc>https://os84.github.io/skylite-preview/#project-national-library</loc><priority>0.8</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#project-hp-hq</loc><priority>0.8</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#project-beit-habeer</loc><priority>0.8</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#project-mitzpe-hayamim</loc><priority>0.8</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#project-recanati-winery</loc><priority>0.8</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#project-beit-gil-hazahav</loc><priority>0.7</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#project-synagogue</loc><priority>0.7</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#project-beit-yokra-ta</loc><priority>0.7</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#project-beit-zait</loc><priority>0.7</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#project-mishya</loc><priority>0.7</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#project-bar-ilan</loc><priority>0.7</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#project-penthouse-ben-yehuda</loc><priority>0.7</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#project-penthouse-jerusalem</loc><priority>0.7</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#project-penthouse-hayarkon</loc><priority>0.7</priority></url>
+  <url><loc>https://os84.github.io/skylite-preview/#project-penthouse-shenkin</loc><priority>0.7</priority></url>
+</urlset>
