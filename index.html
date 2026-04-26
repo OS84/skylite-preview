@@ -727,6 +727,35 @@
     @media(max-width:1024px){.pp-media{padding:70px 0 80px}.pp-media-h,.pp-media-grid{padding:0 48px}.pp-media-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:600px){.pp-media{padding:48px 0 56px}.pp-media-h,.pp-media-grid{padding:0 24px}.pp-media-grid{grid-template-columns:1fr}.pp-media-item .mp-play{width:48px;height:48px}}
 
+    /* ── MOSAIC variant (pilot: fixed only) ── */
+    .pp-media-grid--mosaic{grid-template-columns:repeat(6,1fr);grid-auto-flow:dense;gap:12px}
+    .pp-media-grid--mosaic .pp-media-item{grid-column:span 2;aspect-ratio:1/1}
+    .pp-media-grid--mosaic .pp-media-item.tile-w{grid-column:span 4;aspect-ratio:3/2}
+    .pp-media-grid--mosaic .pp-media-item.tile-t{grid-column:span 2;aspect-ratio:2/3}
+    @media(max-width:1024px){.pp-media-grid--mosaic{grid-template-columns:repeat(4,1fr)}.pp-media-grid--mosaic .pp-media-item.tile-w{grid-column:span 4}.pp-media-grid--mosaic .pp-media-item{grid-column:span 2}}
+    @media(max-width:600px){.pp-media-grid--mosaic{grid-template-columns:1fr;gap:10px}.pp-media-grid--mosaic .pp-media-item,.pp-media-grid--mosaic .pp-media-item.tile-w,.pp-media-grid--mosaic .pp-media-item.tile-t{grid-column:span 1;aspect-ratio:4/3}}
+
+    /* ── PROJECTS TILE variant with hover metadata reveal (pilot: fixed only) ── */
+    .pp-projects-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:0 80px}
+    .pp-proj-tile{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;border-radius:6px;background:var(--dark);text-decoration:none;cursor:pointer}
+    .pp-proj-tile img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--spring),filter 1s var(--spring);filter:brightness(.92) saturate(1.04)}
+    .pp-proj-tile:hover img{transform:scale(1.05);filter:brightness(.7) saturate(1.08)}
+    .pp-proj-tile-veil{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(26,30,36,.86) 100%);pointer-events:none}
+    .pp-proj-tile-base{position:absolute;left:0;right:0;bottom:0;padding:18px 22px 20px;color:#fff;direction:rtl;pointer-events:none}
+    .pp-proj-tile-name{font-size:20px;font-weight:700;line-height:1.2;margin:0 0 4px;letter-spacing:-.005em}
+    .pp-proj-tile-where{font-size:12px;font-weight:400;letter-spacing:.14em;color:rgba(255,255,255,.78);text-transform:uppercase}
+    .pp-proj-tile-extra{max-height:0;opacity:0;overflow:hidden;transition:max-height .42s var(--spring),opacity .25s var(--spring),margin-top .42s var(--spring);margin-top:0}
+    .pp-proj-tile:hover .pp-proj-tile-extra{max-height:140px;opacity:1;margin-top:14px}
+    .pp-proj-tile-extra dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:0;font-size:13px}
+    .pp-proj-tile-extra dt{font-size:11px;font-weight:400;letter-spacing:.16em;color:rgba(255,255,255,.62);text-transform:uppercase;padding-top:2px;white-space:nowrap;margin:0}
+    .pp-proj-tile-extra dd{font-size:13px;font-weight:400;color:rgba(255,255,255,.96);line-height:1.45;margin:0}
+    .pp-proj-tile-arrow{position:absolute;top:18px;left:18px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.86);transition:opacity .35s var(--spring),transform .35s var(--spring)}
+    .pp-proj-tile:hover .pp-proj-tile-arrow{opacity:1;transform:scale(1)}
+    .pp-proj-tile-arrow svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:1.6}
+    @media(max-width:1024px){.pp-projects-tiles{grid-template-columns:repeat(2,1fr);padding:0 48px}}
+    @media(max-width:600px){.pp-projects-tiles{grid-template-columns:1fr;padding:0 24px;gap:10px}.pp-proj-tile-extra{max-height:140px;opacity:1;margin-top:14px}.pp-proj-tile-arrow{opacity:1;transform:scale(1)}}
+
+
     /* ── PROJECT DETAIL PAGE ── */
     .pp-project-intro{padding:100px 80px 40px;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr;gap:64px;align-items:start}
     .pp-project-intro-meta{display:grid;grid-template-columns:auto 1fr;gap:18px 32px;margin:0}
@@ -1828,20 +1857,20 @@ const MEDIA = {
     { type:'img', src:'03 — סקיילייט מדרך/בית הבאר - מבנה לשימור/סקיילייט מדרך מעל באר ישנה 3.jpg', cap:'בית הבאר — מבנה לשימור' },
   ],
   fixed: [
-    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/DSC05064.jpg', cap:'' },
+    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/DSC05064.jpg', cap:'', aspect:'wide' },
     { type:'img', src:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/hero image.jpg', cap:'מצפה הימים' },
-    { type:'img', src:'02 — סקיילייט קבוע/HP HQ - בניין מרקורי/HP06.jpg', cap:'HP HQ — בניין מרקורי' },
+    { type:'img', src:'02 — סקיילייט קבוע/HP HQ - בניין מרקורי/HP06.jpg', cap:'HP HQ — בניין מרקורי', aspect:'wide' },
     { type:'img', src:'02 — סקיילייט קבוע/HP HQ - בניין מרקורי/269.jpg', cap:'HP HQ — בניין מרקורי' },
-    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/Edited-10.jpg', cap:'' },
+    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/Edited-10.jpg', cap:'', aspect:'tall' },
     { type:'img', src:'02 — סקיילייט קבוע/מסעדת משייה - תל אביב/מסעדת משייה.jpg', cap:'מסעדת משייה' },
     { type:'img', src:'02 — סקיילייט קבוע/חצר אנגלית/בית זית/DSC05100.jpg' },
     { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/סקיילייט דו שיפועי על גג רעפים.jpg', cap:'' },
-    { type:'img', src:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DJI_20260225173740_0134_D(1).jpg', cap:'מצפה הימים' },
+    { type:'img', src:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DJI_20260225173740_0134_D(1).jpg', cap:'מצפה הימים', aspect:'wide' },
     { type:'img', src:'02 — סקיילייט קבוע/מסעדת משייה - תל אביב/Edited-4.jpg', cap:'מסעדת משייה' },
     { type:'img', src:'02 — סקיילייט קבוע/חצר אנגלית/חצר אנגלית.jpeg', cap:'' },
     { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/DSC05005.jpg', cap:'בית יוקרה — תל אביב' },
-    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/6ב - מנהלה בר אילן.jpg', cap:'מנהלה — בר אילן' },
-    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/217.jpg', cap:'' },
+    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/6ב - מנהלה בר אילן.jpg', cap:'מנהלה — בר אילן', aspect:'wide' },
+    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/217.jpg', cap:'', aspect:'tall' },
     { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/בית פרטי 2.jpg', cap:'' },
   ],
   structural: [
@@ -1925,6 +1954,10 @@ function autoCap(src){
 }
 function _effCap(item){ return item.cap !== undefined ? item.cap : autoCap(item.src); }
 
+// Pilot: per-pid mosaic layout map. 'mosaic' enables varied aspect ratios
+// driven by `aspect:'wide'|'tall'` on each MEDIA item (default = square).
+const MEDIA_LAYOUT = { fixed: 'mosaic' };
+
 function renderMedia(pid){
   const sec = document.getElementById('media-'+pid);
   if(!sec) return;
@@ -1936,20 +1969,30 @@ function renderMedia(pid){
   const kinds = items.map(it => it.type === 'vid' ? 'vid' : 'img');
   _galReg[key] = { srcs, caps, kinds };
 
+  const layout = MEDIA_LAYOUT[pid] || '';
+  const gridClass = layout === 'mosaic' ? 'pp-media-grid pp-media-grid--mosaic' : 'pp-media-grid';
+  const aspectClass = it => {
+    if(layout !== 'mosaic') return '';
+    if(it.aspect === 'wide') return ' tile-w';
+    if(it.aspect === 'tall') return ' tile-t';
+    return '';
+  };
+
   const playIcon = '<svg class="mp-play" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="rgba(0,0,0,.38)"/><path d="M26 20 L46 32 L26 44 Z" fill="#fff"/></svg>';
-  const out = [`<div class="pp-media-h"><div class="pp-projects-section-eye">גלריה</div><h2 class="pp-projects-section-t">עבודות נבחרות</h2></div>`, `<div class="pp-media-grid">`];
+  const out = [`<div class="pp-media-h"><div class="pp-projects-section-eye">גלריה</div><h2 class="pp-projects-section-t">עבודות נבחרות</h2></div>`, `<div class="${gridClass}">`];
   items.forEach((it,i) => {
     const cap = _effCap(it);
     const capHtml = cap ? `<div class="pp-media-cap">${cap}</div>` : '';
+    const ac = aspectClass(it);
     if(it.type === 'vid'){
       const vidSrc = (it.vidbase==='img' ? B : VB) + it.src;
       const poster = it.poster ? (it.vidbase==='img' ? B : VB)+it.poster : '';
       const thumb = poster
         ? `<img src="${poster}" alt="" loading="lazy">`
         : `<video src="${vidSrc}" preload="metadata" muted playsinline style="width:100%;height:100%;object-fit:cover;pointer-events:none"></video>`;
-      out.push(`<div class="pp-media-item pp-media-vid" onclick="openLb('${key}',${i})">${thumb}${playIcon}${capHtml}</div>`);
+      out.push(`<div class="pp-media-item pp-media-vid${ac}" onclick="openLb('${key}',${i})">${thumb}${playIcon}${capHtml}</div>`);
     } else {
-      out.push(`<div class="pp-media-item" onclick="openLb('${key}',${i})"><img src="${B}${it.src}" alt="" loading="lazy">${capHtml}</div>`);
+      out.push(`<div class="pp-media-item${ac}" onclick="openLb('${key}',${i})"><img src="${B}${it.src}" alt="" loading="lazy">${capHtml}</div>`);
     }
   });
   out.push('</div>');
@@ -2067,33 +2110,62 @@ function goProject(slug){
   updateMeta('project-' + slug);
 }
 
+// Pilot: per-pid layout map. 'tiles' = hover-reveal mosaic; default = cards.
+const PROJECTS_LAYOUT = { fixed: 'tiles' };
+
 function renderProjectsSection(pid){
   const sec=document.getElementById('projects-sec-'+pid);
   if(!sec)return;
   const projs=PROJECTS[pid];
   if(!projs||!projs.length){sec.style.display='none';return}
   const arrow='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+  const layout = PROJECTS_LAYOUT[pid] || 'cards';
   const out=[`<div class="pp-projects-section-h"><div class="pp-projects-section-eye">מבחר עבודות</div><h2 class="pp-projects-section-t">פרויקטים</h2></div>`];
-  projs.forEach((p,i)=>{
-    const num=String(i+1).padStart(2,'0');
-    const m=p.meta||{};
-    out.push(`<div class="pp-proj-card">
-      <a class="pp-proj-card-img" href="#project/${p.slug}" onclick="goProject('${p.slug}');return false">
+
+  if(layout === 'tiles'){
+    out.push('<div class="pp-projects-tiles">');
+    projs.forEach(p => {
+      const m = p.meta||{};
+      const extras = [];
+      if(m.arch && m.arch !== '—') extras.push(`<dt>אדריכל</dt><dd>${m.arch}</dd>`);
+      if(m.when && m.when !== '—') extras.push(`<dt>שנה</dt><dd>${m.when}</dd>`);
+      if(m.product && m.product !== '—') extras.push(`<dt>מוצר</dt><dd>${m.product}</dd>`);
+      const extraHtml = extras.length ? `<div class="pp-proj-tile-extra"><dl>${extras.join('')}</dl></div>` : '';
+      const where = (m.where && m.where !== '—') ? m.where : '';
+      out.push(`<a class="pp-proj-tile" href="#project/${p.slug}" onclick="goProject('${p.slug}');return false">
         <img src="${B}${p.hero}" alt="${p.name}" loading="lazy">
-      </a>
-      <div class="pp-proj-card-txt">
-        <div class="pp-proj-card-num">פרויקט ${num}</div>
-        <h3 class="pp-proj-card-name">${p.name}</h3>
-        <dl class="pp-proj-card-meta">
-          ${m.where&&m.where!=='—'?`<dt>מיקום</dt><dd>${m.where}</dd>`:''}
-          ${m.when&&m.when!=='—'?`<dt>שנה</dt><dd>${m.when}</dd>`:''}
-          ${m.arch&&m.arch!=='—'?`<dt>אדריכל</dt><dd>${m.arch}</dd>`:''}
-          ${m.product&&m.product!=='—'?`<dt>מוצר</dt><dd>${m.product}</dd>`:''}
-        </dl>
-        <a class="pp-proj-card-link" href="#project/${p.slug}" onclick="goProject('${p.slug}');return false">צפו בפרויקט ${arrow}</a>
-      </div>
-    </div>`);
-  });
+        <div class="pp-proj-tile-veil"></div>
+        <div class="pp-proj-tile-arrow">${arrow}</div>
+        <div class="pp-proj-tile-base">
+          <h3 class="pp-proj-tile-name">${p.name}</h3>
+          ${where ? `<div class="pp-proj-tile-where">${where}</div>` : ''}
+          ${extraHtml}
+        </div>
+      </a>`);
+    });
+    out.push('</div>');
+  } else {
+    projs.forEach((p,i)=>{
+      const num=String(i+1).padStart(2,'0');
+      const m=p.meta||{};
+      out.push(`<div class="pp-proj-card">
+        <a class="pp-proj-card-img" href="#project/${p.slug}" onclick="goProject('${p.slug}');return false">
+          <img src="${B}${p.hero}" alt="${p.name}" loading="lazy">
+        </a>
+        <div class="pp-proj-card-txt">
+          <div class="pp-proj-card-num">פרויקט ${num}</div>
+          <h3 class="pp-proj-card-name">${p.name}</h3>
+          <dl class="pp-proj-card-meta">
+            ${m.where&&m.where!=='—'?`<dt>מיקום</dt><dd>${m.where}</dd>`:''}
+            ${m.when&&m.when!=='—'?`<dt>שנה</dt><dd>${m.when}</dd>`:''}
+            ${m.arch&&m.arch!=='—'?`<dt>אדריכל</dt><dd>${m.arch}</dd>`:''}
+            ${m.product&&m.product!=='—'?`<dt>מוצר</dt><dd>${m.product}</dd>`:''}
+          </dl>
+          <a class="pp-proj-card-link" href="#project/${p.slug}" onclick="goProject('${p.slug}');return false">צפו בפרויקט ${arrow}</a>
+        </div>
+      </div>`);
+    });
+  }
   sec.innerHTML=out.join('');
 }
 
