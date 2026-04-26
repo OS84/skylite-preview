@@ -1,4 +1,8 @@
 
+# macOS Finder metadata — never useful in repos
+.DS_Store
+**/.DS_Store
+
 # Oversized videos — exceed GitHub's 100MB limit
 **/37_prob4.mp4
 **/43.mp4
