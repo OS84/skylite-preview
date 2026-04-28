@@ -261,18 +261,6 @@
     },
     {
       "@type": "CreativeWork",
-      "@id": "https://os84.github.io/skylite-preview/#project-beit-yokra-ta",
-      "name": "בית יוקרה — תל אביב",
-      "url": "https://os84.github.io/skylite-preview/#project-beit-yokra-ta",
-      "image": "https://os84.github.io/skylite-preview/מוצרים מסווגים/02 — סקיילייט קבוע/חד שיפועי/DSC05005.jpg",
-      "locationCreated": {
-        "@type": "Place",
-        "name": "תל אביב"
-      },
-      "about": "סקיילייט קבוע, חד שיפועי"
-    },
-    {
-      "@type": "CreativeWork",
       "@id": "https://os84.github.io/skylite-preview/#project-bar-ilan",
       "name": "מנהלה — אוניברסיטת בר אילן",
       "url": "https://os84.github.io/skylite-preview/#project-bar-ilan",
@@ -537,7 +525,7 @@
     .strip-arrow svg{width:18px;height:18px;color:var(--dark);stroke-width:2}
     .strip-arrow-next{left:-4px}
     .strip-arrow-prev{right:-4px}
-    @media(max-width:768px){.strip-arrow{width:40px;height:40px}.strip-arrow svg{width:15px;height:15px}.strip-arrow-next{left:4px}.strip-arrow-prev{right:4px}}
+    @media(max-width:768px){.strip-arrow{width:44px;height:44px}.strip-arrow svg{width:16px;height:16px}.strip-arrow-next{left:4px}.strip-arrow-prev{right:4px}}
 
 
     /* ═══ PROCESS ═══ */
@@ -727,33 +715,114 @@
     @media(max-width:1024px){.pp-media{padding:70px 0 80px}.pp-media-h,.pp-media-grid{padding:0 48px}.pp-media-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:600px){.pp-media{padding:48px 0 56px}.pp-media-h,.pp-media-grid{padding:0 24px}.pp-media-grid{grid-template-columns:1fr}.pp-media-item .mp-play{width:48px;height:48px}}
 
-    /* ── MOSAIC variant (pilot: fixed only) ── */
-    .pp-media-grid--mosaic{grid-template-columns:repeat(6,1fr);grid-auto-flow:dense;gap:12px}
-    .pp-media-grid--mosaic .pp-media-item{grid-column:span 2;aspect-ratio:1/1}
-    .pp-media-grid--mosaic .pp-media-item.tile-w{grid-column:span 4;aspect-ratio:3/2}
-    .pp-media-grid--mosaic .pp-media-item.tile-t{grid-column:span 2;aspect-ratio:2/3}
-    @media(max-width:1024px){.pp-media-grid--mosaic{grid-template-columns:repeat(4,1fr)}.pp-media-grid--mosaic .pp-media-item.tile-w{grid-column:span 4}.pp-media-grid--mosaic .pp-media-item{grid-column:span 2}}
-    @media(max-width:600px){.pp-media-grid--mosaic{grid-template-columns:1fr;gap:10px}.pp-media-grid--mosaic .pp-media-item,.pp-media-grid--mosaic .pp-media-item.tile-w,.pp-media-grid--mosaic .pp-media-item.tile-t{grid-column:span 1;aspect-ratio:4/3}}
+
+
+    /* ── MEGA-MENU NAV ── */
+    .nav-mega{position:relative}
+    .nav-mega-trigger{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+    .nav-mega-trigger svg{width:10px;height:10px;transition:transform .25s var(--spring)}
+    .nav-mega:hover .nav-mega-trigger svg,.nav-mega:focus-within .nav-mega-trigger svg{transform:rotate(180deg)}
+    .nav-mega-panel{position:absolute;top:100%;right:0;margin-top:18px;background:#fff;color:var(--dark);min-width:520px;padding:28px 32px;box-shadow:0 24px 60px -16px rgba(0,0,0,.25),0 8px 16px -8px rgba(0,0,0,.12);border:1px solid var(--warm-gray);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .25s var(--spring),transform .25s var(--spring),visibility .25s;direction:rtl;z-index:200;border-radius:6px}
+    .nav-mega:hover .nav-mega-panel,.nav-mega:focus-within .nav-mega-panel{opacity:1;visibility:visible;transform:translateY(0)}
+    .nav-mega-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px 36px}
+    .nav-mega-group{}
+    .nav-mega-group-title{font-size:11px;font-weight:500;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--warm-gray)}
+    .nav-mega-link{display:block;padding:9px 0;text-decoration:none;transition:color .2s var(--spring);text-align:start;direction:rtl}
+    .nav-mega-link-name{display:block;font-size:16px;font-weight:500;color:var(--dark);line-height:1.2;letter-spacing:-.005em;transition:color .2s var(--spring)}
+    .nav-mega-link-en{display:block;font-size:11px;font-weight:400;color:var(--stone);letter-spacing:.10em;margin-top:3px}
+    .nav-mega-link:hover .nav-mega-link-name{color:var(--accent)}
+
+    /* ── MOBILE DRAWER + HAMBURGER ── */
+    .nav-burger{display:none;width:44px;height:44px;background:transparent;border:0;cursor:pointer;padding:0;align-items:center;justify-content:center}
+    .nav-burger span{display:block;width:22px;height:1.5px;background:#fff;margin:3px 0;transition:transform .3s var(--spring),opacity .2s}
+    .nav.scrolled .nav-burger span,.pp .nav .nav-burger span{background:var(--dark)}
+    .nav-burger.open span:nth-child(1){transform:translateY(4.5px) rotate(45deg)}
+    .nav-burger.open span:nth-child(2){opacity:0}
+    .nav-burger.open span:nth-child(3){transform:translateY(-4.5px) rotate(-45deg)}
+    .nav-drawer{position:fixed;inset:0;background:var(--cream);z-index:300;padding:80px 32px 40px;overflow-y:auto;transform:translateX(100%);transition:transform .35s var(--spring);direction:rtl}
+    .nav-drawer.open{transform:translateX(0)}
+    .nav-drawer-close{position:absolute;top:24px;right:32px;width:44px;height:44px;background:transparent;border:0;cursor:pointer;font-size:24px;color:var(--dark)}
+    .nav-drawer-section{margin-bottom:28px}
+    .nav-drawer-section-title{font-size:11px;font-weight:500;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--warm-gray)}
+    .nav-drawer-link{display:block;font-size:18px;font-weight:500;color:var(--dark);padding:12px 0;text-decoration:none}
+    .nav-drawer-link:hover{color:var(--accent)}
+
+    @media(max-width:768px){
+      .nav-burger{display:flex}
+      .nav-mega-panel{display:none}
+    }
+
+    /* ── A11Y: visible focus indicators on all interactive elements ── */
+    a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,
+    .p-card:focus-visible,.pp-media-item:focus-visible,.pp-proj-tile:focus-visible{
+      outline:3px solid var(--accent);outline-offset:3px;
+    }
+    .nav-cta:focus-visible{outline-offset:6px}
+
+    /* ── MOSAIC variant (pilot: fixed + structural) — uniform row heights via grid-auto-rows ── */
+    /* Row height tracks column width exactly — eliminates ½·gap bottom-edge misalignment */
+    .pp-media-grid--mosaic{grid-template-columns:repeat(3,1fr);grid-auto-rows:calc((100vw - 184px) / 3);grid-auto-flow:dense;gap:12px}
+    .pp-media-grid--mosaic .pp-media-item{grid-column:span 1;grid-row:span 1;aspect-ratio:auto}
+    .pp-media-grid--mosaic .pp-media-item.tile-w{grid-column:span 2;grid-row:span 1}
+    .pp-media-grid--mosaic .pp-media-item.tile-t{grid-column:span 1;grid-row:span 2}
+    @media(max-width:1024px){.pp-media-grid--mosaic{grid-template-columns:repeat(2,1fr);grid-auto-rows:calc((100vw - 108px) / 2)}.pp-media-grid--mosaic .pp-media-item.tile-w{grid-column:span 2}.pp-media-grid--mosaic .pp-media-item{grid-column:span 1}.pp-media-grid--mosaic .pp-media-item.tile-t{grid-row:span 2}}
+    @media(max-width:600px){.pp-media-grid--mosaic{grid-template-columns:1fr;grid-auto-rows:auto;gap:10px}.pp-media-grid--mosaic .pp-media-item,.pp-media-grid--mosaic .pp-media-item.tile-w,.pp-media-grid--mosaic .pp-media-item.tile-t{grid-column:span 1;grid-row:span 1;aspect-ratio:4/3}}
 
     /* ── PROJECTS TILE variant with hover metadata reveal (pilot: fixed only) ── */
-    .pp-projects-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:0 80px}
-    .pp-proj-tile{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;border-radius:6px;background:var(--dark);text-decoration:none;cursor:pointer}
-    .pp-proj-tile img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--spring),filter 1s var(--spring);filter:brightness(.92) saturate(1.04)}
-    .pp-proj-tile:hover img{transform:scale(1.05);filter:brightness(.7) saturate(1.08)}
-    .pp-proj-tile-veil{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(26,30,36,.86) 100%);pointer-events:none}
-    .pp-proj-tile-base{position:absolute;left:0;right:0;bottom:0;padding:18px 22px 20px;color:#fff;direction:rtl;pointer-events:none}
-    .pp-proj-tile-name{font-size:20px;font-weight:700;line-height:1.2;margin:0 0 4px;letter-spacing:-.005em}
-    .pp-proj-tile-where{font-size:12px;font-weight:400;letter-spacing:.14em;color:rgba(255,255,255,.78);text-transform:uppercase}
-    .pp-proj-tile-extra{max-height:0;opacity:0;overflow:hidden;transition:max-height .42s var(--spring),opacity .25s var(--spring),margin-top .42s var(--spring);margin-top:0}
-    .pp-proj-tile:hover .pp-proj-tile-extra{max-height:140px;opacity:1;margin-top:14px}
-    .pp-proj-tile-extra dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:0;font-size:13px}
-    .pp-proj-tile-extra dt{font-size:11px;font-weight:400;letter-spacing:.16em;color:rgba(255,255,255,.62);text-transform:uppercase;padding-top:2px;white-space:nowrap;margin:0}
-    .pp-proj-tile-extra dd{font-size:13px;font-weight:400;color:rgba(255,255,255,.96);line-height:1.45;margin:0}
-    .pp-proj-tile-arrow{position:absolute;top:18px;left:18px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.86);transition:opacity .35s var(--spring),transform .35s var(--spring)}
-    .pp-proj-tile:hover .pp-proj-tile-arrow{opacity:1;transform:scale(1)}
-    .pp-proj-tile-arrow svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:1.6}
-    @media(max-width:1024px){.pp-projects-tiles{grid-template-columns:repeat(2,1fr);padding:0 48px}}
-    @media(max-width:600px){.pp-projects-tiles{grid-template-columns:1fr;padding:0 24px;gap:10px}.pp-proj-tile-extra{max-height:140px;opacity:1;margin-top:14px}.pp-proj-tile-arrow{opacity:1;transform:scale(1)}}
+
+    /* ── /projects page ── */
+    .projects-page-hero{padding:140px 80px 40px;background:var(--cream)}
+    .projects-page-eye{font-size:12px;font-weight:500;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;margin-bottom:18px}
+    .projects-page-title{font-size:clamp(38px,6vw,68px);font-weight:700;color:var(--dark);line-height:1.05;margin:0 0 24px;letter-spacing:-.01em}
+    .projects-page-sub{font-size:17px;font-weight:400;color:var(--stone);line-height:1.7;max-width:640px;margin:0}
+    .projects-filters{padding:36px 80px 0;background:var(--cream)}
+    .projects-filter-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:14px}
+    .projects-filter-label{font-size:11px;font-weight:500;letter-spacing:.22em;color:var(--stone);text-transform:uppercase;margin-left:18px;min-width:88px}
+    .projects-chip{display:inline-flex;align-items:center;height:32px;padding:0 16px;border-radius:18px;background:transparent;border:1px solid var(--warm-gray);font-size:13px;font-weight:400;color:var(--dark);font-family:var(--font);cursor:pointer;transition:background .25s var(--spring),border-color .25s var(--spring),color .25s var(--spring);direction:rtl}
+    .projects-chip:hover{border-color:var(--accent)}
+    .projects-chip.active{background:var(--dark);border-color:var(--dark);color:#fff}
+    .projects-chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .projects-grid-section{padding:48px 0 120px;background:var(--cream)}
+    .projects-grid-count{padding:0 80px;margin-bottom:28px;font-size:13px;color:var(--stone);letter-spacing:.06em}
+    .projects-empty{padding:80px 80px;text-align:center;max-width:560px;margin:0 auto}
+    .projects-empty h3{font-size:24px;font-weight:600;color:var(--dark);margin:0 0 12px}
+    .projects-empty p{font-size:15px;color:var(--stone);line-height:1.7;margin:0 0 28px}
+    @media(max-width:1024px){.projects-page-hero,.projects-filters,.projects-grid-count{padding-left:48px;padding-right:48px}.projects-empty{padding:60px 48px}}
+    @media(max-width:600px){.projects-page-hero{padding:100px 24px 32px}.projects-filters,.projects-grid-count{padding-left:24px;padding-right:24px}.projects-filter-label{display:block;width:100%;margin-bottom:8px}.projects-empty{padding:48px 24px}}
+
+    /* ── PROJECT TILES — Option C "Technical Frame" (corners + spec rail) ── */
+    .pp-projects-tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:0 80px}
+    .pp-proj-tile{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:var(--dark);text-decoration:none;cursor:pointer}
+    .pp-proj-tile img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--spring),filter .9s var(--spring);filter:brightness(.95) saturate(1.06)}
+    .pp-proj-tile:hover img{transform:scale(1.03);filter:brightness(.78) saturate(1.08)}
+    .pp-proj-tile-veil{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,30,36,.6) 100%);pointer-events:none}
+    /* Corner brackets — draw in from each corner on hover */
+    .pp-proj-tile-corner{position:absolute;width:24px;height:24px;border-color:var(--accent-pale);border-style:solid;border-width:0;opacity:0;transition:opacity .35s var(--spring),width .45s var(--spring),height .45s var(--spring);pointer-events:none;z-index:3}
+    .pp-proj-tile:hover .pp-proj-tile-corner,.pp-proj-tile:focus-within .pp-proj-tile-corner{opacity:1;width:30px;height:30px}
+    .pp-proj-tile-corner-tl{top:14px;left:14px;border-top-width:1.5px;border-left-width:1.5px}
+    .pp-proj-tile-corner-tr{top:14px;right:14px;border-top-width:1.5px;border-right-width:1.5px}
+    .pp-proj-tile-corner-bl{bottom:14px;left:14px;border-bottom-width:1.5px;border-left-width:1.5px}
+    .pp-proj-tile-corner-br{bottom:14px;right:14px;border-bottom-width:1.5px;border-right-width:1.5px}
+    /* Bottom name + drawing-set arrow */
+    .pp-proj-tile-base{position:absolute;inset-inline:0;bottom:0;padding:26px 30px;color:#fff;z-index:4;pointer-events:none;direction:rtl}
+    .pp-proj-tile-name-row{display:flex;align-items:center;gap:16px}
+    .pp-proj-tile-name{font-size:20px;font-weight:700;line-height:1.2;margin:0;letter-spacing:-.005em;text-shadow:0 1px 10px rgba(0,0,0,.4)}
+    .pp-proj-tile-arrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent-pale);flex:0 0 auto}
+    .pp-proj-tile-arrow-line{display:block;width:0;height:1px;background:currentColor;transition:width .4s var(--spring)}
+    .pp-proj-tile:hover .pp-proj-tile-arrow-line,.pp-proj-tile:focus-within .pp-proj-tile-arrow-line{width:36px}
+    .pp-proj-tile-arrow svg{width:12px;height:12px;flex:0 0 auto}
+    .pp-proj-tile-where{font-size:11px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-top:8px}
+    /* Spec rail — slides in from start edge (right in RTL) on hover */
+    .pp-proj-tile-spec{position:absolute;top:14px;bottom:14px;right:14px;width:46%;padding:30px 26px;background:linear-gradient(265deg,rgba(16,20,26,.78) 0%,rgba(16,20,26,.55) 100%);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;flex-direction:column;justify-content:center;gap:14px;transform:translateX(20px);opacity:0;transition:transform .55s var(--spring),opacity .35s var(--spring);z-index:5;pointer-events:none;border-left:1px solid rgba(127,188,200,.22);direction:rtl}
+    .pp-proj-tile:hover .pp-proj-tile-spec,.pp-proj-tile:focus-within .pp-proj-tile-spec{transform:translateX(0);opacity:1}
+    .pp-proj-tile-spec-row{display:flex;flex-direction:column;gap:4px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.12)}
+    .pp-proj-tile-spec-row:last-child{border-bottom:0;padding-bottom:0}
+    .pp-proj-tile-spec-row span{font-size:10px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-pale)}
+    .pp-proj-tile-spec-row b{font-size:13px;font-weight:500;color:#fff;line-height:1.35;letter-spacing:-.002em}
+    .pp-proj-tile:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+    /* Mobile/tablet: collapse to 1-col, spec rail always visible (no hover on touch) */
+    @media(max-width:1024px){.pp-projects-tiles{grid-template-columns:1fr;padding:0 48px}}
+    @media(max-width:600px){.pp-projects-tiles{padding:0 24px;gap:10px}.pp-proj-tile-spec{transform:translateX(0);opacity:1;width:50%}.pp-proj-tile-corner{opacity:1;width:30px;height:30px}.pp-proj-tile-arrow-line{width:36px}}
 
 
     /* ── PROJECT DETAIL PAGE ── */
@@ -914,7 +983,7 @@
     .form-wrap{display:flex;flex-direction:column;gap:14px;width:100%;max-width:400px}
     .form-field{position:relative}
     .form-field input{width:100%;padding:16px 18px;font-family:var(--font);font-size:14px;font-weight:400;background:var(--linen);border:1px solid var(--warm-gray);color:var(--dark);outline:none;transition:border-color .3s var(--spring);border-radius:4px;direction:rtl}
-    .form-field input::placeholder{color:var(--stone);font-weight:300}
+    .form-field input::placeholder{color:#404A55;font-weight:400;opacity:.85}
     .form-field input:focus{border-color:var(--accent)}
     .form-submit{padding:17px 32px;background:var(--accent);color:#fff;font-family:var(--font);font-size:13px;font-weight:500;letter-spacing:.1em;border:none;cursor:pointer;transition:background .3s var(--spring);border-radius:4px;width:100%;position:relative;overflow:hidden}
     .form-submit:hover{background:var(--accent-2)}
@@ -1026,12 +1095,38 @@
     <span class="nav-wordmark">SKYLITE</span>
   </div>
   <ul class="nav-links">
-    <li><a href="#products">מוצרים</a></li>
-    <li><a href="#projects">פרויקטים</a></li>
+    <li class="nav-mega">
+      <a href="#products" class="nav-mega-trigger">מוצרים <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></a>
+      <div class="nav-mega-panel">
+        <div class="nav-mega-grid">
+          <div class="nav-mega-group">
+            <div class="nav-mega-group-title">סקיילייט</div>
+            <a href="#" class="nav-mega-link" onclick="go('fixed');return false"><span class="nav-mega-link-name">סקיילייט קבוע</span><span class="nav-mega-link-en">Fixed</span></a>
+            <a href="#" class="nav-mega-link" onclick="go('retractable');return false"><span class="nav-mega-link-name">סקיילייט נוסע</span><span class="nav-mega-link-en">Retractable</span></a>
+            <a href="#" class="nav-mega-link" onclick="go('structural');return false"><span class="nav-mega-link-name">מבנים מרחביים</span><span class="nav-mega-link-en">Structural</span></a>
+          </div>
+          <div class="nav-mega-group">
+            <div class="nav-mega-group-title">פתחי גג</div>
+            <a href="#" class="nav-mega-link" onclick="go('penthouse');return false"><span class="nav-mega-link-name">יציאה לגג</span><span class="nav-mega-link-en">Roof Access</span></a>
+            <a href="#" class="nav-mega-link" onclick="go('windows');return false"><span class="nav-mega-link-name">חלונות סקיילייט</span><span class="nav-mega-link-en">Windows</span></a>
+          </div>
+          <div class="nav-mega-group">
+            <div class="nav-mega-group-title">רצפות שקופות</div>
+            <a href="#" class="nav-mega-link" onclick="go('walkon');return false"><span class="nav-mega-link-name">סקיילייט מדרך</span><span class="nav-mega-link-en">Walk-on</span></a>
+          </div>
+          <div class="nav-mega-group">
+            <div class="nav-mega-group-title">אוורור ובטיחות</div>
+            <a href="#" class="nav-mega-link" onclick="go('smoke');return false"><span class="nav-mega-link-name">שחרור עשן</span><span class="nav-mega-link-en">Smoke vent</span></a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a href="#" onclick="go('projects');return false">פרויקטים</a></li>
     <li><a href="#" onclick="go('tech');return false">מידע טכני</a></li>
     <li><a href="#" onclick="go('about');return false">עלינו</a></li>
   </ul>
   <a href="#contact" class="nav-cta" onclick="openCM();return false">צור קשר</a>
+  <button class="nav-burger" onclick="toggleDrawer()" aria-label="תפריט"><span></span><span></span><span></span></button>
 </nav>
 
 <section class="hero">
@@ -1058,7 +1153,7 @@
   <div class="rv rv-d2">
     <p style="font-size:18px;font-weight:400;line-height:1.85;color:var(--stone);margin-bottom:20px">40 שנה של תכנון, ייצור והתקנה בפרויקטים ציבוריים, מסחריים ומגורים בישראל. מהפנטהאוז בתל אביב, המלון במצפה הימים ועד הספריה הלאומית בירושלים — אנחנו מלווים כל פרויקט במומחיות וללא פשרות מהסקיצה הראשונה ועד מסירה מוצלחת.</p>
     <p style="font-size:18px;font-weight:400;line-height:1.85;color:var(--stone);margin-bottom:20px">בסקיילייט, השמיים והאור הטבעי הם עיקרון תכנוני אינטגרלי בגג המבנה.</p>
-    <a class="statement-link" href="#projects">
+    <a class="statement-link" href="#projects-strip">
       לפרויקטים שלנו
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
     </a>
@@ -1165,7 +1260,7 @@
   </div>
 </section>
 
-<section class="projects" id="projects">
+<section class="projects" id="projects-strip">
   <div class="sec-header"><div><div class="sec-label">03 — לקוחות ופרויקטים</div><h2 class="sec-title">עבודות נבחרות</h2></div></div>
   <div class="strip-wrap">
     <button class="strip-arrow strip-arrow-next" onclick="scrollStrip(1)" aria-label="הבא">
@@ -1275,7 +1370,7 @@
 <!-- ════ PENTHOUSE ════ -->
 <div id="page-penthouse" class="pp">
 <nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לכל המוצרים</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
-<section class="pp-hero"><img src="./מוצרים מסווגים/06 — יציאה לגג/Hero copy.jpg" alt=""><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">06 — Roof Access</div><h1 class="pp-hero-name">יציאה לגג</h1><div class="pp-hero-tag">הדלת שפותחת שמיים</div></div></section>
+<section class="pp-hero"><img src="./מוצרים מסווגים/06 — יציאה לגג/Hero copy.jpg" alt="פנטהאוז עם יציאה לגג נפתחת"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">06 — Roof Access</div><h1 class="pp-hero-name">יציאה לגג</h1><div class="pp-hero-tag">הדלת שפותחת שמיים</div></div></section>
 <section class="pp-content">
   <div><div class="pp-desc-label rv">על המוצר</div><div class="pp-desc rv rv-d1"><p>בית שנפתח לשמיים. לוחצים על הכפתור — והתקרה נעה הצידה. לא דלת לגג, אלא הגג עצמו שהופך להמשך של הבית. אור שמש ממלא את החלל; ערב קיצי נכנס פנימה; בחג הסוכות, הארוחה מתחת לשמיים — בלב הסלון.</p><p>הפתיחה חלקה, שקטה ומבוקרת — בשלט, במפסק או דרך רכזת ההפעלה. אפשר לשלוט מהספה.</p><p>המערכת בנויה ממסגרת אלומיניום בעלת דופן כפולה, אטמים אינטגרליים, צירים אטומים ומנוע חשמלי ייעודי.</p><p>מידות לפי הזמנה. תכנון, ייצור והתקנה על ידי חברת סקיילייט — בפנטהאוזים, בווילות ובפרויקטים מוסדיים בישראל, מאז 1986.</p></div></div>
   <div class="rv rv-d1"><div class="pp-chars-title">מאפיינים עיקריים</div>
@@ -1285,8 +1380,8 @@
     <div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">מידות וצבע לפי הזמנה</div><div class="pp-char-desc">צבע סטנדרטי לבן, בהזמנה מיוחדת לפי גוון RAL. מידות לפי הזמנה לכל פרויקט.</div></div></div>
   </div>
 </section>
-<section class="pp-media" id="media-penthouse"></section>
 <section class="pp-projects-section" id="projects-sec-penthouse"></section>
+<section class="pp-media" id="media-penthouse"></section>
 <section class="pp-videos-section" id="videos-penthouse"></section>
 
 <section class="pp-cta"><h2 class="rv">מתכננים יציאה לגג?<br><em>בואו נדבר</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
@@ -1296,13 +1391,13 @@
 <!-- ════ FIXED ════ -->
 <div id="page-fixed" class="pp">
 <nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לכל המוצרים</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
-<section class="pp-hero"><img src="./מוצרים מסווגים/02 — סקיילייט קבוע/חד שיפועי/Edited-2.jpg" alt=""><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">02 — Fixed Skylights</div><h1 class="pp-hero-name">סקיילייט קבוע</h1><div class="pp-hero-tag">הידוע — המוכח</div></div></section>
+<section class="pp-hero"><img src="./מוצרים מסווגים/02 — סקיילייט קבוע/חד שיפועי/Edited-2.jpg" alt="סקיילייט קבוע — חד-שיפועי על גג שטוח"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">02 — Fixed Skylights</div><h1 class="pp-hero-name">סקיילייט קבוע</h1><div class="pp-hero-tag">הידוע — המוכח</div></div></section>
 <section class="pp-content">
   <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>הסקיילייט הקבוע מתאפיין במגוון רחב של צורות ושימושים — על פי דרישות הלקוח והתכנון האדריכלי. מורכב מקונסטרוקציית אלומיניום עם זכוכית, Photovoltaic glass או פוליקרבונט.</p><p>מגיע בתצורה חד-שיפועית לגגות שטוחים ודו-שיפועית לגגות בעלי מרכז. מתאים למגורים ולמסחרי כאחד.</p><p>מערכות הזיגוג מותקנות בשיטת FLUSH GLAZING — הזכוכית מהודקת אך ורק באמצעות פרופילי האלומיניום, ללא מגע ישיר בין חומר הזיגוג לאלומיניום. הפרופילים כוללים תעלות ניקוז פנימי המונעות חדירת מים לחלל המבנה.</p></div></div>
   <div><div class="pp-chars-title">מאפיינים עיקריים</div><div class="pp-char"><div class="pp-char-n">01</div><div><div class="pp-char-name">חד-שיפועי או דו-שיפועי</div><div class="pp-char-desc">מתאים לגג שטוח (חד-שיפועי) ולגג עם שיפוע כפול — בחירה לפי האדריכלות הקיימת.</div></div></div><div class="pp-char"><div class="pp-char-n">02</div><div><div class="pp-char-name">פרופילי אלומיניום 6063 TF</div><div class="pp-char-desc">פרופילים קונסטרוקטיביים עם איטום ומירזוב עצמיים. אטמי EPDM משולבים כחלק אינטגרלי — לא מודבקים, לא נדחסים.</div></div></div><div class="pp-char"><div class="pp-char-n">03</div><div><div class="pp-char-name">חלופות זיגוג מגוונות</div><div class="pp-char-desc">זכוכית ביטחון מרובדת, זכוכית בידודית, Photovoltaic glass או פוליקרבונט — שקוף, חלבי או עמום.</div></div></div><div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">תנועה תרמית מבוקרת</div><div class="pp-char-desc">המערכת מתוכננת לאטימות מוחלטת ובו זמנית לתנועה של חומר הזיגוג — למניעת דפורמציות גם בתנאי קיצון.</div></div></div><div class="pp-char"><div class="pp-char-n">05</div><div><div class="pp-char-name">מידות וגמר לפי הזמנה</div><div class="pp-char-desc">מידות מותאמות אישית. צבע סטנדרטי לבן, בהזמנה מיוחדת לפי גוון RAL. צביעה אלקטרוסטטית בתנור.</div></div></div></div>
 </section>
-<section class="pp-media" id="media-fixed"></section>
 <section class="pp-projects-section" id="projects-sec-fixed"></section>
+<section class="pp-media" id="media-fixed"></section>
 <section class="pp-cta"><h2 class="rv">מחפשים פתרון קבוע?<br><em>נשמח לייעץ</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
 </div>
@@ -1315,6 +1410,7 @@
   <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>סקיילייט נפתח בהסעה, ניתן לפתיחה וסגירה חשמלית או ידנית. ההנעה בהחלקה או בגלילה — מותנה בדגם ובצרכי הלקוח. שיטת הגלילה מאפשרת פתיחה חלקית או מלאה, עם חשיפה מלאה לשמיים ללא השארת פרופילים בחלל.</p><p>הסקיילייט יכול להיות יחידה אחת או מורכב ממספר חלקים הנעים אחד לתוך השני. צורת הסקיילייט אינה מוגבלת ומאפשרת ביצוע קמרונות, שיפועים ופירמידות.</p></div></div>
   <div><div class="pp-chars-title">מאפיינים עיקריים</div><div class="pp-char"><div class="pp-char-n">01</div><div><div class="pp-char-name">הנעה בהחלקה או בגלילה</div><div class="pp-char-desc">פתיחה חשמלית או ידנית — גלילה לפתיחה חלקית או מלאה, החלקה בהתאם לדגם ולצרכי הפרויקט.</div></div></div><div class="pp-char"><div class="pp-char-n">02</div><div><div class="pp-char-name">בקרת סביבה אוטומטית</div><div class="pp-char-desc">סגירה ופתיחה לפי תנאי סביבה: גשם, רוח, אור וחושך — או שליטה באמצעות מפסק חשמלי ושלט רחוק.</div></div></div><div class="pp-char"><div class="pp-char-n">03</div><div><div class="pp-char-name">יחידה אחת או מרובת חלקים</div><div class="pp-char-desc">ניתן להרכיב ממספר חלקים הנעים אחד לתוך השני — לכיסוי שטחים גדולים.</div></div></div><div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">מערכות שקטות ואיכותיות</div><div class="pp-char-desc">איטום מלא, מגוון מערכות בקרה, וצורה שאינה מוגבלת — קמרונות, שיפועים ופירמידות.</div></div></div></div>
 </section>
+<section class="pp-projects-section" id="projects-sec-retractable"></section>
 <section class="pp-media" id="media-retractable"></section>
 
 <section class="pp-cta"><h2 class="rv">יש לכם מרחב שצריך לנשום?<br><em>בואו נתכנן יחד</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
@@ -1329,7 +1425,6 @@
   <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>סקיילייט ייחודי המורכב במישור הרצפה ללא הפרעה להליכה או לזרימת מים. המבנה מתאפיין באיטום ומירזוב בין הזיגוגים ובינם לבין הריצוף, וכן קונסטרוקציה וזיגוג המתאימים לעומסי הליכה.</p><p>מיוחד לחצרות פנימיות, אתרי מורשת, גשרים מזוגגים ומרחבים אדריכליים ייחודיים.</p><p>הזיגוג עשוי זכוכית ביטחון מרובדת המתאימה לעומסי דריכה — בשום נקודה חומר הזיגוג לא בא במגע ישיר עם האלומיניום. תעלות ניקוז פנימיות בפרופילים מונעות הצטברות מים מתחת למשטח ההליכה.</p></div></div>
   <div><div class="pp-chars-title">מאפיינים עיקריים</div><div class="pp-char"><div class="pp-char-n">01</div><div><div class="pp-char-name">התקנה במישור הרצפה</div><div class="pp-char-desc">ללא הפרעה להליכה או לזרימת מים — שילוב חלק עם משטח הריצוף הקיים.</div></div></div><div class="pp-char"><div class="pp-char-n">02</div><div><div class="pp-char-name">זכוכית ביטחון מרובדת</div><div class="pp-char-desc">זיגוג העומד בעומסי דריכה — מחושב לפי דרישות הפרויקט. הזכוכית מהודקת באמצעות פרופילי אלומיניום בלבד.</div></div></div><div class="pp-char"><div class="pp-char-n">03</div><div><div class="pp-char-name">איטום, ניקוז ומירזוב</div><div class="pp-char-desc">אטמי EPDM אינטגרליים בפרופילים, תעלות ניקוז פנימי ומירזוב בין הזיגוגים לריצוף — מותאם לתנאי חוץ.</div></div></div><div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">שילוב חלק עם כל ריצוף</div><div class="pp-char-desc">מסגרת flush — מותאמת לעובי אבן, קרמיקה, עץ ועוד. צבע RAL לבחירת האדריכל.</div></div></div></div>
 </section>
-<section class="pp-media" id="media-walkon"></section>
 <section class="pp-projects-section" id="projects-sec-walkon"></section>
 <section class="pp-cta"><h2 class="rv">מחפשים לחשוף עומק?<br><em>נשמח לייעץ</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
@@ -1405,6 +1500,15 @@
 <div id="page-project-penthouse-ben-yehuda" class="pp">
 <nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('penthouse');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה ליציאה לגג</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/DSC05032.jpg" alt="פנטהאוז פרטי — בן יהודה, תל אביב"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Roof Access</div><h1 class="pp-hero-name">פנטהאוז — בן יהודה</h1><div class="pp-hero-tag">תל אביב · בן יהודה</div></div></section>
+<section class="pp-project-intro">
+  <dl class="pp-project-intro-meta rv">
+    <dt>מיקום</dt><dd>תל אביב, רחוב בן יהודה</dd>
+    <dt>מוצר</dt><dd>יציאה לגג, סקיילייט נוסע</dd>
+  </dl>
+  <div class="pp-project-intro-desc rv rv-d1">
+    <p>פנטהאוז פרטי ברחוב בן יהודה בתל אביב, עם יציאה לגג הניתנת לפתיחה חשמלית. הפתח הופך את גג הפנטהאוז להמשך טבעי של חלל המגורים — לסוכה, לאירוח, ולחיבור ישיר עם השמיים בלב העיר.</p>
+  </div>
+</section>
 <section class="pp-project-gallery" id="project-gal-penthouse-ben-yehuda"></section>
 <section class="pp-cta"><h2 class="rv">מתכננים פרויקט דומה?<br><em>נשמח להיפגש</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('penthouse');return false">יציאה לגג</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p></div></footer>
@@ -1414,6 +1518,15 @@
 <div id="page-project-penthouse-jerusalem" class="pp">
 <nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('penthouse');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה ליציאה לגג</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/06 — יציאה לגג/פנטהאוז פרטי - ירושלים/DSC05074.jpg" alt="פנטהאוז פרטי — ירושלים"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Roof Access</div><h1 class="pp-hero-name">פנטהאוז — ירושלים</h1><div class="pp-hero-tag">ירושלים</div></div></section>
+<section class="pp-project-intro">
+  <dl class="pp-project-intro-meta rv">
+    <dt>מיקום</dt><dd>ירושלים</dd>
+    <dt>מוצר</dt><dd>יציאה לגג, סקיילייט נוסע</dd>
+  </dl>
+  <div class="pp-project-intro-desc rv rv-d1">
+    <p>פנטהאוז פרטי בירושלים — יציאה לגג בעיצוב מותאם, מאפשרת מעבר חלק בין החלל הפנימי לגג. פתיחה חשמלית אמינה ואטימות מלאה לאורך כל עונות השנה הירושלמיות.</p>
+  </div>
+</section>
 <section class="pp-project-gallery" id="project-gal-penthouse-jerusalem"></section>
 <section class="pp-cta"><h2 class="rv">מתכננים פרויקט דומה?<br><em>נשמח להיפגש</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('penthouse');return false">יציאה לגג</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p></div></footer>
@@ -1423,6 +1536,15 @@
 <div id="page-project-penthouse-hayarkon" class="pp">
 <nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('penthouse');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה ליציאה לגג</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/06 — יציאה לגג/פנטהאוז פרטי - רחוב הירקון תל אביב/Hero.jpg" alt="פנטהאוז פרטי — הירקון, תל אביב"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Roof Access</div><h1 class="pp-hero-name">פנטהאוז — הירקון</h1><div class="pp-hero-tag">תל אביב · רחוב הירקון</div></div></section>
+<section class="pp-project-intro">
+  <dl class="pp-project-intro-meta rv">
+    <dt>מיקום</dt><dd>תל אביב, רחוב הירקון</dd>
+    <dt>מוצר</dt><dd>יציאה לגג, סקיילייט נוסע</dd>
+  </dl>
+  <div class="pp-project-intro-desc rv rv-d1">
+    <p>פנטהאוז ברחוב הירקון בתל אביב, עם פתח רחב ויציאה לגג שמשקיף לים. הפתיחה החשמלית מאפשרת סוכת חוץ בלב העיר, ובימי קיץ — חיבור ישיר עם השמיים.</p>
+  </div>
+</section>
 <section class="pp-project-gallery" id="project-gal-penthouse-hayarkon"></section>
 <section class="pp-cta"><h2 class="rv">מתכננים פרויקט דומה?<br><em>נשמח להיפגש</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('penthouse');return false">יציאה לגג</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p></div></footer>
@@ -1432,6 +1554,15 @@
 <div id="page-project-penthouse-shenkin" class="pp">
 <nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('penthouse');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה ליציאה לגג</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/DSC05055.jpg" alt="פנטהאוז פרטי — שנקין, תל אביב"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Roof Access</div><h1 class="pp-hero-name">פנטהאוז — שנקין</h1><div class="pp-hero-tag">תל אביב · שנקין</div></div></section>
+<section class="pp-project-intro">
+  <dl class="pp-project-intro-meta rv">
+    <dt>מיקום</dt><dd>תל אביב, אזור שנקין</dd>
+    <dt>מוצר</dt><dd>יציאה לגג, סקיילייט נוסע</dd>
+  </dl>
+  <div class="pp-project-intro-desc rv rv-d1">
+    <p>פנטהאוז פרטי באזור שנקין בתל אביב, עם יציאה לגג ייעודית. תוכנן בהתאמה אישית למבנה הפנטהאוז ולצרכי הדיירים — פתיחה שקטה, אטימות מלאה, ושימוש פעיל בכל ימות השנה.</p>
+  </div>
+</section>
 <section class="pp-project-gallery" id="project-gal-penthouse-shenkin"></section>
 <section class="pp-cta"><h2 class="rv">מתכננים פרויקט דומה?<br><em>נשמח להיפגש</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('penthouse');return false">יציאה לגג</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p></div></footer>
@@ -1441,20 +1572,20 @@
 <div id="page-project-penthouse-tel-aviv" class="pp">
 <nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('penthouse');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה ליציאה לגג</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/DJI_20260304175337_0201_D.jpg" alt="פנטהאוז פרטי — תל אביב"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Roof Access</div><h1 class="pp-hero-name">פנטהאוז — תל אביב</h1><div class="pp-hero-tag">תל אביב</div></div></section>
+<section class="pp-project-intro">
+  <dl class="pp-project-intro-meta rv">
+    <dt>מיקום</dt><dd>תל אביב</dd>
+    <dt>מוצר</dt><dd>יציאה לגג, סקיילייט נוסע</dd>
+  </dl>
+  <div class="pp-project-intro-desc rv rv-d1">
+    <p>פנטהאוז פרטי בתל אביב — יציאה לגג רחבה המאפשרת שימוש בגג הפנטהאוז כחלל מגורים נוסף. הפתיחה חשמלית, מאפשרת סוכה, אוורור ויציאה לגג.</p>
+  </div>
+</section>
 <section class="pp-project-gallery" id="project-gal-penthouse-tel-aviv"></section>
 <section class="pp-cta"><h2 class="rv">מתכננים פרויקט דומה?<br><em>נשמח להיפגש</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('penthouse');return false">יציאה לגג</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p></div></footer>
 </div>
 
-
-<!-- ════ PROJECT: בית יוקרה — תל אביב ════ -->
-<div id="page-project-beit-yokra-ta" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('fixed');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לסקיילייט קבוע</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
-<section class="pp-hero"><img src="./מוצרים מסווגים/02 — סקיילייט קבוע/חד שיפועי/DSC05005.jpg" alt="בית יוקרה — תל אביב"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Fixed Skylight</div><h1 class="pp-hero-name">בית יוקרה — תל אביב</h1><div class="pp-hero-tag">תל אביב · חד שיפועי</div></div></section>
-<section class="pp-project-gallery" id="project-gal-beit-yokra-ta"></section>
-<section class="pp-cta"><h2 class="rv">מתכננים פרויקט דומה?<br><em>נשמח להיפגש</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
-<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p></div></footer>
-</div>
 
 <!-- ════ PROJECT: מלון מצפה הימים — ראש פינה ════ -->
 <div id="page-project-mitzpe-hayamim" class="pp">
@@ -1463,11 +1594,13 @@
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
     <dt>מיקום</dt><dd>ראש פינה</dd>
+    <dt>שנה</dt><dd>2020</dd>
     <dt>אדריכל</dt><dd>פייגין</dd>
     <dt>מוצר</dt><dd>סקיילייט קבוע</dd>
   </dl>
   <div class="pp-project-intro-desc rv rv-d1">
-    <p style="margin-top:0"><a href="https://www.ynet.co.il/vacation/flights/article/B1pTyqhxI" target="_blank" rel="noopener" style="color:var(--accent);font-size:13px;letter-spacing:.04em;text-decoration:none;border-bottom:1px solid var(--accent)">← קראו עוד על המלון ב-ynet</a></p>
+    <p>מצפה הימים — מלון בוטיק יוקרתי ברוש פינה, המשלב נופי גליל, אוויר צח ועיצוב פנים מוקפד. כחלק מהשיפוץ של 2020, סקיילייט תכננה והתקינה סקיילייט קבוע מעל מסעדת המלון, יחד עם מערכת לשחרור עשן ואוורור — לחיבור אורגני בין הפנים לסביבה.</p>
+    <p style="margin-top:14px"><a href="https://www.ynet.co.il/vacation/flights/article/B1pTyqhxI" target="_blank" rel="noopener" style="color:var(--accent);font-size:13px;letter-spacing:.04em;text-decoration:none;border-bottom:1px solid var(--accent)">← קראו עוד על המלון ב-ynet</a></p>
     <p style="margin-top:12px"><a href="https://www.mako.co.il/travel-news/israel/Article-95bab0af72daf61027.htm" target="_blank" rel="noopener" style="color:var(--accent);font-size:13px;letter-spacing:.04em;text-decoration:none;border-bottom:1px solid var(--accent)">← כתבה על המלון ב-mako</a></p>
   </div>
 </section>
@@ -1480,12 +1613,15 @@
 <div id="page-project-mishya" class="pp">
 <nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('fixed');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לסקיילייט קבוע</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/02 — סקיילייט קבוע/מסעדת משייה - תל אביב/מסעדת משייה.jpg" alt="מסעדת משייה — תל אביב"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Fixed Skylight</div><h1 class="pp-hero-name">מסעדת משייה — תל אביב</h1><div class="pp-hero-tag">תל אביב · ברנוביץ'-קרוננברג</div></div></section>
-<section class="pp-project-intro" style="grid-template-columns:auto;max-width:520px">
+<section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
     <dt>מיקום</dt><dd>תל אביב</dd>
     <dt>אדריכל</dt><dd>ברנוביץ'-קרוננברג</dd>
     <dt>מוצר</dt><dd>סקיילייט קבוע, חד שיפועי</dd>
   </dl>
+  <div class="pp-project-intro-desc rv rv-d1">
+    <p>מסעדת משייה בתל אביב — חלל פנים אינטימי הממוקם במבנה ישן עם חצר פנימית. סקיילייט קבוע חד-שיפועי הותקן מעל אזור הישיבה הראשי, ומאפשר חוויית סעודה מוארת באור יום, גם בלב המבנה. תכנון: ברנוביץ'-קרוננברג.</p>
+  </div>
 </section>
 <section class="pp-project-gallery" id="project-gal-mishya"></section>
 <section class="pp-cta"><h2 class="rv">מתכננים פרויקט דומה?<br><em>נשמח להיפגש</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
@@ -1496,6 +1632,15 @@
 <div id="page-project-bar-ilan" class="pp">
 <nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('fixed');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לסקיילייט קבוע</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/02 — סקיילייט קבוע/דו שיפועי/6ב - מנהלה בר אילן.jpg" alt="מנהלה — אוניברסיטת בר אילן"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Fixed Skylight</div><h1 class="pp-hero-name">מנהלה — אוניברסיטת בר אילן</h1><div class="pp-hero-tag">רמת גן · דו שיפועי</div></div></section>
+<section class="pp-project-intro">
+  <dl class="pp-project-intro-meta rv">
+    <dt>מיקום</dt><dd>רמת גן</dd>
+    <dt>מוצר</dt><dd>סקיילייט קבוע, דו שיפועי</dd>
+  </dl>
+  <div class="pp-project-intro-desc rv rv-d1">
+    <p>בניין המנהלה של אוניברסיטת בר-אילן ברמת גן — סקיילייט קבוע דו-שיפועי הותקן מעל המרחב הציבורי המרכזי בבניין, מאפשר אור טבעי שווה לאורך כל היום ומחזק את התחושה הפתוחה של החלל הפנימי הציבורי.</p>
+  </div>
+</section>
 <section class="pp-project-gallery" id="project-gal-bar-ilan"></section>
 <section class="pp-cta"><h2 class="rv">מתכננים פרויקט דומה?<br><em>נשמח להיפגש</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p></div></footer>
@@ -1505,6 +1650,15 @@
 <div id="page-project-beit-zait" class="pp">
 <nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('fixed');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לסקיילייט קבוע</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/02 — סקיילייט קבוע/חצר אנגלית/בית זית/DJI_20260311194246_0277_D.jpg" alt="בית זית"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Fixed Skylight</div><h1 class="pp-hero-name">בית זית</h1><div class="pp-hero-tag">בית זית · חצר אנגלית</div></div></section>
+<section class="pp-project-intro">
+  <dl class="pp-project-intro-meta rv">
+    <dt>מיקום</dt><dd>בית זית</dd>
+    <dt>מוצר</dt><dd>סקיילייט קבוע, חצר אנגלית</dd>
+  </dl>
+  <div class="pp-project-intro-desc rv rv-d1">
+    <p>בית פרטי בבית זית — חצר אנגלית פנימית מוגבהת, המתפקדת כמעין באר אור בלב המבנה. סקיילייט קבוע ייעודי מעליה משלב החדרת אור טבעי עם מערכת אוורור ושחרור עשן, ושומר על האטימות גם בתנאי גשם ועומס רוח.</p>
+  </div>
+</section>
 <section class="pp-project-gallery" id="project-gal-beit-zait"></section>
 <section class="pp-cta"><h2 class="rv">מתכננים פרויקט דומה?<br><em>נשמח להיפגש</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p></div></footer>
@@ -1567,7 +1721,8 @@
     <dt>מוצר</dt><dd>מבנים מרחביים, פירמידה</dd>
   </dl>
   <div class="pp-project-intro-desc rv rv-d1">
-    <p style="margin-top:0"><a href="https://www.yaad-arc.co.il/index.php?dir=site&page=projects&op=item&cs=59" target="_blank" rel="noopener" style="color:var(--accent);font-size:13px;letter-spacing:.04em;text-decoration:none;border-bottom:1px solid var(--accent)">← הפרויקט באתר יעד אדריכלים</a></p>
+    <p>מרכז המבקרים של יקב רקנאטי בפארק תעשיות רמת דלתון — מבנה אדריכלי עם פירמידת זכוכית מרחבית מעל אולם ההגשה הראשי. הפירמידה תוכננה בהתאמה אישית לקונסטרוקציה הקיימת, ומכניסה אור טבעי דרמטי לחלל הטעימות והקבלה. תכנון: יעד אדריכלים.</p>
+    <p style="margin-top:14px"><a href="https://www.yaad-arc.co.il/index.php?dir=site&page=projects&op=item&cs=59" target="_blank" rel="noopener" style="color:var(--accent);font-size:13px;letter-spacing:.04em;text-decoration:none;border-bottom:1px solid var(--accent)">← הפרויקט באתר יעד אדריכלים</a></p>
   </div>
 </section>
 <section class="pp-project-gallery" id="project-gal-recanati-winery"></section>
@@ -1610,8 +1765,8 @@
   <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>כיפות, קמרונות, פירמידות ומבנים מורכבים — כל פרויקט מתוכנן ומיוצר בהתאמה אישית מלאה. מהסקיצה ועד ההתקנה.</p><p>אנחנו עובדים צמוד לאדריכל ולמהנדס הקונסטרוקציה — ומספקים פתרון מלא. 40 שנה של ניסיון בפרויקטים מורכבים — מיקב רקנאטי ועד אוניברסיטת בר אילן — מאפשרים לנו להתמודד עם כל אתגר גיאומטרי.</p><p>הקונסטרוקציה בנויה מפרופילי אלומיניום 6063 TF עם איטום ומירזוב עצמיים, מערכות זיגוג בשיטת FLUSH GLAZING, ותעלות ניקוז פנימיות. כל חלקי האלומיניום החשופים בגימור צביעה אלקטרוסטטית בתנור — צבע RAL לבחירת האדריכל.</p></div></div>
   <div><div class="pp-chars-title">מאפיינים עיקריים</div><div class="pp-char"><div class="pp-char-n">01</div><div><div class="pp-char-name">תכנון קונסטרוקטיבי מלא</div><div class="pp-char-desc">תכנון מבנה הפלדה / האלומיניום בתוך הבית, כולל תיאום עם מהנדסי הפרויקט. מתוכנן לעמוד בכוחות הרוח באזור.</div></div></div><div class="pp-char"><div class="pp-char-n">02</div><div><div class="pp-char-name">כיפות, קמרונות, פירמידות</div><div class="pp-char-desc">כל גיאומטריה אפשרית — מהצורה הפשוטה ועד צורות מורכבות ועקומות. שיפועים, קשתות וחרוטים.</div></div></div><div class="pp-char"><div class="pp-char-n">03</div><div><div class="pp-char-name">פרופילי אלומיניום 6063 TF</div><div class="pp-char-desc">פרופילים קונסטרוקטיביים עם אטמי EPDM אינטגרליים. תעלות ניקוז פנימי למניעת חדירת מים ולטיפול בעיבוי.</div></div></div><div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">עבודה צמודה עם האדריכל</div><div class="pp-char-desc">שותפות מלאה — מפגישות תכנון, דגמי 3D, ועד פיקוח בשטח. תכנון וביצוע של חברת סקיילייט.</div></div></div><div class="pp-char"><div class="pp-char-n">05</div><div><div class="pp-char-name">חלופות זיגוג לכל שימוש</div><div class="pp-char-desc">זכוכית ביטחון מרובדת, זכוכית בידודית, פוליקרבונט Solar Control או Solar Olympic — לפי דרישות הפרויקט.</div></div></div></div>
 </section>
-<section class="pp-media" id="media-structural"></section>
 <section class="pp-projects-section" id="projects-sec-structural"></section>
+<section class="pp-media" id="media-structural"></section>
 <section class="pp-cta"><h2 class="rv">יש לכם חלום אדריכלי?<br><em>נממש אותו יחד</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
 </div>
@@ -1633,6 +1788,7 @@
     <div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">רכזת הפעלה ומערכת גיבוי</div><div class="pp-char-desc">כל מנועי שחרור העשן מופעלים דרך רכזת ייעודית עם חיבור לגלאי עשן, כפתור חירום ידני וסוללת גיבוי — לתפקוד מלא גם בהפסקת חשמל.</div></div></div>
   </div>
 </section>
+<section class="pp-projects-section" id="projects-sec-smoke"></section>
 <section class="pp-media" id="media-smoke"></section>
 <section class="pp-cta"><h2 class="rv">פרויקט עם דרישות בטיחות?<br><em>נדאג לכל הפרטים</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
@@ -1654,6 +1810,26 @@
 <section class="pp-media" id="media-windows"></section>
 <section class="pp-cta"><h2 class="rv">מתכננים פתח לאור?<br><em>נשמח לייעץ</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
+</div>
+
+<!-- ════ /projects ════ -->
+<div id="page-projects" class="pp">
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="home();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לדף הבית</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<section class="projects-page-hero">
+  <div class="projects-page-eye rv">פרויקטים נבחרים</div>
+  <h1 class="projects-page-title rv rv-d1">היכן בנינו</h1>
+  <p class="projects-page-sub rv rv-d2">מהפנטהאוז הפרטי ועד הספריה הלאומית — אוסף הפרויקטים שלנו בארץ. סננו לפי סוג הלקוח או סוג המוצר כדי למצוא פרויקטים דומים לשלכם.</p>
+</section>
+<section class="projects-filters">
+  <div class="projects-filter-row" id="filter-row-sector"></div>
+  <div class="projects-filter-row" id="filter-row-product"></div>
+</section>
+<section class="projects-grid-section">
+  <div class="projects-grid-count" id="projects-count"></div>
+  <div id="projects-grid-host"></div>
+</section>
+<section class="pp-cta"><h2 class="rv">לא מצאתם פרויקט שמתאים?<br><em>בואו נדבר</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
+<footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p></div></footer>
 </div>
 
 <!-- ════ TECH ════ -->
@@ -1798,28 +1974,27 @@ const B='./מוצרים מסווגים/';
 
 const PROJECTS={
   penthouse:[
-    {slug:'penthouse-ben-yehuda',name:'פנטהאוז — בן יהודה, תל אביב',hero:'06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/DSC05032.jpg',meta:{where:'תל אביב',when:'—',arch:'—',product:'יציאה לגג'},images:['06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/DSC05032.jpg','06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/DSC05043.jpg','06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/DSC05046.jpg','06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/IMG_20260304_103947_00_020.jpg','06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/IMG_20260304_104128_00_024.jpg']},
-    {slug:'penthouse-jerusalem',name:'פנטהאוז — ירושלים',hero:'06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DSC05074.jpg',meta:{where:'ירושלים',when:'—',arch:'—',product:'יציאה לגג'},images:['06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DJI_20260311172525_0266_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DJI_20260311172530_0267_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DJI_20260311172748_0270_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DSC05074.jpg','06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/IMG_20260311_111255_175.jpg','06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/IMG_20260311_111907_188.jpg']},
-    {slug:'penthouse-hayarkon',name:'פנטהאוז — הירקון, תל אביב',hero:'06 — יציאה לגג/פנטהאוז פרטי - רחוב הירקון תל אביב/Hero.jpg',meta:{where:'תל אביב',when:'—',arch:'—',product:'יציאה לגג'},images:['06 — יציאה לגג/פנטהאוז פרטי - רחוב הירקון תל אביב/Hero.jpg','06 — יציאה לגג/פנטהאוז פרטי - רחוב הירקון תל אביב/סקיילייט נוסע, יציאה לגג פנטהואז 1.jpg','06 — יציאה לגג/פנטהאוז פרטי - רחוב הירקון תל אביב/פרטי _ יציאה לגג _ נוסע _ 3.png']},
-    {slug:'penthouse-shenkin',name:'פנטהאוז — שנקין, תל אביב',hero:'06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195104_0213_D.jpg',meta:{where:'תל אביב',when:'—',arch:'—',product:'יציאה לגג'},images:['06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195104_0213_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195400_0221_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195846_0226_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195932_0230_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DSC05049.jpg','06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DSC05055.jpg','06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/IMG_20260304_114021_00_245.jpg']},
-    {slug:'penthouse-tel-aviv',name:'פנטהאוז — תל אביב',hero:'06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/DJI_20260304175337_0201_D.jpg',meta:{where:'תל אביב',when:'—',arch:'—',product:'יציאה לגג'},images:['06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/DJI_20260304175337_0201_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/DJI_20260304175409_0202_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/DJI_20260304175640_0205_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/IMG_20260304_114133_00_250.jpg','06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/IMG_20260304_114221_00_252.jpg']},
+    {slug:'penthouse-ben-yehuda',sector:'מגורים',categories:['penthouse','retractable'],name:'פנטהאוז — בן יהודה, תל אביב',hero:'06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/DSC05032.jpg',meta:{where:'תל אביב',when:'—',arch:'—',product:'יציאה לגג'},images:['06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/DSC05032.jpg','06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/DSC05043.jpg','06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/DSC05046.jpg','06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/IMG_20260304_103947_00_020.jpg','06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/IMG_20260304_104128_00_024.jpg']},
+    {slug:'penthouse-jerusalem',sector:'מגורים',categories:['penthouse','retractable'],name:'פנטהאוז — ירושלים',hero:'06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DSC05074.jpg',meta:{where:'ירושלים',when:'—',arch:'—',product:'יציאה לגג'},images:['06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DJI_20260311172525_0266_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DJI_20260311172530_0267_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DJI_20260311172748_0270_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DSC05074.jpg','06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/IMG_20260311_111255_175.jpg','06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/IMG_20260311_111907_188.jpg']},
+    {slug:'penthouse-hayarkon',sector:'מגורים',categories:['penthouse','retractable'],name:'פנטהאוז — הירקון, תל אביב',hero:'06 — יציאה לגג/פנטהאוז פרטי - רחוב הירקון תל אביב/Hero.jpg',meta:{where:'תל אביב',when:'—',arch:'—',product:'יציאה לגג'},images:['06 — יציאה לגג/פנטהאוז פרטי - רחוב הירקון תל אביב/Hero.jpg','06 — יציאה לגג/פנטהאוז פרטי - רחוב הירקון תל אביב/סקיילייט נוסע, יציאה לגג פנטהואז 1.jpg','06 — יציאה לגג/פנטהאוז פרטי - רחוב הירקון תל אביב/פרטי _ יציאה לגג _ נוסע _ 3.png']},
+    {slug:'penthouse-shenkin',sector:'מגורים',categories:['penthouse','retractable'],name:'פנטהאוז — שנקין, תל אביב',hero:'06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195104_0213_D.jpg',meta:{where:'תל אביב',when:'—',arch:'—',product:'יציאה לגג'},images:['06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195104_0213_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195400_0221_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195846_0226_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195932_0230_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DSC05049.jpg','06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DSC05055.jpg','06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/IMG_20260304_114021_00_245.jpg']},
+    {slug:'penthouse-tel-aviv',sector:'מגורים',categories:['penthouse','retractable'],name:'פנטהאוז — תל אביב',hero:'06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/DJI_20260304175337_0201_D.jpg',meta:{where:'תל אביב',when:'—',arch:'—',product:'יציאה לגג'},images:['06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/DJI_20260304175337_0201_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/DJI_20260304175409_0202_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/DJI_20260304175640_0205_D.jpg','06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/IMG_20260304_114133_00_250.jpg','06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/IMG_20260304_114221_00_252.jpg']},
   ],
   fixed:[
-    {slug:'mitzpe-hayamim',name:'מלון מצפה הימים — ראש פינה',hero:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/hero image.jpg',meta:{where:'ראש פינה',when:'2020',arch:'פייגין',product:'סקיילייט קבוע'},images:['02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/hero image.jpg','02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/מצפה הימים מסעדה.jpg','02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04851.jpeg','02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04859.jpg','02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04869.jpg','02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04881.jpg','02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DJI_20260225173740_0134_D(1).jpg','02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04912.jpg']},
-    {slug:'beit-yokra-ta',name:'בית יוקרה — תל אביב',hero:'02 — סקיילייט קבוע/חד שיפועי/DSC05005.jpg',meta:{where:'תל אביב',when:'—',arch:'—',product:'סקיילייט קבוע, חד שיפועי'},images:['02 — סקיילייט קבוע/חד שיפועי/DSC05005.jpg','02 — סקיילייט קבוע/חד שיפועי/DSC05010.jpg','02 — סקיילייט קבוע/חד שיפועי/DSC05013.jpg']},
-    {slug:'mishya',name:'מסעדת משייה — תל אביב',hero:'02 — סקיילייט קבוע/מסעדת משייה - תל אביב/מסעדת משייה.jpg',meta:{where:'תל אביב',when:'—',arch:'ברנוביץ\'-קרוננברג',product:'סקיילייט קבוע, חד שיפועי'},images:['02 — סקיילייט קבוע/מסעדת משייה - תל אביב/מסעדת משייה.jpg','02 — סקיילייט קבוע/מסעדת משייה - תל אביב/מסעדת משייה 2.jpg','02 — סקיילייט קבוע/מסעדת משייה - תל אביב/128.jpg','02 — סקיילייט קבוע/מסעדת משייה - תל אביב/Edited-4.jpg']},
-    {slug:'bar-ilan',name:'מנהלה — אוניברסיטת בר אילן',hero:'02 — סקיילייט קבוע/דו שיפועי/6ב - מנהלה בר אילן.jpg',meta:{where:'רמת גן',when:'—',arch:'—',product:'סקיילייט קבוע, דו שיפועי'},images:['02 — סקיילייט קבוע/דו שיפועי/6ב - מנהלה בר אילן.jpg']},
-    {slug:'beit-zait',name:'בית זית',hero:'02 — סקיילייט קבוע/חצר אנגלית/בית זית/DJI_20260311194246_0277_D.jpg',meta:{where:'בית זית',when:'—',arch:'—',product:'סקיילייט קבוע, חצר אנגלית'},images:['02 — סקיילייט קבוע/חצר אנגלית/בית זית/DSC05100.jpg','02 — סקיילייט קבוע/חצר אנגלית/בית זית/DSC05103.jpg','02 — סקיילייט קבוע/חצר אנגלית/בית זית/DSC05105.jpg','02 — סקיילייט קבוע/חצר אנגלית/בית זית/DJI_20260311194246_0277_D.jpg']},
-    {slug:'beit-gil-hazahav',name:'בית גיל הזהב — רמת החייל',hero:'02 — סקיילייט קבוע/בית גיל הזהב ברמת החייל/258.jpg',meta:{where:'רמת החייל, תל אביב',when:'2014',arch:'ישר אדריכלים',product:'קבוע, דו שיפועי עם שחרור עשן'},images:['02 — סקיילייט קבוע/בית גיל הזהב ברמת החייל/258.jpg']},
-    {slug:'hp-hq',name:'HP HQ — בניין מרקורי',hero:'02 — סקיילייט קבוע/HP HQ - בניין מרקורי/HP06.jpg',meta:{where:'יהוד',when:'2012',arch:'אמיר מן, עמי שנער אדריכלים',product:'סקיילייט קבוע, חד שיפועי'},images:['02 — סקיילייט קבוע/HP HQ - בניין מרקורי/HP06.jpg','02 — סקיילייט קבוע/HP HQ - בניין מרקורי/269.jpg','02 — סקיילייט קבוע/HP HQ - בניין מרקורי/18pff.jpeg','02 — סקיילייט קבוע/HP HQ - בניין מרקורי/קבוע - חד שיפועי.jpg']},
+    {slug:'mitzpe-hayamim',sector:'מלונאות',categories:['fixed','smoke'],name:'מלון מצפה הימים — ראש פינה',hero:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/hero image.jpg',meta:{where:'ראש פינה',when:'2020',arch:'פייגין',product:'סקיילייט קבוע'},images:['02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/hero image.jpg','02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/מצפה הימים מסעדה.jpg','02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04851.jpeg','02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04859.jpg','02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04869.jpg','02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04881.jpg','02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DJI_20260225173740_0134_D(1).jpg','02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04912.jpg']},
+    {slug:'mishya',sector:'מסחרי',categories:['fixed'],name:'מסעדת משייה — תל אביב',hero:'02 — סקיילייט קבוע/מסעדת משייה - תל אביב/מסעדת משייה.jpg',meta:{where:'תל אביב',when:'—',arch:'ברנוביץ\'-קרוננברג',product:'סקיילייט קבוע, חד שיפועי'},images:['02 — סקיילייט קבוע/מסעדת משייה - תל אביב/מסעדת משייה.jpg','02 — סקיילייט קבוע/מסעדת משייה - תל אביב/מסעדת משייה 2.jpg','02 — סקיילייט קבוע/מסעדת משייה - תל אביב/128.jpg','02 — סקיילייט קבוע/מסעדת משייה - תל אביב/Edited-4.jpg']},
+    {slug:'bar-ilan',sector:'ציבורי',categories:['fixed'],name:'מנהלה — אוניברסיטת בר אילן',hero:'02 — סקיילייט קבוע/דו שיפועי/6ב - מנהלה בר אילן.jpg',meta:{where:'רמת גן',when:'—',arch:'—',product:'סקיילייט קבוע, דו שיפועי'},images:['02 — סקיילייט קבוע/דו שיפועי/6ב - מנהלה בר אילן.jpg']},
+    {slug:'beit-zait',sector:'מגורים',categories:['fixed','smoke'],name:'בית זית',hero:'02 — סקיילייט קבוע/חצר אנגלית/בית זית/DJI_20260311194246_0277_D.jpg',meta:{where:'בית זית',when:'—',arch:'—',product:'סקיילייט קבוע, חצר אנגלית'},images:['02 — סקיילייט קבוע/חצר אנגלית/בית זית/DSC05100.jpg','02 — סקיילייט קבוע/חצר אנגלית/בית זית/DSC05103.jpg','02 — סקיילייט קבוע/חצר אנגלית/בית זית/DSC05105.jpg','02 — סקיילייט קבוע/חצר אנגלית/בית זית/DJI_20260311194246_0277_D.jpg']},
+    {slug:'beit-gil-hazahav',sector:'מגורים',categories:['fixed','smoke'],name:'בית גיל הזהב — רמת החייל',hero:'02 — סקיילייט קבוע/בית גיל הזהב ברמת החייל/258.jpg',meta:{where:'רמת החייל, תל אביב',when:'2014',arch:'ישר אדריכלים',product:'קבוע, דו שיפועי עם שחרור עשן'},images:['02 — סקיילייט קבוע/בית גיל הזהב ברמת החייל/258.jpg']},
+    {slug:'hp-hq',sector:'מסחרי',categories:['fixed','walkon'],name:'HP HQ — בניין מרקורי',hero:'02 — סקיילייט קבוע/HP HQ - בניין מרקורי/HP06.jpg',meta:{where:'יהוד',when:'2012',arch:'אמיר מן, עמי שנער אדריכלים',product:'סקיילייט קבוע, חד שיפועי'},images:['02 — סקיילייט קבוע/HP HQ - בניין מרקורי/HP06.jpg','02 — סקיילייט קבוע/HP HQ - בניין מרקורי/269.jpg','02 — סקיילייט קבוע/HP HQ - בניין מרקורי/18pff.jpeg','02 — סקיילייט קבוע/HP HQ - בניין מרקורי/קבוע - חד שיפועי.jpg']},
   ],
   walkon:[
-    {slug:'national-library',name:'הספריה הלאומית',hero:'03 — סקיילייט מדרך/ספריה לאומית/DSC05088.jpg',meta:{where:'ירושלים',when:'—',arch:'הרצוג ודה מרון + מן-שנער אדריכלים ומתכנני ערים',product:'סקיילייט קבוע, חד שיפועי, מדרך'},images:['03 — סקיילייט מדרך/ספריה לאומית/DSC05079.jpg','03 — סקיילייט מדרך/ספריה לאומית/DSC05082.jpg','03 — סקיילייט מדרך/ספריה לאומית/DSC05088.jpg','03 — סקיילייט מדרך/ספריה לאומית/DSC05091.jpg','03 — סקיילייט מדרך/ספריה לאומית/DSC05094.jpg','03 — סקיילייט מדרך/ספריה לאומית/DSC05096.jpg']},
-    {slug:'beit-habeer',name:'בית הבאר — מבנה לשימור',hero:'03 — סקיילייט מדרך/בית הבאר - מבנה לשימור/בית הבאר - מבנה לשימור.jpg',meta:{where:'כפר סבא',when:'2014–2018',arch:'אמנון בראור – טל גזית אדריכלים',product:'סקיילייט מדרך'},images:['03 — סקיילייט מדרך/בית הבאר - מבנה לשימור/בית הבאר - מבנה לשימור.jpg','03 — סקיילייט מדרך/בית הבאר - מבנה לשימור/סקיילייט מדרך מעל באר ישנה.jpg','03 — סקיילייט מדרך/בית הבאר - מבנה לשימור/סקיילייט מדרך מעל באר ישנה 3.jpg','03 — סקיילייט מדרך/בית הבאר - מבנה לשימור/סקיילייט מדרך מעל באר ישנה 4.jpg']},
+    {slug:'national-library',sector:'ציבורי',categories:['walkon'],name:'הספריה הלאומית',hero:'03 — סקיילייט מדרך/ספריה לאומית/DSC05088.jpg',meta:{where:'ירושלים',when:'—',arch:'הרצוג ודה מרון + מן-שנער אדריכלים ומתכנני ערים',product:'סקיילייט קבוע, חד שיפועי, מדרך'},images:['03 — סקיילייט מדרך/ספריה לאומית/DSC05079.jpg','03 — סקיילייט מדרך/ספריה לאומית/DSC05082.jpg','03 — סקיילייט מדרך/ספריה לאומית/DSC05088.jpg','03 — סקיילייט מדרך/ספריה לאומית/DSC05091.jpg','03 — סקיילייט מדרך/ספריה לאומית/DSC05094.jpg','03 — סקיילייט מדרך/ספריה לאומית/DSC05096.jpg']},
+    {slug:'beit-habeer',sector:'שימור',categories:['walkon'],name:'בית הבאר — מבנה לשימור',hero:'03 — סקיילייט מדרך/בית הבאר - מבנה לשימור/בית הבאר - מבנה לשימור.jpg',meta:{where:'כפר סבא',when:'2014–2018',arch:'אמנון בראור – טל גזית אדריכלים',product:'סקיילייט מדרך'},images:['03 — סקיילייט מדרך/בית הבאר - מבנה לשימור/בית הבאר - מבנה לשימור.jpg','03 — סקיילייט מדרך/בית הבאר - מבנה לשימור/סקיילייט מדרך מעל באר ישנה.jpg','03 — סקיילייט מדרך/בית הבאר - מבנה לשימור/סקיילייט מדרך מעל באר ישנה 3.jpg','03 — סקיילייט מדרך/בית הבאר - מבנה לשימור/סקיילייט מדרך מעל באר ישנה 4.jpg']},
   ],
   structural:[
-    {slug:'recanati-winery',name:'מרכז מבקרים — יקב רקנאטי',hero:'04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/DJI_20260225203307_0163_D.jpg',meta:{where:'פארק תעשיות רמת דלתון',when:'—',arch:'יעד אדריכלים',product:'מבנים מרחביים, פירמידה'},images:['04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/DJI_20260225203307_0163_D.jpg','04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/DSC04979.jpg','04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/DSC04981.jpg','04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/DSC04988.jpg','04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/DSC04994.jpg','04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/091.jpg','04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/092.jpg']},
-    {slug:'synagogue',name:'בית כנסת יגדיל תורה — אור יהודה',hero:'04 — מבנים מרחביים/כיפה/בית כנסת יגדיל תורה - אור יהודה/M53_0154-.jpg-main.jpg',meta:{where:'אור יהודה',when:'—',arch:'—',product:'מבנים מרחביים, כיפה'},images:['04 — מבנים מרחביים/כיפה/בית כנסת יגדיל תורה - אור יהודה/M53_0154-.jpg-main.jpg','04 — מבנים מרחביים/כיפה/בית כנסת יגדיל תורה - אור יהודה/M53_0198-w.jpg','04 — מבנים מרחביים/כיפה/בית כנסת יגדיל תורה - אור יהודה/M53_0208-w.jpg','04 — מבנים מרחביים/כיפה/בית כנסת יגדיל תורה - אור יהודה/11.jpg','04 — מבנים מרחביים/כיפה/בית כנסת יגדיל תורה - אור יהודה/033.jpg']},
+    {slug:'recanati-winery',sector:'מסחרי',categories:['structural'],name:'מרכז מבקרים — יקב רקנאטי',hero:'04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/DJI_20260225203307_0163_D.jpg',meta:{where:'פארק תעשיות רמת דלתון',when:'—',arch:'יעד אדריכלים',product:'מבנים מרחביים, פירמידה'},images:['04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/DJI_20260225203307_0163_D.jpg','04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/DSC04979.jpg','04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/DSC04981.jpg','04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/DSC04988.jpg','04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/DSC04994.jpg','04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/091.jpg','04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/092.jpg']},
+    {slug:'synagogue',sector:'ציבורי',categories:['structural'],name:'בית כנסת יגדיל תורה — אור יהודה',hero:'04 — מבנים מרחביים/כיפה/בית כנסת יגדיל תורה - אור יהודה/M53_0154-.jpg-main.jpg',meta:{where:'אור יהודה',when:'—',arch:'—',product:'מבנים מרחביים, כיפה'},images:['04 — מבנים מרחביים/כיפה/בית כנסת יגדיל תורה - אור יהודה/M53_0154-.jpg-main.jpg','04 — מבנים מרחביים/כיפה/בית כנסת יגדיל תורה - אור יהודה/M53_0198-w.jpg','04 — מבנים מרחביים/כיפה/בית כנסת יגדיל תורה - אור יהודה/M53_0208-w.jpg','04 — מבנים מרחביים/כיפה/בית כנסת יגדיל תורה - אור יהודה/11.jpg','04 — מבנים מרחביים/כיפה/בית כנסת יגדיל תורה - אור יהודה/033.jpg']},
 ],
 };
 
@@ -1835,18 +2010,12 @@ const _galReg={};
 // Provide `cap:` explicitly to override, or `cap:''` to force no caption.
 const MEDIA = {
   penthouse: [
-    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/DJI_20260304175337_0201_D.jpg', cap:'תל אביב' },
-    { type:'vid', src:'06 — יציאה לגג/17.mp4', vidbase:'img', cap:'' },
-    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DJI_20260311172525_0266_D.jpg', cap:'ירושלים' },
+    { type:'vid', src:'06 — יציאה לגג/17.mp4', vidbase:'img', cap:'', aspect:'wide' },
+    { type:'img', src:'06 — יציאה לגג/Edited-8.jpg', cap:'', aspect:'tall' },
     { type:'vid', src:'06 — יציאה לגג/23.mp4', vidbase:'img', cap:'' },
-    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - רחוב הירקון תל אביב/Hero.jpg', cap:'הירקון' },
+    { type:'img', src:'06 — יציאה לגג/חדר שמש, הרצליה פיתוח.JPG', cap:'חדר שמש — הרצליה', aspect:'tall' },
     { type:'vid', src:'06 — יציאה לגג/3c.mp4', vidbase:'img', cap:'' },
-    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195104_0213_D.jpg', cap:'שנקין' },
     { type:'vid', src:'06 — יציאה לגג/33.mp4', vidbase:'img', cap:'' },
-    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/DSC05032.jpg', cap:'בן יהודה' },
-    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/IMG_20260304_114133_00_250.jpg', cap:'תל אביב' },
-    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DSC05074.jpg', cap:'ירושלים' },
-    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DSC05055.jpg', cap:'שנקין' },
   ],
   walkon: [
     { type:'img', src:'03 — סקיילייט מדרך/Hero.jpeg' },
@@ -1858,78 +2027,35 @@ const MEDIA = {
   ],
   fixed: [
     { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/DSC05064.jpg', cap:'', aspect:'wide' },
-    { type:'img', src:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/hero image.jpg', cap:'מצפה הימים' },
-    { type:'img', src:'02 — סקיילייט קבוע/HP HQ - בניין מרקורי/HP06.jpg', cap:'HP HQ — בניין מרקורי', aspect:'wide' },
-    { type:'img', src:'02 — סקיילייט קבוע/HP HQ - בניין מרקורי/269.jpg', cap:'HP HQ — בניין מרקורי' },
-    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/Edited-10.jpg', cap:'', aspect:'tall' },
-    { type:'img', src:'02 — סקיילייט קבוע/מסעדת משייה - תל אביב/מסעדת משייה.jpg', cap:'מסעדת משייה' },
-    { type:'img', src:'02 — סקיילייט קבוע/חצר אנגלית/בית זית/DSC05100.jpg' },
     { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/סקיילייט דו שיפועי על גג רעפים.jpg', cap:'' },
-    { type:'img', src:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DJI_20260225173740_0134_D(1).jpg', cap:'מצפה הימים', aspect:'wide' },
-    { type:'img', src:'02 — סקיילייט קבוע/מסעדת משייה - תל אביב/Edited-4.jpg', cap:'מסעדת משייה' },
-    { type:'img', src:'02 — סקיילייט קבוע/חצר אנגלית/חצר אנגלית.jpeg', cap:'' },
-    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/DSC05005.jpg', cap:'בית יוקרה — תל אביב' },
-    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/6ב - מנהלה בר אילן.jpg', cap:'מנהלה — בר אילן', aspect:'wide' },
+    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/Edited-10.jpg', cap:'', aspect:'tall' },
     { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/217.jpg', cap:'', aspect:'tall' },
+    { type:'img', src:'02 — סקיילייט קבוע/חצר אנגלית/חצר אנגלית.jpeg', cap:'' },
     { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/בית פרטי 2.jpg', cap:'' },
   ],
   structural: [
-    { type:'img', src:'04 — מבנים מרחביים/קשת/סקייליט מקומר בניין עתידים.JPG', cap:'בניין עתידים' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/049.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/048.jpeg' },
-    { type:'img', src:'04 — מבנים מרחביים/פירמידה/Edited-24.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/Edited-22.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/פירמידה/Edited-6.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/קשת/71.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/חרוט/1.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/Edited-1.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/פירמידה/Edited-14.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/חרוט/2.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/חרוט/5.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/חרוט/4.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/חרוט/110.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/037.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/038.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/039.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/031.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/040.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/041.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/042.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/043.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/044.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/פירמידה/025.jpg' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/בית כנסת יגדיל תורה - אור יהודה/M53_0154-.jpg-main.jpg', cap:'בית כנסת יגדיל תורה' },
-    { type:'img', src:'04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/DJI_20260225203307_0163_D.jpg', cap:'יקב רקנאטי' },
+    { type:'img', src:'04 — מבנים מרחביים/קשת/סקייליט מקומר בניין עתידים.JPG', cap:'בניין עתידים', aspect:'wide' },
+    { type:'img', src:'04 — מבנים מרחביים/פירמידה/Edited-24.jpg', cap:'', aspect:'tall' },
+    { type:'img', src:'04 — מבנים מרחביים/כיפה/048.jpeg', cap:'', aspect:'tall' },
+    { type:'img', src:'04 — מבנים מרחביים/כיפה/Edited-1.jpg', cap:'' },
+    { type:'img', src:'04 — מבנים מרחביים/חרוט/1.jpg', cap:'' },
+    { type:'img', src:'04 — מבנים מרחביים/קשת/71.jpg', cap:'' },
   ],
   retractable: [
-    { type:'img', src:'01 — סקיילייט נוסע/חד שיפועי/DOR_6758-HDR.jpg', cap:'' },
+    { type:'img', src:'01 — סקיילייט נוסע/חד שיפועי/DOR_6758-HDR.jpg', cap:'', aspect:'wide' },
     { type:'vid', src:'01 — סקיילייט נוסע/1.mp4', vidbase:'img', cap:'' },
-    { type:'img', src:'01 — סקיילייט נוסע/חד שיפועי/Edited-30.jpg', cap:'' },
-    { type:'vid', src:'01 — סקיילייט נוסע/10.mp4', vidbase:'img', cap:'' },
-    { type:'img', src:'01 — סקיילייט נוסע/דו שיפועי/Edited-21.jpg', cap:'' },
+    { type:'img', src:'01 — סקיילייט נוסע/דו שיפועי/Edited-21.jpg', cap:'', aspect:'tall' },
     { type:'vid', src:'01 — סקיילייט נוסע/11a.mp4', vidbase:'img', cap:'' },
-    { type:'img', src:'01 — סקיילייט נוסע/דו שיפועי/בית פרטי סקיילייט נוסע .jpg', cap:'' },
+    { type:'img', src:'01 — סקיילייט נוסע/63.jpg', cap:'קירוי בריכה', aspect:'tall' },
     { type:'vid', src:'01 — סקיילייט נוסע/24.mp4', vidbase:'img', cap:'' },
-    { type:'img', src:'01 — סקיילייט נוסע/63.jpg', cap:'קירוי בריכה' },
-    { type:'img', src:'01 — סקיילייט נוסע/דו שיפועי/בית פרטי סקיילייט נוסע 2.jpg', cap:'' },
-    { type:'img', src:'01 — סקיילייט נוסע/65.jpg', cap:'קירוי בריכה' },
-    { type:'img', src:'01 — סקיילייט נוסע/חד שיפועי/ביכנ1 גני טל.jpg', cap:'גני טל' },
-    { type:'vid', src:'01 — סקיילייט נוסע/14.mp4', vidbase:'img', cap:'' },
-    { type:'vid', src:'01 — סקיילייט נוסע/15.mp4', vidbase:'img', cap:'' },
-    { type:'vid', src:'01 — סקיילייט נוסע/18.mp4', vidbase:'img', cap:'' },
   ],
   smoke: [
-    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/בית פרטי חד שיפועי שחרור עשן.jpg' },
-    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/גפני1.jpg' },
-    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/AlfVjy-ryenVRYXksChGM_1Zu0pUByH44zoXInIzwZqq.jpg' },
-    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/251.jpg' },
-    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/252.jpg' },
-    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/213.jpg' },
-    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/142.jpg' },
-    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/130.jpg' },
-    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/262.jpg' },
-    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/253.jpg' },
-    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/265.jpg' },
+    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/בית פרטי חד שיפועי שחרור עשן.jpg', cap:'', aspect:'wide' },
+    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/AlfVjy-ryenVRYXksChGM_1Zu0pUByH44zoXInIzwZqq.jpg', cap:'', aspect:'tall' },
+    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/גפני1.jpg', cap:'' },
+    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/213.jpg', cap:'', aspect:'tall' },
+    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/251.jpg', cap:'' },
+    { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/130.jpg', cap:'' },
   ],
   windows: [
     { type:'img', src:'02 — סקיילייט קבוע/חלונות סקיילייט/חלון סקיילייט.png', cap:'חלון סקיילייט' },
@@ -1956,8 +2082,20 @@ function _effCap(item){ return item.cap !== undefined ? item.cap : autoCap(item.
 
 // Pilot: per-pid mosaic layout map. 'mosaic' enables varied aspect ratios
 // driven by `aspect:'wide'|'tall'` on each MEDIA item (default = square).
-const MEDIA_LAYOUT = { fixed: 'mosaic' };
+const MEDIA_LAYOUT = { fixed: 'mosaic', structural: 'mosaic', penthouse: 'mosaic', retractable: 'mosaic', smoke: 'mosaic' };
 
+// Per-pid header copy override for the gallery section. When a category has
+// projects above (pilot categories), the gallery is a "product variations"
+// strip — its h2 should reflect that. Other categories keep "עבודות נבחרות".
+const MEDIA_HEADERS = {
+  fixed:       { eye: 'גלריה', title: 'המוצר במגוון' },
+  structural:  { eye: 'גלריה', title: 'המוצר במגוון' },
+  penthouse:   { eye: 'גלריה', title: 'המוצר במגוון' },
+  retractable: { eye: 'גלריה', title: 'המוצר בתנועה' },
+  smoke:       { eye: 'גלריה', title: 'המוצר במגוון' },
+};
+
+function _runA11yAfterRender(){ if(typeof _a11yMakeKeyboardable === 'function') _a11yMakeKeyboardable(); }
 function renderMedia(pid){
   const sec = document.getElementById('media-'+pid);
   if(!sec) return;
@@ -1979,7 +2117,8 @@ function renderMedia(pid){
   };
 
   const playIcon = '<svg class="mp-play" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="rgba(0,0,0,.38)"/><path d="M26 20 L46 32 L26 44 Z" fill="#fff"/></svg>';
-  const out = [`<div class="pp-media-h"><div class="pp-projects-section-eye">גלריה</div><h2 class="pp-projects-section-t">עבודות נבחרות</h2></div>`, `<div class="${gridClass}">`];
+  const hdr = MEDIA_HEADERS[pid] || { eye: 'גלריה', title: 'עבודות נבחרות' };
+  const out = [`<div class="pp-media-h"><div class="pp-projects-section-eye">${hdr.eye}</div><h2 class="pp-projects-section-t">${hdr.title}</h2></div>`, `<div class="${gridClass}">`];
   items.forEach((it,i) => {
     const cap = _effCap(it);
     const capHtml = cap ? `<div class="pp-media-cap">${cap}</div>` : '';
@@ -1992,11 +2131,13 @@ function renderMedia(pid){
         : `<video src="${vidSrc}" preload="metadata" muted playsinline style="width:100%;height:100%;object-fit:cover;pointer-events:none"></video>`;
       out.push(`<div class="pp-media-item pp-media-vid${ac}" onclick="openLb('${key}',${i})">${thumb}${playIcon}${capHtml}</div>`);
     } else {
-      out.push(`<div class="pp-media-item${ac}" onclick="openLb('${key}',${i})"><img src="${B}${it.src}" alt="" loading="lazy">${capHtml}</div>`);
+      const altText = cap || _filenameHint(it.src) || 'סקיילייט — תמונת מוצר';
+      out.push(`<div class="pp-media-item${ac}" onclick="openLb('${key}',${i})"><img src="${B}${it.src}" alt="${altText}" loading="lazy">${capHtml}</div>`);
     }
   });
   out.push('</div>');
   sec.innerHTML = out.join('');
+  _runA11yAfterRender();
 }
 
 // Filename-based product-type hints for mixed-product projects.
@@ -2040,7 +2181,8 @@ function renderProjectGallery(slug){
   const kinds = srcs.map(() => 'img');
   _galReg[key] = { srcs, caps, kinds };
   const tiles = proj.images.map((src,i) => {
-    return `<div class="pp-media-item" onclick="openLb('${key}',${i})"><img src="${B}${src}" alt="" loading="lazy"></div>`;
+    const altText = _filenameHint(src) || `${proj.name} — תמונה ${i+1}`;
+    return `<div class="pp-media-item" onclick="openLb('${key}',${i})"><img src="${B}${src}" alt="${altText}" loading="lazy"></div>`;
   }).join('');
   sec.innerHTML = `<div class="pp-media-grid">${tiles}</div>`;
 }
@@ -2111,36 +2253,46 @@ function goProject(slug){
 }
 
 // Pilot: per-pid layout map. 'tiles' = hover-reveal mosaic; default = cards.
-const PROJECTS_LAYOUT = { fixed: 'tiles' };
+const PROJECTS_LAYOUT = { fixed: 'tiles', structural: 'tiles', penthouse: 'tiles', walkon: 'tiles', retractable: 'tiles', smoke: 'tiles' };
 
 function renderProjectsSection(pid){
   const sec=document.getElementById('projects-sec-'+pid);
   if(!sec)return;
-  const projs=PROJECTS[pid];
+  // Cross-tag filter: a project appears on every page listed in its `categories` array
+  const projs=Object.values(PROJECTS).flat().filter(p => (p.categories||[]).includes(pid));
   if(!projs||!projs.length){sec.style.display='none';return}
   const arrow='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
   const layout = PROJECTS_LAYOUT[pid] || 'cards';
-  const out=[`<div class="pp-projects-section-h"><div class="pp-projects-section-eye">מבחר עבודות</div><h2 class="pp-projects-section-t">פרויקטים</h2></div>`];
+  const out=[`<div class="pp-projects-section-h"><div class="pp-projects-section-eye">פרויקטים</div><h2 class="pp-projects-section-t">היכן בנינו</h2></div>`];
 
   if(layout === 'tiles'){
     out.push('<div class="pp-projects-tiles">');
     projs.forEach(p => {
       const m = p.meta||{};
-      const extras = [];
-      if(m.arch && m.arch !== '—') extras.push(`<dt>אדריכל</dt><dd>${m.arch}</dd>`);
-      if(m.when && m.when !== '—') extras.push(`<dt>שנה</dt><dd>${m.when}</dd>`);
-      if(m.product && m.product !== '—') extras.push(`<dt>מוצר</dt><dd>${m.product}</dd>`);
-      const extraHtml = extras.length ? `<div class="pp-proj-tile-extra"><dl>${extras.join('')}</dl></div>` : '';
       const where = (m.where && m.where !== '—') ? m.where : '';
+      const specRows = [];
+      if(m.arch && m.arch !== '—') specRows.push(`<div class="pp-proj-tile-spec-row"><span>אדריכל</span><b>${m.arch}</b></div>`);
+      if(m.when && m.when !== '—') specRows.push(`<div class="pp-proj-tile-spec-row"><span>שנה</span><b>${m.when}</b></div>`);
+      if(m.product && m.product !== '—') specRows.push(`<div class="pp-proj-tile-spec-row"><span>מוצר</span><b>${m.product}</b></div>`);
+      const specHtml = specRows.length ? `<div class="pp-proj-tile-spec">${specRows.join('')}</div>` : '';
       out.push(`<a class="pp-proj-tile" href="#project/${p.slug}" onclick="goProject('${p.slug}');return false">
         <img src="${B}${p.hero}" alt="${p.name}" loading="lazy">
         <div class="pp-proj-tile-veil"></div>
-        <div class="pp-proj-tile-arrow">${arrow}</div>
+        <span class="pp-proj-tile-corner pp-proj-tile-corner-tl"></span>
+        <span class="pp-proj-tile-corner pp-proj-tile-corner-tr"></span>
+        <span class="pp-proj-tile-corner pp-proj-tile-corner-bl"></span>
+        <span class="pp-proj-tile-corner pp-proj-tile-corner-br"></span>
         <div class="pp-proj-tile-base">
-          <h3 class="pp-proj-tile-name">${p.name}</h3>
+          <div class="pp-proj-tile-name-row">
+            <h3 class="pp-proj-tile-name">${p.name}</h3>
+            <div class="pp-proj-tile-arrow" aria-hidden="true">
+              <span class="pp-proj-tile-arrow-line"></span>
+              <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 5h8M6 1l3 4-3 4"/></svg>
+            </div>
+          </div>
           ${where ? `<div class="pp-proj-tile-where">${where}</div>` : ''}
-          ${extraHtml}
         </div>
+        ${specHtml}
       </a>`);
     });
     out.push('</div>');
@@ -2186,9 +2338,158 @@ function renderSelectedWork(pid){
   sec.innerHTML=out.join('');
 }
 
+
+
+function toggleDrawer(){
+  const d = document.getElementById('nav-drawer');
+  const b = document.querySelector('.nav-burger');
+  if(!d || !b) return;
+  const open = d.classList.toggle('open');
+  b.classList.toggle('open', open);
+  d.setAttribute('aria-hidden', open ? 'false' : 'true');
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+
+// A11Y: make clickable divs keyboard-accessible (.p-card, .pp-media-item)
+function _a11yMakeKeyboardable(){
+  document.querySelectorAll('.p-card, .pp-media-item').forEach(el => {
+    if(el.hasAttribute('data-a11y-init')) return;
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', el.classList.contains('p-card') ? 'link' : 'button');
+    el.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        el.click();
+      }
+    });
+    el.setAttribute('data-a11y-init', '1');
+  });
+}
+
+// Sanity: every project must have at least 1 category, else it won't render anywhere
+Object.values(PROJECTS).flat().forEach(p => {
+  if(!p.categories || !p.categories.length) console.warn(`[project orphan] ${p.slug} has no categories`);
+});
+
 // Init
-['penthouse','fixed','walkon','structural'].forEach(renderProjectsSection);
+['penthouse','fixed','walkon','structural','retractable','smoke'].forEach(renderProjectsSection);
+_a11yMakeKeyboardable();
 ['retractable'].forEach(renderSelectedWork);
+
+// ─── /projects page ────────────────────────────────────────────
+// Curated manual order — leads with prestige + variety
+const PROJECTS_PAGE_ORDER = [
+  'national-library', 'hp-hq', 'mitzpe-hayamim', 'mishya',
+  'recanati-winery', 'beit-habeer', 'penthouse-shenkin', 'synagogue',
+  'penthouse-ben-yehuda', 'penthouse-jerusalem', 'beit-zait',
+  'penthouse-tel-aviv', 'penthouse-hayarkon',
+  'beit-gil-hazahav', 'bar-ilan',
+];
+
+const PROJECTS_FILTER_SECTORS = ['מגורים', 'מסחרי', 'ציבורי', 'מלונאות', 'שימור'];
+const PROJECTS_FILTER_PRODUCTS = [
+  { id: 'retractable', label: 'נוסע' },
+  { id: 'fixed',       label: 'קבוע' },
+  { id: 'walkon',      label: 'מדרך' },
+  { id: 'structural',  label: 'מבנים מרחביים' },
+  { id: 'smoke',       label: 'שחרור עשן' },
+  { id: 'penthouse',   label: 'יציאה לגג' },
+  { id: 'windows',     label: 'חלונות' },
+];
+let projectsFilterState = { sectors: new Set(), products: new Set() };
+
+function renderProjectsPageChips(){
+  const sRow = document.getElementById('filter-row-sector');
+  const pRow = document.getElementById('filter-row-product');
+  if(!sRow || !pRow) return;
+  const chip = (label, active, onClick) => {
+    const b = document.createElement('button');
+    b.className = 'projects-chip' + (active ? ' active' : '');
+    b.textContent = label;
+    b.type = 'button';
+    b.onclick = onClick;
+    return b;
+  };
+  sRow.innerHTML = '<span class="projects-filter-label">לפי סקטור</span>';
+  PROJECTS_FILTER_SECTORS.forEach(s => {
+    sRow.appendChild(chip(s, projectsFilterState.sectors.has(s), () => {
+      if(projectsFilterState.sectors.has(s)) projectsFilterState.sectors.delete(s);
+      else projectsFilterState.sectors.add(s);
+      renderProjectsPageChips();
+      renderProjectsPage();
+    }));
+  });
+  pRow.innerHTML = '<span class="projects-filter-label">לפי מוצר</span>';
+  PROJECTS_FILTER_PRODUCTS.forEach(p => {
+    pRow.appendChild(chip(p.label, projectsFilterState.products.has(p.id), () => {
+      if(projectsFilterState.products.has(p.id)) projectsFilterState.products.delete(p.id);
+      else projectsFilterState.products.add(p.id);
+      renderProjectsPageChips();
+      renderProjectsPage();
+    }));
+  });
+}
+
+function renderProjectsPage(){
+  const host = document.getElementById('projects-grid-host');
+  const count = document.getElementById('projects-count');
+  if(!host || !count) return;
+  const all = Object.values(PROJECTS).flat();
+  const bySlug = Object.fromEntries(all.map(p => [p.slug, p]));
+  // Apply curated order
+  const ordered = PROJECTS_PAGE_ORDER.map(s => bySlug[s]).filter(Boolean);
+  // Filter
+  const sFilter = projectsFilterState.sectors;
+  const pFilter = projectsFilterState.products;
+  const filtered = ordered.filter(p => {
+    if(sFilter.size > 0 && !sFilter.has(p.sector)) return false;
+    if(pFilter.size > 0){
+      const cats = p.categories || [];
+      if(!cats.some(c => pFilter.has(c))) return false;
+    }
+    return true;
+  });
+  count.textContent = filtered.length === all.length
+    ? `כל הפרויקטים (${filtered.length})`
+    : `${filtered.length} פרויקטים`;
+  if(filtered.length === 0){
+    host.innerHTML = `<div class="projects-empty"><h3>לא מצאנו פרויקט שתואם את הסינון</h3><p>נסו פחות מסננים, או צרו קשר ונשמח לספר לכם על פרויקטים שעדיין לא נמצאים באתר.</p><button class="btn-pd" onclick="openCM()">השאירו פרטים</button></div>`;
+    _runA11yAfterRender();
+    return;
+  }
+  const arrow = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+  const tiles = filtered.map(p => {
+    const m = p.meta||{};
+    const where = (m.where && m.where !== '—') ? m.where : '';
+    const specRows = [];
+    if(p.sector) specRows.push(`<div class="pp-proj-tile-spec-row"><span>סקטור</span><b>${p.sector}</b></div>`);
+    if(m.arch && m.arch !== '—') specRows.push(`<div class="pp-proj-tile-spec-row"><span>אדריכל</span><b>${m.arch}</b></div>`);
+    if(m.when && m.when !== '—') specRows.push(`<div class="pp-proj-tile-spec-row"><span>שנה</span><b>${m.when}</b></div>`);
+    const specHtml = specRows.length ? `<div class="pp-proj-tile-spec">${specRows.join('')}</div>` : '';
+    return `<a class="pp-proj-tile" href="#project/${p.slug}" onclick="goProject('${p.slug}');return false">
+      <img src="${B}${p.hero}" alt="${p.name}" loading="lazy">
+      <div class="pp-proj-tile-veil"></div>
+      <span class="pp-proj-tile-corner pp-proj-tile-corner-tl"></span>
+      <span class="pp-proj-tile-corner pp-proj-tile-corner-tr"></span>
+      <span class="pp-proj-tile-corner pp-proj-tile-corner-bl"></span>
+      <span class="pp-proj-tile-corner pp-proj-tile-corner-br"></span>
+      <div class="pp-proj-tile-base">
+        <div class="pp-proj-tile-name-row">
+          <h3 class="pp-proj-tile-name">${p.name}</h3>
+          <div class="pp-proj-tile-arrow" aria-hidden="true">
+            <span class="pp-proj-tile-arrow-line"></span>
+            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 5h8M6 1l3 4-3 4"/></svg>
+          </div>
+        </div>
+        ${where ? `<div class="pp-proj-tile-where">${where}</div>` : ''}
+      </div>
+      ${specHtml}
+    </a>`;
+  }).join('');
+  host.innerHTML = `<div class="pp-projects-tiles">${tiles}</div>`;
+  _runA11yAfterRender();
+}
+
 // Home-page projects strip — curated subset of PROJECTS as clickable entry
 // points to the project detail pages.
 const HOME_STRIP = [
@@ -2232,6 +2533,8 @@ function renderHomeProjects(){
 }
 ['walkon','penthouse','fixed','retractable','structural','smoke'].forEach(renderMedia);
 renderHomeProjects();
+renderProjectsPageChips();
+renderProjectsPage();
 ['penthouse'].forEach(renderVideos);
 
 // ── Lightbox ──
@@ -2397,7 +2700,7 @@ function updateMeta(pid) {
   updateMeta(pid);
 })();
 
-const pages=['home','about','penthouse','fixed','retractable','walkon','structural','smoke','windows','tech'];
+const pages=['home','about','projects','penthouse','fixed','retractable','walkon','structural','smoke','windows','tech'];
 function go(id){pages.forEach(p=>{const el=document.getElementById('page-'+p);if(el){el.style.display='none';el.classList.remove('active')}});document.querySelectorAll('[id^="page-project-"]').forEach(el=>{el.style.display='none';el.classList.remove('active')});const t=document.getElementById('page-'+id);if(t){t.style.display='block';t.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});setTimeout(()=>{t.querySelectorAll('.rv:not(.on)').forEach(el=>obs.observe(el))},100);updateMeta(id)}}
 function home(){go('home')}
 
@@ -2487,5 +2790,37 @@ function submitForm(e, formId){
   },3000);
 }
 </script>
+
+<!-- Mobile nav drawer -->
+<div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+  <button class="nav-drawer-close" onclick="toggleDrawer()" aria-label="סגור תפריט">×</button>
+  <div class="nav-drawer-section">
+    <div class="nav-drawer-section-title">סקיילייט</div>
+    <a href="#" class="nav-drawer-link" onclick="go('fixed');toggleDrawer();return false">סקיילייט קבוע</a>
+    <a href="#" class="nav-drawer-link" onclick="go('retractable');toggleDrawer();return false">סקיילייט נוסע</a>
+    <a href="#" class="nav-drawer-link" onclick="go('structural');toggleDrawer();return false">מבנים מרחביים</a>
+  </div>
+  <div class="nav-drawer-section">
+    <div class="nav-drawer-section-title">פתחי גג</div>
+    <a href="#" class="nav-drawer-link" onclick="go('penthouse');toggleDrawer();return false">יציאה לגג</a>
+    <a href="#" class="nav-drawer-link" onclick="go('windows');toggleDrawer();return false">חלונות סקיילייט</a>
+  </div>
+  <div class="nav-drawer-section">
+    <div class="nav-drawer-section-title">רצפות שקופות</div>
+    <a href="#" class="nav-drawer-link" onclick="go('walkon');toggleDrawer();return false">סקיילייט מדרך</a>
+  </div>
+  <div class="nav-drawer-section">
+    <div class="nav-drawer-section-title">אוורור ובטיחות</div>
+    <a href="#" class="nav-drawer-link" onclick="go('smoke');toggleDrawer();return false">שחרור עשן</a>
+  </div>
+  <div class="nav-drawer-section">
+    <div class="nav-drawer-section-title">עוד</div>
+    <a href="#" class="nav-drawer-link" onclick="go('projects');toggleDrawer();return false">פרויקטים</a>
+    <a href="#" class="nav-drawer-link" onclick="go('tech');toggleDrawer();return false">מידע טכני</a>
+    <a href="#" class="nav-drawer-link" onclick="go('about');toggleDrawer();return false">עלינו</a>
+    <a href="#" class="nav-drawer-link" onclick="openCM();toggleDrawer();return false" style="color:var(--accent)">צור קשר ←</a>
+  </div>
+</div>
+
 </body>
 </html>
