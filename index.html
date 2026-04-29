@@ -2149,39 +2149,101 @@ const _galReg={};
 // Captions are auto-derived from the immediate parent folder via autoCap().
 // Provide `cap:` explicitly to override, or `cap:''` to force no caption.
 const MEDIA = {
+  // Sourced from /use folders within each product folder. Hero banners and home register
+  // thumbnails intentionally NOT touched. Sort step below puts videos at end.
   penthouse: [
-    { type:'vid', src:'06 — יציאה לגג/17.mp4', vidbase:'img', poster:'06 — יציאה לגג/17-poster.jpg', cap:'', aspect:'wide' },
-    { type:'img', src:'06 — יציאה לגג/Edited-8.jpg', cap:'', aspect:'tall' },
+    // פנטהאוז — בן יהודה תל אביב
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/DSC05046.jpg', cap:'פנטהאוז — בן יהודה' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/IMG_20260304_103947_00_020.jpg', cap:'פנטהאוז — בן יהודה' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/DSC05043.jpg', cap:'פנטהאוז — בן יהודה' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/DSC05032.jpg', cap:'פנטהאוז — בן יהודה' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/IMG_20260304_104128_00_024.jpg', cap:'פנטהאוז — בן יהודה' },
+    // פנטהאוז — שנקין תל אביב
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195846_0226_D.jpg', cap:'פנטהאוז — שנקין' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DSC05055.jpg', cap:'פנטהאוז — שנקין' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195400_0221_D.jpg', cap:'פנטהאוז — שנקין' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/IMG_20260304_114021_00_245.jpg', cap:'פנטהאוז — שנקין' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195104_0213_D.jpg', cap:'פנטהאוז — שנקין' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DJI_20260304195932_0230_D.jpg', cap:'פנטהאוז — שנקין' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/use/DSC05049.jpg', cap:'פנטהאוז — שנקין' },
+    // פנטהאוז — ירושלים
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/IMG_20260311_111907_188.jpg', cap:'פנטהאוז — ירושלים' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DJI_20260311172530_0267_D.jpg', cap:'פנטהאוז — ירושלים' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/IMG_20260311_111255_175.jpg', cap:'פנטהאוז — ירושלים' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DSC05074.jpg', cap:'פנטהאוז — ירושלים' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DJI_20260311172525_0266_D.jpg', cap:'פנטהאוז — ירושלים' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - ירושלים/use/DJI_20260311172748_0270_D.jpg', cap:'פנטהאוז — ירושלים' },
+    // פנטהאוז — תל אביב
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/DJI_20260304175640_0205_D.jpg', cap:'פנטהאוז — תל אביב' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/DJI_20260304175337_0201_D.jpg', cap:'פנטהאוז — תל אביב' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/IMG_20260304_114221_00_252.jpg', cap:'פנטהאוז — תל אביב' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/IMG_20260304_114133_00_250.jpg', cap:'פנטהאוז — תל אביב' },
+    { type:'img', src:'06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/DJI_20260304175409_0202_D.jpg', cap:'פנטהאוז — תל אביב' },
+    // Videos preserved (sort step at bottom moves them to the end of the strip)
+    { type:'vid', src:'06 — יציאה לגג/17.mp4', vidbase:'img', poster:'06 — יציאה לגג/17-poster.jpg', cap:'' },
     { type:'vid', src:'06 — יציאה לגג/23.mp4', vidbase:'img', poster:'06 — יציאה לגג/23-poster.jpg', cap:'' },
-    { type:'img', src:'06 — יציאה לגג/חדר שמש, הרצליה פיתוח.JPG', cap:'חדר שמש — הרצליה', aspect:'tall' },
     { type:'vid', src:'06 — יציאה לגג/3c.mp4', vidbase:'img', poster:'06 — יציאה לגג/3c-poster.jpg', cap:'' },
     { type:'vid', src:'06 — יציאה לגג/33.mp4', vidbase:'img', poster:'06 — יציאה לגג/33-poster.jpg', cap:'' },
   ],
   walkon: [
-    { type:'img', src:'03 — סקיילייט מדרך/Hero.jpeg' },
-    { type:'img', src:'03 — סקיילייט מדרך/ספריה לאומית/DSC05082.jpg', cap:'הספריה הלאומית' },
-    { type:'img', src:'03 — סקיילייט מדרך/ספריה לאומית/DSC05094.jpg', cap:'הספריה הלאומית' },
-    { type:'img', src:'03 — סקיילייט מדרך/ספריה לאומית/DSC05096.jpg', cap:'הספריה הלאומית' },
-    { type:'img', src:'03 — סקיילייט מדרך/בית הבאר - מבנה לשימור/סקיילייט מדרך מעל באר ישנה.jpg', cap:'בית הבאר — מבנה לשימור' },
-    { type:'img', src:'03 — סקיילייט מדרך/בית הבאר - מבנה לשימור/סקיילייט מדרך מעל באר ישנה 3.jpg', cap:'בית הבאר — מבנה לשימור' },
+    { type:'img', src:'03 — סקיילייט מדרך/Use/Hero Banner .jpg', cap:'' },
+    { type:'img', src:'03 — סקיילייט מדרך/Use/Hero.jpeg', cap:'' },
+    { type:'img', src:'03 — סקיילייט מדרך/Use/DSC05099.jpg', cap:'הספריה הלאומית' },
+    { type:'img', src:'03 — סקיילייט מדרך/Use/Hero copy.jpg', cap:'' },
+    { type:'img', src:'03 — סקיילייט מדרך/Use/סקיילייט מדרך מעל באר ישנה 3.jpg', cap:'בית הבאר — מבנה לשימור' },
   ],
   fixed: [
-    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/DSC05064.jpg', cap:'', aspect:'wide' },
-    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/סקיילייט דו שיפועי על גג רעפים.jpg', cap:'' },
-    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/Edited-10.jpg', cap:'', aspect:'tall' },
-    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/217.jpg', cap:'', aspect:'tall' },
-    { type:'img', src:'02 — סקיילייט קבוע/חצר אנגלית/חצר אנגלית.jpeg', cap:'' },
-    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/בית פרטי 2.jpg', cap:'' },
+    // חד שיפועי
+    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/Use/Edited-10.jpg', cap:'' },
+    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/Use/138.jpg', cap:'' },
+    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/Use/DSC05005.jpg', cap:'' },
+    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/Use/DJI_20260311162249_0256_D.jpg', cap:'' },
+    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/Use/מסחרי _ גגון .png', cap:'' },
+    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/Use/Edited-20.jpg', cap:'' },
+    { type:'img', src:'02 — סקיילייט קבוע/חד שיפועי/Use/DSC05064.jpg', cap:'' },
+    // דו שיפועי
+    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/Use/6ב - מנהלה בר אילן copy.jpg', cap:'אוניברסיטת בר אילן' },
+    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/Use/דו שיפועי, בית חולים קפלן copy.jpeg', cap:'בית חולים קפלן' },
+    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/Use/2 copy.jpg', cap:'' },
+    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/Use/225 copy.jpg', cap:'' },
+    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/Use/4 copy.jpg', cap:'' },
+    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/Use/5 copy.jpg', cap:'' },
+    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/Use/בית פרטי 2 copy.jpg', cap:'בית פרטי' },
+    { type:'img', src:'02 — סקיילייט קבוע/דו שיפועי/Use/סקיילייט דו שיפועי על גג רעפים.jpeg', cap:'גג רעפים' },
+    // חצר אנגלית
+    { type:'img', src:'02 — סקיילייט קבוע/חצר אנגלית/use/חצר אנגלית 2.jpeg', cap:'חצר אנגלית' },
+    { type:'img', src:'02 — סקיילייט קבוע/חצר אנגלית/use/26.jpg', cap:'' },
+    { type:'img', src:'02 — סקיילייט קבוע/חצר אנגלית/use/חצר אנגלית.jpeg', cap:'חצר אנגלית' },
+    { type:'img', src:'02 — סקיילייט קבוע/חצר אנגלית/use/DSC05100.jpg', cap:'' },
+    // מצפה הימים
+    { type:'img', src:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04881.jpg', cap:'מלון מצפה הימים' },
+    { type:'img', src:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04869.jpg', cap:'מלון מצפה הימים' },
+    { type:'img', src:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04851.jpeg', cap:'מלון מצפה הימים' },
+    { type:'img', src:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/מצפה הימים מסעדה.jpg', cap:'מצפה הימים — מסעדה' },
+    { type:'img', src:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04859.jpg', cap:'מלון מצפה הימים' },
+    { type:'img', src:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/hero image.jpg', cap:'מלון מצפה הימים' },
+    { type:'img', src:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DSC04912.jpg', cap:'מלון מצפה הימים' },
+    { type:'img', src:'02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/DJI_20260225173740_0134_D(1).jpg', cap:'מלון מצפה הימים' },
   ],
   structural: [
-    { type:'img', src:'04 — מבנים מרחביים/קשת/סקייליט מקומר בניין עתידים.JPG', cap:'בניין עתידים', aspect:'wide' },
-    { type:'img', src:'04 — מבנים מרחביים/פירמידה/Edited-24.jpg', cap:'', aspect:'tall' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/048.jpeg', cap:'', aspect:'tall' },
-    { type:'img', src:'04 — מבנים מרחביים/כיפה/Edited-1.jpg', cap:'' },
-    { type:'img', src:'04 — מבנים מרחביים/חרוט/1.jpg', cap:'' },
-    { type:'img', src:'04 — מבנים מרחביים/קשת/71.jpg', cap:'' },
+    // כיפה
+    { type:'img', src:'04 — מבנים מרחביים/כיפה/use/039.jpg', cap:'כיפה' },
+    { type:'img', src:'04 — מבנים מרחביים/כיפה/use/040.jpg', cap:'כיפה' },
+    { type:'img', src:'04 — מבנים מרחביים/כיפה/use/041.jpg', cap:'כיפה' },
+    { type:'img', src:'04 — מבנים מרחביים/כיפה/use/043.jpg', cap:'כיפה' },
+    { type:'img', src:'04 — מבנים מרחביים/כיפה/use/042.jpg', cap:'כיפה' },
+    { type:'img', src:'04 — מבנים מרחביים/כיפה/use/048.jpeg', cap:'כיפה' },
+    { type:'img', src:'04 — מבנים מרחביים/כיפה/use/044.jpg', cap:'כיפה' },
+    { type:'img', src:'04 — מבנים מרחביים/כיפה/use/Edited-22.jpg', cap:'כיפה' },
+    { type:'img', src:'04 — מבנים מרחביים/כיפה/use/037.jpg', cap:'כיפה' },
+    // חרוט
+    { type:'img', src:'04 — מבנים מרחביים/חרוט/use/110.jpg', cap:'חרוט' },
+    { type:'img', src:'04 — מבנים מרחביים/חרוט/use/4.jpg', cap:'חרוט' },
+    { type:'img', src:'04 — מבנים מרחביים/חרוט/use/2.jpg', cap:'חרוט' },
+    { type:'img', src:'04 — מבנים מרחביים/חרוט/use/1.jpg', cap:'חרוט' },
   ],
   retractable: [
+    // No /use folder provided — keeping existing curated set
     { type:'img', src:'01 — סקיילייט נוסע/חד שיפועי/DOR_6758-HDR.jpg', cap:'', aspect:'wide' },
     { type:'vid', src:'01 — סקיילייט נוסע/1.mp4', vidbase:'img', poster:'01 — סקיילייט נוסע/1-poster.jpg', cap:'' },
     { type:'img', src:'01 — סקיילייט נוסע/דו שיפועי/Edited-21.jpg', cap:'', aspect:'tall' },
@@ -2190,6 +2252,7 @@ const MEDIA = {
     { type:'vid', src:'01 — סקיילייט נוסע/24.mp4', vidbase:'img', poster:'01 — סקיילייט נוסע/24-poster.jpg', cap:'' },
   ],
   smoke: [
+    // No /use folder provided — keeping existing curated set
     { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/בית פרטי חד שיפועי שחרור עשן.jpg', cap:'', aspect:'wide' },
     { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/AlfVjy-ryenVRYXksChGM_1Zu0pUByH44zoXInIzwZqq.jpg', cap:'', aspect:'tall' },
     { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/גפני1.jpg', cap:'' },
@@ -2198,12 +2261,13 @@ const MEDIA = {
     { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/130.jpg', cap:'' },
   ],
   windows: [
-    { type:'img', src:'02 — סקיילייט קבוע/חלונות סקיילייט/חלון סקיילייט.png', cap:'חלון סקיילייט' },
-    { type:'img', src:'02 — סקיילייט קבוע/חלונות סקיילייט/חלון סקיילייט 1.png', cap:'חלון סקיילייט' },
-    { type:'img', src:'02 — סקיילייט קבוע/חלונות סקיילייט/חלון סקיילייט עגול.png', cap:'חלון עגול' },
-    { type:'img', src:'02 — סקיילייט קבוע/חלונות סקיילייט/067.jpeg', cap:'' },
-    { type:'img', src:'02 — סקיילייט קבוע/חלונות סקיילייט/075.jpeg', cap:'' },
-    { type:'img', src:'02 — סקיילייט קבוע/חלונות סקיילייט/20200506_153509.jpeg', cap:'' },
+    { type:'img', src:'07 — חלונות סקיילייט/use/חלון סקיילייט.png', cap:'חלון סקיילייט' },
+    { type:'img', src:'07 — חלונות סקיילייט/use/חלון סקיילייט 1.png', cap:'חלון סקיילייט' },
+    { type:'img', src:'07 — חלונות סקיילייט/use/חלון סקיילייט עגול.png', cap:'חלון עגול' },
+    { type:'img', src:'07 — חלונות סקיילייט/use/067.jpeg', cap:'' },
+    { type:'img', src:'07 — חלונות סקיילייט/use/075.jpeg', cap:'' },
+    { type:'img', src:'07 — חלונות סקיילייט/use/20200506_153509.jpeg', cap:'' },
+    { type:'img', src:'07 — חלונות סקיילייט/use/IMG_20260311_122629_221.jpg', cap:'' },
   ],
 };
 
