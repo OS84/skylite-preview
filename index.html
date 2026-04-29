@@ -2122,12 +2122,12 @@ const _galReg={};
 // Provide `cap:` explicitly to override, or `cap:''` to force no caption.
 const MEDIA = {
   penthouse: [
-    { type:'vid', src:'06 — יציאה לגג/17.mp4', vidbase:'img', cap:'', aspect:'wide' },
+    { type:'vid', src:'06 — יציאה לגג/17.mp4', vidbase:'img', poster:'06 — יציאה לגג/17-poster.jpg', cap:'', aspect:'wide' },
     { type:'img', src:'06 — יציאה לגג/Edited-8.jpg', cap:'', aspect:'tall' },
-    { type:'vid', src:'06 — יציאה לגג/23.mp4', vidbase:'img', cap:'' },
+    { type:'vid', src:'06 — יציאה לגג/23.mp4', vidbase:'img', poster:'06 — יציאה לגג/23-poster.jpg', cap:'' },
     { type:'img', src:'06 — יציאה לגג/חדר שמש, הרצליה פיתוח.JPG', cap:'חדר שמש — הרצליה', aspect:'tall' },
-    { type:'vid', src:'06 — יציאה לגג/3c.mp4', vidbase:'img', cap:'' },
-    { type:'vid', src:'06 — יציאה לגג/33.mp4', vidbase:'img', cap:'' },
+    { type:'vid', src:'06 — יציאה לגג/3c.mp4', vidbase:'img', poster:'06 — יציאה לגג/3c-poster.jpg', cap:'' },
+    { type:'vid', src:'06 — יציאה לגג/33.mp4', vidbase:'img', poster:'06 — יציאה לגג/33-poster.jpg', cap:'' },
   ],
   walkon: [
     { type:'img', src:'03 — סקיילייט מדרך/Hero.jpeg' },
@@ -2155,11 +2155,11 @@ const MEDIA = {
   ],
   retractable: [
     { type:'img', src:'01 — סקיילייט נוסע/חד שיפועי/DOR_6758-HDR.jpg', cap:'', aspect:'wide' },
-    { type:'vid', src:'01 — סקיילייט נוסע/1.mp4', vidbase:'img', cap:'' },
+    { type:'vid', src:'01 — סקיילייט נוסע/1.mp4', vidbase:'img', poster:'01 — סקיילייט נוסע/1-poster.jpg', cap:'' },
     { type:'img', src:'01 — סקיילייט נוסע/דו שיפועי/Edited-21.jpg', cap:'', aspect:'tall' },
-    { type:'vid', src:'01 — סקיילייט נוסע/11a.mp4', vidbase:'img', cap:'' },
+    { type:'vid', src:'01 — סקיילייט נוסע/11a.mp4', vidbase:'img', poster:'01 — סקיילייט נוסע/11a-poster.jpg', cap:'' },
     { type:'img', src:'01 — סקיילייט נוסע/63.jpg', cap:'קירוי בריכה', aspect:'tall' },
-    { type:'vid', src:'01 — סקיילייט נוסע/24.mp4', vidbase:'img', cap:'' },
+    { type:'vid', src:'01 — סקיילייט נוסע/24.mp4', vidbase:'img', poster:'01 — סקיילייט נוסע/24-poster.jpg', cap:'' },
   ],
   smoke: [
     { type:'img', src:'05 — כיפות תאורה, אוורור ושחרור עשן/בית פרטי חד שיפועי שחרור עשן.jpg', cap:'', aspect:'wide' },
@@ -2178,6 +2178,11 @@ const MEDIA = {
     { type:'img', src:'02 — סקיילייט קבוע/חלונות סקיילייט/20200506_153509.jpeg', cap:'' },
   ],
 };
+
+// Stable partition: within each category, render images first then videos (ribbon ordering)
+Object.keys(MEDIA).forEach(pid => {
+  MEDIA[pid] = [...MEDIA[pid].filter(it => it.type !== 'vid'), ...MEDIA[pid].filter(it => it.type === 'vid')];
+});
 
 
 // ─── QUIET RIBBON RENDERER (Sprint D-3) ───────────────────────
