@@ -11,6 +11,34 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://os84.github.io/skylite-preview/">
 
+  <!-- Cache-bust: forces fresh fetch when version.txt content changes (prevents stale browser/CDN cache) -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <script>
+  (function(){
+    try {
+      var KEY = '_sk_v';
+      fetch('./version.txt?t=' + Date.now(), {cache: 'no-store'})
+        .then(function(r){ return r.ok ? r.text() : null; })
+        .then(function(latest){
+          if(!latest) return;
+          latest = latest.trim();
+          var stored = sessionStorage.getItem(KEY);
+          if(stored && stored !== latest) {
+            sessionStorage.setItem(KEY, latest);
+            var url = new URL(location.href);
+            url.searchParams.set('v', latest);
+            location.replace(url.toString());
+          } else {
+            sessionStorage.setItem(KEY, latest);
+          }
+        })
+        .catch(function(){});
+    } catch(e){}
+  })();
+  </script>
+
   <!-- OpenGraph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Skylite — סקיילייט">
@@ -1116,8 +1144,8 @@
     .why-us--split .why-us-inner{max-width:1160px;display:grid;grid-template-columns:1fr 1.5fr;gap:72px;align-items:start;text-align:right}
     .why-us--split .why-us-title{text-align:right;margin-bottom:36px}
     .why-us--split .why-us-body{text-align:right}
-    .why-us--split-img{aspect-ratio:3/4;border-radius:6px;overflow:hidden;background:var(--dark)}
-    .why-us--split-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.95) saturate(1.04);transition:transform 1.2s var(--spring)}
+    .why-us--split-img{aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:var(--dark)}
+    .why-us--split-img img{width:100%;height:100%;object-fit:cover;object-position:right center;filter:brightness(.95) saturate(1.04);transition:transform 1.2s var(--spring)}
     .why-us--split-img:hover img{transform:scale(1.03)}
     @media(max-width:1024px){
       .why-us--split .why-us-inner{grid-template-columns:1fr;gap:40px;max-width:640px}
@@ -1544,7 +1572,7 @@
 
 <!-- ════ PROJECT: National Library ════ -->
 <div id="page-project-national-library" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('walkon');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לסקיילייט מדרך</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/03 — סקיילייט מדרך/ספריה לאומית/DSC05088.jpg" alt="הספריה הלאומית — סקיילייט מדרך, ירושלים"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Walk-On Glass</div><h1 class="pp-hero-name">הספריה הלאומית</h1><div class="pp-hero-tag">ירושלים · הרצוג ודה מרון + מן-שנער</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -1565,7 +1593,7 @@
 
 <!-- ════ PROJECT: HP HQ ════ -->
 <div id="page-project-hp-hq" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('walkon');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לסקיילייט מדרך</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/02 — סקיילייט קבוע/HP HQ - בניין מרקורי/HP06.jpg" alt="HP HQ — בניין מרקורי, יהוד"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Walk-On Glass</div><h1 class="pp-hero-name">HP HQ — בניין מרקורי</h1><div class="pp-hero-tag">יהוד · אמיר מן, עמי שנער אדריכלים</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -1585,7 +1613,7 @@
 
 <!-- ════ PROJECT: בית הבאר ════ -->
 <div id="page-project-beit-habeer" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('walkon');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לסקיילייט מדרך</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/03 — סקיילייט מדרך/בית הבאר - מבנה לשימור/בית הבאר - מבנה לשימור.jpg" alt="בית הבאר — מבנה לשימור, כפר סבא"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Walk-On Glass</div><h1 class="pp-hero-name">בית הבאר</h1><div class="pp-hero-tag">כפר סבא · אמנון בראור – טל גזית אדריכלים</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -1610,7 +1638,7 @@
 
 <!-- ════ PROJECT: פנטהאוז — בן יהודה ════ -->
 <div id="page-project-penthouse-ben-yehuda" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('penthouse');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה ליציאה לגג</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/06 — יציאה לגג/פנטהאוז פרטי - בן יהודה תל אביב/use/DSC05032.jpg" alt="פנטהאוז פרטי — בן יהודה, תל אביב"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Roof Access</div><h1 class="pp-hero-name">פנטהאוז — בן יהודה</h1><div class="pp-hero-tag">תל אביב · בן יהודה</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -1628,7 +1656,7 @@
 
 <!-- ════ PROJECT: פנטהאוז — ירושלים ════ -->
 <div id="page-project-penthouse-jerusalem" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('penthouse');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה ליציאה לגג</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/06 — יציאה לגג/פנטהאוז פרטי - ירושלים/DSC05074.jpg" alt="פנטהאוז פרטי — ירושלים"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Roof Access</div><h1 class="pp-hero-name">פנטהאוז — ירושלים</h1><div class="pp-hero-tag">ירושלים</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -1646,7 +1674,7 @@
 
 <!-- ════ PROJECT: פנטהאוז — הירקון ════ -->
 <div id="page-project-penthouse-hayarkon" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('penthouse');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה ליציאה לגג</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/06 — יציאה לגג/פנטהאוז פרטי - רחוב הירקון תל אביב/Hero.jpg" alt="פנטהאוז פרטי — הירקון, תל אביב"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Roof Access</div><h1 class="pp-hero-name">פנטהאוז — הירקון</h1><div class="pp-hero-tag">תל אביב · רחוב הירקון</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -1664,7 +1692,7 @@
 
 <!-- ════ PROJECT: פנטהאוז — שנקין ════ -->
 <div id="page-project-penthouse-shenkin" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('penthouse');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה ליציאה לגג</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/06 — יציאה לגג/פנטהאוז פרטי - שנקין תל אביב/DSC05055.jpg" alt="פנטהאוז פרטי — שנקין, תל אביב"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Roof Access</div><h1 class="pp-hero-name">פנטהאוז — שנקין</h1><div class="pp-hero-tag">תל אביב · שנקין</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -1682,7 +1710,7 @@
 
 <!-- ════ PROJECT: פנטהאוז — תל אביב ════ -->
 <div id="page-project-penthouse-tel-aviv" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('penthouse');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה ליציאה לגג</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/06 — יציאה לגג/פנטהאוז פרטי - תל אביב/use/DJI_20260304175337_0201_D.jpg" alt="פנטהאוז פרטי — תל אביב"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Roof Access</div><h1 class="pp-hero-name">פנטהאוז — תל אביב</h1><div class="pp-hero-tag">תל אביב</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -1701,7 +1729,7 @@
 
 <!-- ════ PROJECT: מלון מצפה הימים — ראש פינה ════ -->
 <div id="page-project-mitzpe-hayamim" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('fixed');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לסקיילייט קבוע</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/02 — סקיילייט קבוע/מלון מצפה הימים - ראש פינה/Use/hero image.jpg" alt="מלון מצפה הימים — ראש פינה"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Fixed Skylight</div><h1 class="pp-hero-name">מלון מצפה הימים — ראש פינה</h1><div class="pp-hero-tag">ראש פינה · פייגין</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -1723,7 +1751,7 @@
 
 <!-- ════ PROJECT: מסעדת משייה — תל אביב ════ -->
 <div id="page-project-mishya" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('fixed');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לסקיילייט קבוע</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/02 — סקיילייט קבוע/מסעדת משייה - תל אביב/מסעדת משייה.jpg" alt="מסעדת משייה — תל אביב"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Fixed Skylight</div><h1 class="pp-hero-name">מסעדת משייה — תל אביב</h1><div class="pp-hero-tag">תל אביב · ברנוביץ'-קרוננברג</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -1742,7 +1770,7 @@
 
 <!-- ════ PROJECT: מנהלה — אוניברסיטת בר אילן ════ -->
 <div id="page-project-bar-ilan" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('fixed');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לסקיילייט קבוע</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/02 — סקיילייט קבוע/דו שיפועי/6ב - מנהלה בר אילן.jpg" alt="מנהלה — אוניברסיטת בר אילן"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Fixed Skylight</div><h1 class="pp-hero-name">מנהלה — אוניברסיטת בר אילן</h1><div class="pp-hero-tag">רמת גן · דו שיפועי</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -1760,7 +1788,7 @@
 
 <!-- ════ PROJECT: בית זית ════ -->
 <div id="page-project-beit-zait" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('fixed');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לסקיילייט קבוע</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/02 — סקיילייט קבוע/חצר אנגלית/בית זית/DJI_20260311194246_0277_D.jpg" alt="בית זית"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Fixed Skylight</div><h1 class="pp-hero-name">בית זית</h1><div class="pp-hero-tag">בית זית · חצר אנגלית</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -1778,7 +1806,7 @@
 
 <!-- ════ PROJECT: בית גיל הזהב — רמת החייל ════ -->
 <div id="page-project-beit-gil-hazahav" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('fixed');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה לסקיילייט קבוע</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/02 — סקיילייט קבוע/בית גיל הזהב ברמת החייל/258.jpg" alt="בית גיל הזהב — רמת החייל"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Fixed Skylight</div><h1 class="pp-hero-name">בית גיל הזהב — רמת החייל</h1><div class="pp-hero-tag">רמת החייל · ישר אדריכלים · 2014</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -1801,7 +1829,7 @@
 
 <!-- ════ PROJECT: בית כנסת יגדיל תורה — אור יהודה ════ -->
 <div id="page-project-synagogue" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('structural');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה למבנים מרחביים</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/04 — מבנים מרחביים/כיפה/בית כנסת יגדיל תורה - אור יהודה/M53_0154-.jpg-main.jpg" alt="בית כנסת יגדיל תורה — אור יהודה"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Structural Glazing</div><h1 class="pp-hero-name">בית כנסת יגדיל תורה</h1><div class="pp-hero-tag">אור יהודה · אילן פילוסוף · 2007</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -1824,7 +1852,7 @@
 
 <!-- ════ PROJECT: מרכז מבקרים — יקב רקנאטי ════ -->
 <div id="page-project-recanati-winery" class="pp">
-<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="go('structural');return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>חזרה למבנים מרחביים</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
+<nav class="nav scrolled"><div class="nav-logo"><svg viewBox="0 0 50 50" width="36" height="36" fill="none"><rect width="50" height="50" fill="#E9EEF2"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#1A1E24"/></svg><span class="nav-wordmark">SKYLITE</span></div><a href="#" class="nav-back" onclick="goBackFromProject();return false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>← חזרה</a><a href="#" class="nav-cta" onclick="openCM();return false">צור קשר</a></nav>
 <section class="pp-hero"><img src="./מוצרים מסווגים/04 — מבנים מרחביים/פירמידה/מרכז מבקרים יקב רקנאטי - פארק תעשיות רמת דלתון/DJI_20260225203307_0163_D.jpg" alt="מרכז מבקרים — יקב רקנאטי"><div class="pp-hero-ov"></div><div class="pp-hero-c"><div class="pp-hero-cat">Project · Structural Glazing</div><h1 class="pp-hero-name">מרכז מבקרים — יקב רקנאטי</h1><div class="pp-hero-tag">פארק תעשיות רמת דלתון · יעד אדריכלים</div></div></section>
 <section class="pp-project-intro">
   <dl class="pp-project-intro-meta rv">
@@ -2464,6 +2492,16 @@ function renderVideos(pid){
 function goProject(slug){
   // Navigate to the project detail page. Falls back to lightbox if the detail
   // page doesn't exist yet (only National Library has one as of the pilot).
+
+  // Track source page so goBackFromProject() can return the user where they came from.
+  // We avoid overwriting if navigating between two project pages (preserves original source).
+  try {
+    const _curr = (location.hash || '').slice(1);
+    if(!_curr.startsWith('project/')) {
+      sessionStorage.setItem('_sk_proj_src', _curr || 'home');
+    }
+  } catch(e){}
+
   const targetId = 'page-project-'+slug;
   const target = document.getElementById(targetId);
   if(!target){
@@ -2489,6 +2527,16 @@ function goProject(slug){
   renderProjectGallery(slug);
   setTimeout(()=>{ target.querySelectorAll('.rv:not(.on)').forEach(el=>obs.observe(el)) }, 100);
   updateMeta('project-' + slug);
+}
+
+function goBackFromProject(){
+  // Smart back: returns the user to whichever page launched the project detail view.
+  // Source is tracked by goProject(). Falls back to /projects index if no source recorded.
+  let src = '';
+  try { src = sessionStorage.getItem('_sk_proj_src') || ''; } catch(e){}
+  if(src === '' || src === 'home') return home();
+  if(typeof pages !== 'undefined' && pages.indexOf(src) >= 0) return go(src);
+  return go('projects');
 }
 
 // Pilot: per-pid layout map. 'tiles' = hover-reveal mosaic; default = cards.
