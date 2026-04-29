@@ -484,6 +484,9 @@
     .sec-title{font-weight:900;font-size:clamp(42px,4.5vw,66px);color:var(--dark);margin-top:4px}
     .sec-link{font-size:13px;font-weight:400;letter-spacing:.08em;color:var(--accent);transition:color .2s}
     .sec-link:hover{color:var(--dark)}
+    .sec-link--prominent{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:500;letter-spacing:.04em;color:var(--accent);text-decoration:none;margin-top:20px;padding-bottom:4px;border-bottom:1px solid var(--accent);transition:color .25s var(--spring),border-color .25s var(--spring),gap .25s var(--spring)}
+    .sec-link--prominent:hover{color:var(--accent-deep);border-color:var(--accent-deep);gap:14px}
+    .sec-link--prominent span{font-feature-settings:'tnum';font-size:18px}
 
     .p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
     .p-card{position:relative;overflow:hidden;min-height:380px;cursor:none}
@@ -758,6 +761,88 @@
       outline:3px solid var(--accent);outline-offset:3px;
     }
     .nav-cta:focus-visible{outline-offset:6px}
+
+
+
+
+    /* ── HOME PROJECT MOSAIC (Sprint D-2, V1 Atelier) ── */
+    .home-pmosaic{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;direction:rtl}
+    .home-pmosaic-card{position:relative;overflow:hidden;cursor:pointer;display:block;text-decoration:none;color:inherit}
+    .home-pmosaic-card img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--spring),filter 1s var(--spring);filter:brightness(.94) saturate(1.04)}
+    .home-pmosaic-card:hover img{transform:scale(1.04);filter:brightness(1) saturate(1.1)}
+    .home-pmosaic-card--lg{grid-column:span 7;height:540px}
+    .home-pmosaic-card--md{grid-column:span 5;height:540px}
+    .home-pmosaic-card--sm{grid-column:span 3;height:360px}
+    .home-pmosaic-cap{position:absolute;left:0;right:0;bottom:0;padding:28px 30px 24px;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.78) 100%);color:#fff;direction:rtl;pointer-events:none}
+    .home-pmosaic-name{font-weight:700;font-size:24px;letter-spacing:-.005em;line-height:1.15;margin:0}
+    .home-pmosaic-card--lg .home-pmosaic-name{font-size:28px}
+    .home-pmosaic-loc{font-size:11px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;opacity:.82;margin-top:6px}
+    .home-pmosaic-card:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+    @media(max-width:1024px){.home-pmosaic{grid-template-columns:repeat(6,1fr)}.home-pmosaic-card--lg,.home-pmosaic-card--md{grid-column:span 6;height:400px}.home-pmosaic-card--sm{grid-column:span 3;height:280px}.home-pmosaic-card--lg{height:440px}}
+    @media(max-width:600px){.home-pmosaic-card--lg{height:320px}.home-pmosaic-card--md,.home-pmosaic-card--sm{height:260px}.home-pmosaic-name{font-size:20px}.home-pmosaic-card--lg .home-pmosaic-name{font-size:22px}}
+
+    /* ── HOME REGISTER (Sprint D-1, V1 Atelier) ── */
+    .p-register{display:flex;flex-direction:column;direction:rtl}
+    .p-register-row{display:grid;grid-template-columns:60px 220px 1fr 1.4fr 80px;gap:36px;align-items:center;padding:22px 0;border-bottom:1px solid var(--warm-gray);cursor:pointer;transition:background .35s var(--spring);position:relative;text-decoration:none;color:inherit}
+    .p-register-row:first-child{border-top:1px solid var(--warm-gray)}
+    .p-register-row:hover{background:rgba(28,26,22,.025)}
+    .p-register-row:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;background:rgba(43,122,140,.04)}
+    .p-register-num{font-size:13px;font-weight:500;letter-spacing:.14em;color:var(--stone);font-feature-settings:'tnum'}
+    .p-register-thumb{width:220px;height:130px;object-fit:cover;filter:saturate(.96) contrast(1.04);transition:filter .55s var(--spring);background:var(--dark)}
+    .p-register-row:hover .p-register-thumb{filter:saturate(1.10) brightness(1.04)}
+    .p-register-name-block{}
+    .p-register-name{font-weight:700;font-size:26px;line-height:1.15;letter-spacing:-.005em;color:var(--dark);margin:0}
+    .p-register-en{font-size:11px;font-weight:500;letter-spacing:.22em;color:var(--stone);text-transform:uppercase;margin-top:6px}
+    .p-register-tag{font-size:15px;font-weight:400;line-height:1.55;color:var(--stone)}
+    .p-register-arr{display:flex;align-items:center;justify-content:flex-start;color:var(--accent);transition:transform .35s var(--spring)}
+    .p-register-row:hover .p-register-arr{transform:translateX(-8px)}
+    .p-register-arr svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.5}
+    @media(max-width:1024px){.p-register-row{grid-template-columns:50px 180px 1fr 1fr 60px;gap:24px}.p-register-thumb{width:180px;height:108px}.p-register-name{font-size:22px}}
+    @media(max-width:768px){.p-register-row{grid-template-columns:1fr;gap:14px;padding:24px 0;text-align:start}.p-register-num{display:none}.p-register-thumb{width:100%;height:160px}.p-register-name{font-size:24px}.p-register-arr{display:none}}
+
+    /* ── QUIET RIBBON GALLERY (Sprint D-3, V1 Atelier) ── */
+    .pp-media-grid--ribbon{display:flex;flex-direction:column;gap:0;padding:0 80px}
+    .pp-ribbon-lead{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--dark);cursor:pointer}
+    .pp-ribbon-lead-img{width:100%;height:100%;object-fit:cover;transition:opacity .45s var(--spring)}
+    .pp-ribbon-lead-img.fading{opacity:.0}
+    .pp-ribbon-lead-cap{position:absolute;left:0;right:0;bottom:0;padding:32px 36px 28px;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.72) 100%);color:#fff;direction:rtl;display:flex;align-items:baseline;gap:24px;flex-wrap:wrap;pointer-events:none}
+    .pp-ribbon-lead-plate{font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-pale);font-feature-settings:'tnum';flex:0 0 auto}
+    .pp-ribbon-lead-text{font-size:15px;font-weight:400;letter-spacing:.02em;line-height:1.5;flex:1;min-width:200px;color:rgba(255,255,255,.94)}
+    .pp-ribbon-strip{display:flex;gap:8px;margin-top:14px;overflow-x:auto;padding:4px 2px;scrollbar-width:thin;scrollbar-color:var(--warm-gray) transparent;direction:rtl}
+    .pp-ribbon-strip::-webkit-scrollbar{height:6px}
+    .pp-ribbon-strip::-webkit-scrollbar-track{background:transparent}
+    .pp-ribbon-strip::-webkit-scrollbar-thumb{background:var(--warm-gray);border-radius:3px}
+    .pp-ribbon-thumb{flex:0 0 auto;width:120px;height:78px;position:relative;overflow:hidden;cursor:pointer;background:var(--dark);opacity:.55;transition:opacity .25s var(--spring),transform .25s var(--spring);outline:0;border:0;padding:0}
+    .pp-ribbon-thumb:hover{opacity:.85}
+    .pp-ribbon-thumb.active{opacity:1;box-shadow:inset 0 0 0 2px var(--accent)}
+    .pp-ribbon-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .pp-ribbon-thumb .mp-play-tiny{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:24px;height:24px;pointer-events:none}
+    .pp-ribbon-thumb:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .pp-ribbon-meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:11px;font-weight:400;letter-spacing:.22em;color:var(--stone);text-transform:uppercase;font-feature-settings:'tnum';direction:rtl}
+    .pp-ribbon-meta-arr{display:flex;gap:8px}
+    .pp-ribbon-meta-arr button{width:32px;height:32px;border:1px solid var(--warm-gray);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--dark);transition:border-color .25s var(--spring),background .25s var(--spring)}
+    .pp-ribbon-meta-arr button:hover{border-color:var(--accent);background:rgba(43,122,140,.05)}
+    .pp-ribbon-meta-arr button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .pp-ribbon-meta-arr svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.5}
+    @media(max-width:1024px){.pp-media-grid--ribbon{padding:0 48px}}
+    
+    /* Lead-image arrow controls (Sprint D follow-up) */
+    .pp-ribbon-lead-img{cursor:zoom-in;width:100%;height:100%;object-fit:cover;display:block}
+    video.pp-ribbon-lead-img{background:var(--dark)}
+    .pp-ribbon-thumb video{width:100%;height:100%;object-fit:cover;display:block;background:var(--dark)}
+    .pp-ribbon-lead-arrow{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border:0;border-radius:50%;background:rgba(26,30,36,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .3s var(--spring),background .25s var(--spring),transform .3s var(--spring);z-index:5}
+    .pp-ribbon-lead-arrow svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;display:block}
+    .pp-ribbon-lead-arrow:hover{background:rgba(26,30,36,.78)}
+    .pp-ribbon-lead-arrow:focus-visible{outline:2px solid var(--accent-pale);outline-offset:3px;opacity:1}
+    .pp-ribbon-lead:hover .pp-ribbon-lead-arrow{opacity:1}
+    .pp-ribbon-lead-arrow--prev{right:18px}
+    .pp-ribbon-lead-arrow--next{left:18px}
+    .pp-ribbon-lead-arrow--prev:hover{transform:translateY(-50%) translateX(4px)}
+    .pp-ribbon-lead-arrow--next:hover{transform:translateY(-50%) translateX(-4px)}
+    .pp-ribbon-meta-hint{font-size:11px;font-weight:400;letter-spacing:.04em;color:var(--stone);text-transform:none;font-feature-settings:initial}
+    @media(max-width:600px){.pp-ribbon-lead-arrow{width:40px;height:40px;opacity:1}.pp-ribbon-lead-arrow svg{width:14px;height:14px}.pp-ribbon-lead-arrow--prev{right:8px}.pp-ribbon-lead-arrow--next{left:8px}.pp-ribbon-meta-hint{display:none}}
+
+    @media(max-width:600px){.pp-media-grid--ribbon{padding:0 24px}.pp-ribbon-lead{aspect-ratio:4/3}.pp-ribbon-lead-cap{padding:20px 22px 18px;gap:12px}.pp-ribbon-lead-text{font-size:13px}.pp-ribbon-thumb{width:88px;height:58px}}
 
     /* ── MOSAIC variant (pilot: fixed + structural) — uniform row heights via grid-auto-rows ── */
     /* Row height tracks column width exactly — eliminates ½·gap bottom-edge misalignment */
@@ -1172,49 +1257,84 @@
     <div><div class="sec-label">02 — קטלוג מוצרים</div><h2 class="sec-title">המוצרים שלנו</h2></div>
     <a href="#" class="sec-link">כל המוצרים →</a>
   </div>
-  <div class="p-grid">
+  <div class="p-register">
 
-    <div class="p-card rv" onclick="go('retractable')">
-      <div class="p-card-bg" style="background-image:url('./מוצרים מסווגים/01 — סקיילייט נוסע/חד שיפועי/DOR_6758-HDR.jpg')"></div>
-      <div class="p-card-ov"></div>
-      <div class="p-card-c"><div class="p-card-num">01</div><div><div class="p-card-en">Retractable Systems</div><div class="p-card-name">סקיילייט נוסע</div><div class="p-card-tag">גג שנפתח — שמיים שנכנסים</div><div class="p-card-arrow">גלה עוד <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div></div></div>
-    </div>
+    <a class="p-register-row rv" href="#" onclick="go('retractable');return false">
+      <div class="p-register-num">01</div>
+      <img class="p-register-thumb" src="./מוצרים מסווגים/01 — סקיילייט נוסע/חד שיפועי/DOR_6758-HDR.jpg" alt="סקיילייט נוסע" loading="lazy">
+      <div class="p-register-name-block">
+        <h3 class="p-register-name">סקיילייט נוסע</h3>
+        <div class="p-register-en">Retractable Systems</div>
+      </div>
+      <div class="p-register-tag">גג שנפתח — שמיים שנכנסים</div>
+      <div class="p-register-arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 5l-6 7 6 7"/></svg></div>
+    </a>
 
-    <div class="p-card rv rv-d1" onclick="go('fixed')">
-      <div class="p-card-bg" style="background-image:url('./מוצרים מסווגים/02 — סקיילייט קבוע/חד שיפועי/Edited-2.jpg')"></div>
-      <div class="p-card-ov"></div>
-      <div class="p-card-c"><div class="p-card-num">02</div><div><div class="p-card-en">Fixed Skylights</div><div class="p-card-name">סקיילייט קבוע</div><div class="p-card-tag">הידוע — המוכח</div><div class="p-card-arrow">גלה עוד <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div></div></div>
-    </div>
+    <a class="p-register-row rv" href="#" onclick="go('fixed');return false">
+      <div class="p-register-num">02</div>
+      <img class="p-register-thumb" src="./מוצרים מסווגים/02 — סקיילייט קבוע/חד שיפועי/Edited-2.jpg" alt="סקיילייט קבוע" loading="lazy">
+      <div class="p-register-name-block">
+        <h3 class="p-register-name">סקיילייט קבוע</h3>
+        <div class="p-register-en">Fixed Skylights</div>
+      </div>
+      <div class="p-register-tag">הידוע — המוכח</div>
+      <div class="p-register-arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 5l-6 7 6 7"/></svg></div>
+    </a>
 
-    <div class="p-card rv rv-d2" onclick="go('walkon')">
-      <div class="p-card-bg" style="background-image:url('./מוצרים מסווגים/03 — סקיילייט מדרך/Hero.jpeg')"></div>
-      <div class="p-card-ov"></div>
-      <div class="p-card-c"><div class="p-card-num">03</div><div><div class="p-card-en">Walk-On Glass</div><div class="p-card-name">סקיילייט מדרך</div><div class="p-card-tag">אפס קו — מקסימום עומק</div><div class="p-card-arrow">גלה עוד <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div></div></div>
-    </div>
+    <a class="p-register-row rv" href="#" onclick="go('walkon');return false">
+      <div class="p-register-num">03</div>
+      <img class="p-register-thumb" src="./מוצרים מסווגים/03 — סקיילייט מדרך/Hero.jpeg" alt="סקיילייט מדרך" loading="lazy">
+      <div class="p-register-name-block">
+        <h3 class="p-register-name">סקיילייט מדרך</h3>
+        <div class="p-register-en">Walk-On Glass</div>
+      </div>
+      <div class="p-register-tag">אפס קו — מקסימום עומק</div>
+      <div class="p-register-arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 5l-6 7 6 7"/></svg></div>
+    </a>
 
-    <div class="p-card rv rv-d1" onclick="go('structural')">
-      <div class="p-card-bg" style="background-image:url('./מוצרים מסווגים/04 — מבנים מרחביים/כיפה/Edited-1.jpg')"></div>
-      <div class="p-card-ov"></div>
-      <div class="p-card-c"><div class="p-card-num">04</div><div><div class="p-card-en">Structural Glazing</div><div class="p-card-name">מבנים מרחביים / מורכבים</div><div class="p-card-tag">כאשר הגיאומטריה הופכת לשירה</div><div class="p-card-arrow">גלה עוד <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div></div></div>
-    </div>
+    <a class="p-register-row rv" href="#" onclick="go('structural');return false">
+      <div class="p-register-num">04</div>
+      <img class="p-register-thumb" src="./מוצרים מסווגים/04 — מבנים מרחביים/כיפה/Edited-1.jpg" alt="מבנים מרחביים" loading="lazy">
+      <div class="p-register-name-block">
+        <h3 class="p-register-name">מבנים מרחביים</h3>
+        <div class="p-register-en">Structural Glazing</div>
+      </div>
+      <div class="p-register-tag">כאשר הגיאומטריה הופכת לשירה</div>
+      <div class="p-register-arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 5l-6 7 6 7"/></svg></div>
+    </a>
 
-    <div class="p-card rv rv-d2" onclick="go('smoke')">
-      <div class="p-card-bg" style="background-image:url('./מוצרים מסווגים/05 — כיפות תאורה, אוורור ושחרור עשן/גפני1.jpg')"></div>
-      <div class="p-card-ov"></div>
-      <div class="p-card-c"><div class="p-card-num">05</div><div><div class="p-card-en">Light Domes & Smoke Vents</div><div class="p-card-name">כיפות תאורה ושחרור עשן</div><div class="p-card-tag">בטיחות שלא מוותרת על עיצוב</div><div class="p-card-arrow">גלה עוד <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div></div></div>
-    </div>
+    <a class="p-register-row rv" href="#" onclick="go('smoke');return false">
+      <div class="p-register-num">05</div>
+      <img class="p-register-thumb" src="./מוצרים מסווגים/05 — כיפות תאורה, אוורור ושחרור עשן/גפני1.jpg" alt="כיפות תאורה ושחרור עשן" loading="lazy">
+      <div class="p-register-name-block">
+        <h3 class="p-register-name">כיפות תאורה ושחרור עשן</h3>
+        <div class="p-register-en">Light Domes & Smoke Vents</div>
+      </div>
+      <div class="p-register-tag">בטיחות שלא מוותרת על עיצוב</div>
+      <div class="p-register-arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 5l-6 7 6 7"/></svg></div>
+    </a>
 
-    <div class="p-card rv rv-d3" onclick="go('penthouse')">
-      <div class="p-card-bg" style="background-image:url('./מוצרים מסווגים/06 — יציאה לגג/Hero copy.jpg')"></div>
-      <div class="p-card-ov"></div>
-      <div class="p-card-c"><div class="p-card-num">06</div><div><div class="p-card-en">Roof Access</div><div class="p-card-name">יציאה לגג</div><div class="p-card-tag">הדלת שפותחת שמיים</div><div class="p-card-arrow">גלה עוד <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div></div></div>
-    </div>
+    <a class="p-register-row rv" href="#" onclick="go('penthouse');return false">
+      <div class="p-register-num">06</div>
+      <img class="p-register-thumb" src="./מוצרים מסווגים/06 — יציאה לגג/Hero copy.jpg" alt="יציאה לגג" loading="lazy">
+      <div class="p-register-name-block">
+        <h3 class="p-register-name">יציאה לגג</h3>
+        <div class="p-register-en">Roof Access</div>
+      </div>
+      <div class="p-register-tag">הדלת שפותחת שמיים</div>
+      <div class="p-register-arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 5l-6 7 6 7"/></svg></div>
+    </a>
 
-    <div class="p-card rv rv-d3" onclick="go('windows')">
-      <div class="p-card-bg" style="background-image:url('./מוצרים מסווגים/02 — סקיילייט קבוע/חלונות סקיילייט/חלון סקיילייט.png')"></div>
-      <div class="p-card-ov"></div>
-      <div class="p-card-c"><div class="p-card-num">07</div><div><div class="p-card-en">Skylite Windows</div><div class="p-card-name">חלונות סקיילייט</div><div class="p-card-tag">חלון. כן. אבל לאור.</div><div class="p-card-arrow">גלה עוד <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div></div></div>
-    </div>
+    <a class="p-register-row rv" href="#" onclick="go('windows');return false">
+      <div class="p-register-num">07</div>
+      <img class="p-register-thumb" src="./מוצרים מסווגים/02 — סקיילייט קבוע/חלונות סקיילייט/חלון סקיילייט.png" alt="חלונות סקיילייט" loading="lazy">
+      <div class="p-register-name-block">
+        <h3 class="p-register-name">חלונות סקיילייט</h3>
+        <div class="p-register-en">Skylite Windows</div>
+      </div>
+      <div class="p-register-tag">חלון. כן. אבל לאור.</div>
+      <div class="p-register-arr"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 5l-6 7 6 7"/></svg></div>
+    </a>
 
   </div>
 </section>
@@ -1261,17 +1381,9 @@
 </section>
 
 <section class="projects" id="projects-strip">
-  <div class="sec-header"><div><div class="sec-label">03 — לקוחות ופרויקטים</div><h2 class="sec-title">עבודות נבחרות</h2></div></div>
-  <div class="strip-wrap">
-    <button class="strip-arrow strip-arrow-next" onclick="scrollStrip(1)" aria-label="הבא">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M10 12L6 8l4-4"/></svg>
-    </button>
-    <div class="strip" id="strip">
+  <div class="sec-header"><div><div class="sec-label">03 — לקוחות ופרויקטים</div><h2 class="sec-title">עבודות נבחרות</h2><a href="#" class="sec-link sec-link--prominent" onclick="go('projects');return false">כל הפרויקטים <span aria-hidden="true">→</span></a></div></div>
+  <div class="home-pmosaic" id="home-pmosaic">
     <!-- rendered by renderHomeProjects() -->
-    </div>
-    <button class="strip-arrow strip-arrow-prev" onclick="scrollStrip(-1)" aria-label="הקודם">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M6 4l4 4-4 4"/></svg>
-    </button>
   </div>
 </section>
 
@@ -1380,8 +1492,8 @@
     <div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">מידות וצבע לפי הזמנה</div><div class="pp-char-desc">צבע סטנדרטי לבן, בהזמנה מיוחדת לפי גוון RAL. מידות לפי הזמנה לכל פרויקט.</div></div></div>
   </div>
 </section>
-<section class="pp-projects-section" id="projects-sec-penthouse"></section>
 <section class="pp-media" id="media-penthouse"></section>
+<section class="pp-projects-section" id="projects-sec-penthouse"></section>
 <section class="pp-videos-section" id="videos-penthouse"></section>
 
 <section class="pp-cta"><h2 class="rv">מתכננים יציאה לגג?<br><em>בואו נדבר</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
@@ -1396,8 +1508,8 @@
   <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>הסקיילייט הקבוע מתאפיין במגוון רחב של צורות ושימושים — על פי דרישות הלקוח והתכנון האדריכלי. מורכב מקונסטרוקציית אלומיניום עם זכוכית, Photovoltaic glass או פוליקרבונט.</p><p>מגיע בתצורה חד-שיפועית לגגות שטוחים ודו-שיפועית לגגות בעלי מרכז. מתאים למגורים ולמסחרי כאחד.</p><p>מערכות הזיגוג מותקנות בשיטת FLUSH GLAZING — הזכוכית מהודקת אך ורק באמצעות פרופילי האלומיניום, ללא מגע ישיר בין חומר הזיגוג לאלומיניום. הפרופילים כוללים תעלות ניקוז פנימי המונעות חדירת מים לחלל המבנה.</p></div></div>
   <div><div class="pp-chars-title">מאפיינים עיקריים</div><div class="pp-char"><div class="pp-char-n">01</div><div><div class="pp-char-name">חד-שיפועי או דו-שיפועי</div><div class="pp-char-desc">מתאים לגג שטוח (חד-שיפועי) ולגג עם שיפוע כפול — בחירה לפי האדריכלות הקיימת.</div></div></div><div class="pp-char"><div class="pp-char-n">02</div><div><div class="pp-char-name">פרופילי אלומיניום 6063 TF</div><div class="pp-char-desc">פרופילים קונסטרוקטיביים עם איטום ומירזוב עצמיים. אטמי EPDM משולבים כחלק אינטגרלי — לא מודבקים, לא נדחסים.</div></div></div><div class="pp-char"><div class="pp-char-n">03</div><div><div class="pp-char-name">חלופות זיגוג מגוונות</div><div class="pp-char-desc">זכוכית ביטחון מרובדת, זכוכית בידודית, Photovoltaic glass או פוליקרבונט — שקוף, חלבי או עמום.</div></div></div><div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">תנועה תרמית מבוקרת</div><div class="pp-char-desc">המערכת מתוכננת לאטימות מוחלטת ובו זמנית לתנועה של חומר הזיגוג — למניעת דפורמציות גם בתנאי קיצון.</div></div></div><div class="pp-char"><div class="pp-char-n">05</div><div><div class="pp-char-name">מידות וגמר לפי הזמנה</div><div class="pp-char-desc">מידות מותאמות אישית. צבע סטנדרטי לבן, בהזמנה מיוחדת לפי גוון RAL. צביעה אלקטרוסטטית בתנור.</div></div></div></div>
 </section>
-<section class="pp-projects-section" id="projects-sec-fixed"></section>
 <section class="pp-media" id="media-fixed"></section>
+<section class="pp-projects-section" id="projects-sec-fixed"></section>
 <section class="pp-cta"><h2 class="rv">מחפשים פתרון קבוע?<br><em>נשמח לייעץ</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
 </div>
@@ -1410,8 +1522,8 @@
   <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>סקיילייט נפתח בהסעה, ניתן לפתיחה וסגירה חשמלית או ידנית. ההנעה בהחלקה או בגלילה — מותנה בדגם ובצרכי הלקוח. שיטת הגלילה מאפשרת פתיחה חלקית או מלאה, עם חשיפה מלאה לשמיים ללא השארת פרופילים בחלל.</p><p>הסקיילייט יכול להיות יחידה אחת או מורכב ממספר חלקים הנעים אחד לתוך השני. צורת הסקיילייט אינה מוגבלת ומאפשרת ביצוע קמרונות, שיפועים ופירמידות.</p></div></div>
   <div><div class="pp-chars-title">מאפיינים עיקריים</div><div class="pp-char"><div class="pp-char-n">01</div><div><div class="pp-char-name">הנעה בהחלקה או בגלילה</div><div class="pp-char-desc">פתיחה חשמלית או ידנית — גלילה לפתיחה חלקית או מלאה, החלקה בהתאם לדגם ולצרכי הפרויקט.</div></div></div><div class="pp-char"><div class="pp-char-n">02</div><div><div class="pp-char-name">בקרת סביבה אוטומטית</div><div class="pp-char-desc">סגירה ופתיחה לפי תנאי סביבה: גשם, רוח, אור וחושך — או שליטה באמצעות מפסק חשמלי ושלט רחוק.</div></div></div><div class="pp-char"><div class="pp-char-n">03</div><div><div class="pp-char-name">יחידה אחת או מרובת חלקים</div><div class="pp-char-desc">ניתן להרכיב ממספר חלקים הנעים אחד לתוך השני — לכיסוי שטחים גדולים.</div></div></div><div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">מערכות שקטות ואיכותיות</div><div class="pp-char-desc">איטום מלא, מגוון מערכות בקרה, וצורה שאינה מוגבלת — קמרונות, שיפועים ופירמידות.</div></div></div></div>
 </section>
-<section class="pp-projects-section" id="projects-sec-retractable"></section>
 <section class="pp-media" id="media-retractable"></section>
+<section class="pp-projects-section" id="projects-sec-retractable"></section>
 
 <section class="pp-cta"><h2 class="rv">יש לכם מרחב שצריך לנשום?<br><em>בואו נתכנן יחד</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
@@ -1765,8 +1877,8 @@
   <div><div class="pp-desc-label">על המוצר</div><div class="pp-desc"><p>כיפות, קמרונות, פירמידות ומבנים מורכבים — כל פרויקט מתוכנן ומיוצר בהתאמה אישית מלאה. מהסקיצה ועד ההתקנה.</p><p>אנחנו עובדים צמוד לאדריכל ולמהנדס הקונסטרוקציה — ומספקים פתרון מלא. 40 שנה של ניסיון בפרויקטים מורכבים — מיקב רקנאטי ועד אוניברסיטת בר אילן — מאפשרים לנו להתמודד עם כל אתגר גיאומטרי.</p><p>הקונסטרוקציה בנויה מפרופילי אלומיניום 6063 TF עם איטום ומירזוב עצמיים, מערכות זיגוג בשיטת FLUSH GLAZING, ותעלות ניקוז פנימיות. כל חלקי האלומיניום החשופים בגימור צביעה אלקטרוסטטית בתנור — צבע RAL לבחירת האדריכל.</p></div></div>
   <div><div class="pp-chars-title">מאפיינים עיקריים</div><div class="pp-char"><div class="pp-char-n">01</div><div><div class="pp-char-name">תכנון קונסטרוקטיבי מלא</div><div class="pp-char-desc">תכנון מבנה הפלדה / האלומיניום בתוך הבית, כולל תיאום עם מהנדסי הפרויקט. מתוכנן לעמוד בכוחות הרוח באזור.</div></div></div><div class="pp-char"><div class="pp-char-n">02</div><div><div class="pp-char-name">כיפות, קמרונות, פירמידות</div><div class="pp-char-desc">כל גיאומטריה אפשרית — מהצורה הפשוטה ועד צורות מורכבות ועקומות. שיפועים, קשתות וחרוטים.</div></div></div><div class="pp-char"><div class="pp-char-n">03</div><div><div class="pp-char-name">פרופילי אלומיניום 6063 TF</div><div class="pp-char-desc">פרופילים קונסטרוקטיביים עם אטמי EPDM אינטגרליים. תעלות ניקוז פנימי למניעת חדירת מים ולטיפול בעיבוי.</div></div></div><div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">עבודה צמודה עם האדריכל</div><div class="pp-char-desc">שותפות מלאה — מפגישות תכנון, דגמי 3D, ועד פיקוח בשטח. תכנון וביצוע של חברת סקיילייט.</div></div></div><div class="pp-char"><div class="pp-char-n">05</div><div><div class="pp-char-name">חלופות זיגוג לכל שימוש</div><div class="pp-char-desc">זכוכית ביטחון מרובדת, זכוכית בידודית, פוליקרבונט Solar Control או Solar Olympic — לפי דרישות הפרויקט.</div></div></div></div>
 </section>
-<section class="pp-projects-section" id="projects-sec-structural"></section>
 <section class="pp-media" id="media-structural"></section>
+<section class="pp-projects-section" id="projects-sec-structural"></section>
 <section class="pp-cta"><h2 class="rv">יש לכם חלום אדריכלי?<br><em>נממש אותו יחד</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
 </div>
@@ -1788,8 +1900,8 @@
     <div class="pp-char"><div class="pp-char-n">04</div><div><div class="pp-char-name">רכזת הפעלה ומערכת גיבוי</div><div class="pp-char-desc">כל מנועי שחרור העשן מופעלים דרך רכזת ייעודית עם חיבור לגלאי עשן, כפתור חירום ידני וסוללת גיבוי — לתפקוד מלא גם בהפסקת חשמל.</div></div></div>
   </div>
 </section>
-<section class="pp-projects-section" id="projects-sec-smoke"></section>
 <section class="pp-media" id="media-smoke"></section>
+<section class="pp-projects-section" id="projects-sec-smoke"></section>
 <section class="pp-cta"><h2 class="rv">פרויקט עם דרישות בטיחות?<br><em>נדאג לכל הפרטים</em></h2><div class="cta-acts rv rv-d1"><button class="btn-pd" onclick="openCM()">השאירו פרטים</button><a href="tel:+97239343159" class="btn-od">טלפון: 03-9343159</a></div></section>
 <footer><div class="f-brand"><svg viewBox="0 0 50 50" width="32" fill="none"><rect width="50" height="50" fill="#1A1E24"/><path d="M26,0 L50,0 L50,50 L0,50 L0,40 C3,30 18,10 26,0Z" fill="#E9EEF2"/></svg><div class="f-name">Skylite</div><div class="f-tag">הנדסת הטבע<br>האור שחותך את החלל — מ-1986</div></div><div class="f-links"><a href="#" onclick="home();return false">← חזרה לדף הבית</a><a href="#" onclick="go('retractable');return false">סקיילייט נוסע</a><a href="#" onclick="go('fixed');return false">סקיילייט קבוע</a><a href="#" onclick="go('smoke');return false">מערכות שחרור עשן</a><a href="#" onclick="go('tech');return false">מידע טכני</a></div><div class="f-contact"><p><strong>סקיילייט בע"מ</strong></p><p>אלכסנדר ינאי 8, א.ת סגולה, פתח תקווה</p><p>טל: <a href="tel:+97239343159" dir="ltr" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">03-9343159</a> | פקס: <span dir="ltr">03-9311921</span></p><p><a href="mailto:skylite@skylite.co.il" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor">skylite@skylite.co.il</a></p><p style="margin-top:8px">שעות פעילות: ראשון–חמישי 9:00–18:00</p><p>שישי–שבת: סגור | הגעה בתיאום מראש</p><p style="margin-top:10px"><a href="https://instagram.com/skyliteisrael/" target="_blank" rel="noopener" style="color:var(--accent-pale);text-decoration:none;font-size:12px;letter-spacing:.06em">Instagram — @skyliteisrael</a></p></div></footer>
 </div>
@@ -2067,6 +2179,125 @@ const MEDIA = {
   ],
 };
 
+
+// ─── QUIET RIBBON RENDERER (Sprint D-3) ───────────────────────
+const _ribbonState = {};  // { pid: activeIdx }
+
+function _renderRibbonMedia(pid, items, key, sec){
+  _ribbonState[pid] = 0;
+  const hdr = MEDIA_HEADERS[pid] || { eye: 'גלריה', title: 'עבודות נבחרות' };
+  const playIcon = '<svg class="mp-play-tiny" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,.55)"/><path d="M9 7l8 5-8 5z" fill="#fff"/></svg>';
+  const out = [`<div class="pp-media-h"><div class="pp-projects-section-eye">${hdr.eye}</div><h2 class="pp-projects-section-t">${hdr.title}</h2></div>`];
+  out.push('<div class="pp-media-grid pp-media-grid--ribbon">');
+
+  // Lead — first item
+  const first = items[0];
+  const firstCap = _effCap(first);
+  const firstIsVid = first.type === 'vid';
+  const firstHasPoster = firstIsVid && first.poster;
+  let firstMediaHTML;
+  if(firstIsVid && !firstHasPoster){
+    const vidSrc = (first.vidbase==='img' ? B : VB) + first.src;
+    firstMediaHTML = `<video class="pp-ribbon-lead-img" id="ribbon-lead-img-${pid}" src="${vidSrc}" preload="metadata" muted playsinline onclick="_ribbonOpenLb('${pid}','${key}')"></video>`;
+  } else {
+    const firstSrc = firstIsVid ? (first.vidbase==='img' ? B : VB)+first.poster : B + first.src;
+    firstMediaHTML = `<img class="pp-ribbon-lead-img" id="ribbon-lead-img-${pid}" src="${firstSrc}" alt="${firstCap || ''}" loading="lazy" onclick="_ribbonOpenLb('${pid}','${key}')">`;
+  }
+  out.push(`<div class="pp-ribbon-lead" id="ribbon-lead-${pid}">
+    ${firstMediaHTML}
+    <button class="pp-ribbon-lead-arrow pp-ribbon-lead-arrow--prev" onclick="_ribbonStep('${pid}',-1)" aria-label="הקודם"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 12l4-4-4-4"/></svg></button>
+    <button class="pp-ribbon-lead-arrow pp-ribbon-lead-arrow--next" onclick="_ribbonStep('${pid}',1)" aria-label="הבא"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 12L6 8l4-4"/></svg></button>
+  </div>`);
+
+  // Strip
+  out.push('<div class="pp-ribbon-strip" id="ribbon-strip-'+pid+'">');
+  items.forEach((it,i) => {
+    const isVid = it.type === 'vid';
+    const cap = _effCap(it);
+    let mediaHTML;
+    if(isVid && !it.poster){
+      const vidSrc = (it.vidbase==='img' ? B : VB) + it.src;
+      mediaHTML = `<video src="${vidSrc}" preload="metadata" muted playsinline></video>`;
+    } else {
+      const thumbSrc = isVid ? (it.vidbase==='img' ? B : VB)+it.poster : B + it.src;
+      mediaHTML = `<img src="${thumbSrc}" alt="${cap || ''}" loading="lazy">`;
+    }
+    out.push(`<button class="pp-ribbon-thumb${i===0?' active':''}" data-idx="${i}" onclick="_ribbonSetActive('${pid}',${i})" aria-label="תמונה ${i+1}">${mediaHTML}${isVid ? playIcon : ''}</button>`);
+  });
+  out.push('</div>');
+
+  // Counter + arrow controls
+  out.push(`<div class="pp-ribbon-meta">
+    <span id="ribbon-counter-${pid}">FIG. 01 / ${String(items.length).padStart(2,'0')}</span>
+    <span class="pp-ribbon-meta-hint">לחצו על תמונה להגדלה · השתמשו בחצים לדפדוף</span>
+  </div>`);
+
+  out.push('</div>');
+  sec.innerHTML = out.join('');
+  _runA11yAfterRender();
+}
+
+function _ribbonSetActive(pid, idx){
+  const items = MEDIA[pid];
+  if(!items || idx < 0 || idx >= items.length) return;
+  _ribbonState[pid] = idx;
+  const it = items[idx];
+  const cap = _effCap(it);
+  const isVid = it.type === 'vid';
+  const hasPoster = isVid && it.poster;
+  const newSrc = (isVid && !hasPoster) ? (it.vidbase==='img' ? B : VB) + it.src
+                                       : (isVid ? (it.vidbase==='img' ? B : VB)+it.poster : B + it.src);
+  const useVideoTag = isVid && !hasPoster;
+  const img = document.getElementById('ribbon-lead-img-'+pid);
+  // If element type doesn't match what we need, replace it entirely
+  if(img && ((useVideoTag && img.tagName !== 'VIDEO') || (!useVideoTag && img.tagName !== 'IMG'))){
+    const lead = document.getElementById('ribbon-lead-'+pid);
+    if(lead){
+      const newEl = document.createElement(useVideoTag ? 'video' : 'img');
+      newEl.id = 'ribbon-lead-img-'+pid;
+      newEl.className = 'pp-ribbon-lead-img';
+      newEl.src = newSrc;
+      if(useVideoTag){ newEl.muted = true; newEl.playsInline = true; newEl.preload = 'metadata'; }
+      else { newEl.alt = cap || ''; newEl.loading = 'lazy'; }
+      newEl.onclick = () => { if(typeof openLb === 'function') openLb('media-'+pid, idx); };
+      lead.replaceChild(newEl, img);
+    }
+  }
+  const counter = document.getElementById('ribbon-counter-'+pid);
+  // Re-fetch img after potential element swap above
+  const cur = document.getElementById('ribbon-lead-img-'+pid);
+  if(cur){
+    cur.classList.add('fading');
+    setTimeout(() => {
+      cur.src = newSrc;
+      if(cur.tagName === 'IMG') cur.alt = cap || '';
+      cur.classList.remove('fading');
+    }, 220);
+  }
+  if(counter) counter.textContent = `FIG. ${String(idx+1).padStart(2,'0')} / ${String(items.length).padStart(2,'0')}`;
+  // Update active thumb class
+  const strip = document.getElementById('ribbon-strip-'+pid);
+  if(strip){
+    strip.querySelectorAll('.pp-ribbon-thumb').forEach((el,i) => el.classList.toggle('active', i === idx));
+    // Scroll the active thumb into view (smooth)
+    const active = strip.querySelector('.pp-ribbon-thumb.active');
+    if(active) active.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  }
+}
+
+function _ribbonStep(pid, dir){
+  const items = MEDIA[pid];
+  if(!items) return;
+  const cur = _ribbonState[pid] || 0;
+  const next = (cur + dir + items.length) % items.length;
+  _ribbonSetActive(pid, next);
+}
+
+function _ribbonOpenLb(pid, key){
+  const idx = _ribbonState[pid] || 0;
+  if(typeof openLb === 'function') openLb(key, idx);
+}
+
 // Auto-derive overlay caption from image path.
 // Rule: use the second-to-last path segment (immediate parent folder).
 // Skip generic folders (anything that would be redundant with the page itself).
@@ -2082,17 +2313,17 @@ function _effCap(item){ return item.cap !== undefined ? item.cap : autoCap(item.
 
 // Pilot: per-pid mosaic layout map. 'mosaic' enables varied aspect ratios
 // driven by `aspect:'wide'|'tall'` on each MEDIA item (default = square).
-const MEDIA_LAYOUT = { fixed: 'mosaic', structural: 'mosaic', penthouse: 'mosaic', retractable: 'mosaic', smoke: 'mosaic' };
+const MEDIA_LAYOUT = { fixed: 'ribbon', structural: 'ribbon', penthouse: 'ribbon', retractable: 'ribbon', smoke: 'ribbon' };
 
 // Per-pid header copy override for the gallery section. When a category has
 // projects above (pilot categories), the gallery is a "product variations"
 // strip — its h2 should reflect that. Other categories keep "עבודות נבחרות".
 const MEDIA_HEADERS = {
-  fixed:       { eye: 'גלריה', title: 'המוצר במגוון' },
-  structural:  { eye: 'גלריה', title: 'המוצר במגוון' },
-  penthouse:   { eye: 'גלריה', title: 'המוצר במגוון' },
-  retractable: { eye: 'גלריה', title: 'המוצר בתנועה' },
-  smoke:       { eye: 'גלריה', title: 'המוצר במגוון' },
+  fixed:       { eye: 'גלריה',         title: 'המוצר במגוון' },
+  structural:  { eye: 'גלריה',         title: 'המוצר במגוון' },
+  penthouse:   { eye: 'גלריה',         title: 'המוצר במגוון' },
+  retractable: { eye: 'תנועה',          title: 'המוצר בפעולה' },
+  smoke:       { eye: 'בטיחות',         title: 'אוורור ושחרור עשן' },
 };
 
 function _runA11yAfterRender(){ if(typeof _a11yMakeKeyboardable === 'function') _a11yMakeKeyboardable(); }
@@ -2108,6 +2339,9 @@ function renderMedia(pid){
   _galReg[key] = { srcs, caps, kinds };
 
   const layout = MEDIA_LAYOUT[pid] || '';
+  // Ribbon variant — early return: one lead + thumbnail strip
+  if(layout === 'ribbon') return _renderRibbonMedia(pid, items, key, sec);
+
   const gridClass = layout === 'mosaic' ? 'pp-media-grid pp-media-grid--mosaic' : 'pp-media-grid';
   const aspectClass = it => {
     if(layout !== 'mosaic') return '';
@@ -2493,14 +2727,13 @@ function renderProjectsPage(){
 // Home-page projects strip — curated subset of PROJECTS as clickable entry
 // points to the project detail pages.
 const HOME_STRIP = [
-  { slug:'national-library',     type:'ציבורי' },
-  { slug:'recanati-winery',      type:'מסחרי' },
-  { slug:'mitzpe-hayamim',       type:'מלונאות' },
-  { slug:'hp-hq',                type:'מסחרי' },
-  { slug:'beit-habeer',          type:'ציבורי' },
-  { slug:'penthouse-ben-yehuda', type:'מגורים' },
-  { slug:'beit-gil-hazahav',     type:'מגורים' },
-  { slug:'synagogue',            type:'ציבורי' },
+  // V1 mosaic slots: LG=span7×540, MD=span5×540, SM=span3×360 (4 SMs in row 2)
+  { slug:'national-library',  type:'ציבורי',  slot:'lg' },
+  { slug:'hp-hq',             type:'מסחרי',   slot:'md' },
+  { slug:'mitzpe-hayamim',    type:'מלונאות', slot:'sm' },
+  { slug:'mishya',            type:'מסחרי',   slot:'sm' },
+  { slug:'beit-habeer',       type:'שימור',   slot:'sm' },
+  { slug:'penthouse-shenkin', type:'מגורים',  slot:'sm' },
 ];
 
 function scrollStrip(forward){
@@ -2513,23 +2746,26 @@ function scrollStrip(forward){
 }
 
 function renderHomeProjects(){
-  const strip = document.getElementById('strip');
-  if(!strip) return;
+  const host = document.getElementById('home-pmosaic');
+  if(!host) return;
   const tiles = HOME_STRIP.map((h, i) => {
-    // Locate this project in the PROJECTS object
     let proj = null;
     for(const pid of Object.keys(PROJECTS)){
       proj = PROJECTS[pid].find(p => p.slug === h.slug);
       if(proj) break;
     }
-    if(!proj) return '';  // silently skip missing projects
+    if(!proj) return '';
     const delayClass = i > 0 ? ' rv-d' + Math.min(i, 3) : '';
-    return `<div class="thumb rv${delayClass}" onclick="goProject('${h.slug}')" style="cursor:pointer">`
-      + `<div class="thumb-wrap"><img class="thumb-img" src="${B}${proj.hero}" alt="${proj.name}" loading="lazy"></div>`
-      + `<div class="thumb-meta"><span class="thumb-name">${proj.name}</span><span class="thumb-type">${h.type}</span></div>`
-      + `</div>`;
+    const slotClass = h.slot ? ` home-pmosaic-card--${h.slot}` : ' home-pmosaic-card--sm';
+    const where = (proj.meta && proj.meta.where && proj.meta.where !== '—') ? proj.meta.where : '';
+    const year = (proj.meta && proj.meta.when && proj.meta.when !== '—') ? proj.meta.when : '';
+    const locline = [where, year].filter(Boolean).join(' · ').toUpperCase();
+    return `<a class="home-pmosaic-card${slotClass} rv${delayClass}" href="#project/${h.slug}" onclick="goProject('${h.slug}');return false">`
+      + `<img src="${B}${proj.hero}" alt="${proj.name}" loading="lazy">`
+      + `<div class="home-pmosaic-cap"><h3 class="home-pmosaic-name">${proj.name}</h3>${locline ? `<div class="home-pmosaic-loc">${locline}</div>` : ''}</div>`
+      + `</a>`;
   }).filter(Boolean).join('');
-  strip.innerHTML = tiles;
+  host.innerHTML = tiles;
 }
 ['walkon','penthouse','fixed','retractable','structural','smoke'].forEach(renderMedia);
 renderHomeProjects();
