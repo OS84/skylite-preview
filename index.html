@@ -542,6 +542,7 @@
     /* ═══ RESET ═══ */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth;font-size:16px}
+    html{overflow-x:hidden}
     body{font-family:var(--font);background:var(--linen);color:var(--dark);cursor:none;overflow-x:hidden;-webkit-font-smoothing:antialiased}
     a{text-decoration:none;color:inherit}
     img{display:block;max-width:100%;transition:opacity .4s}
@@ -885,6 +886,11 @@
     @media(max-width:768px){
       .nav-burger{display:flex}
       .nav-mega,.nav-mega-panel,.nav-cta{display:none}
+      /* Force scrolled-style nav on mobile so text/icons stay visible regardless of hero or scroll position */
+      .nav{background:rgba(248,250,251,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(28,26,22,.06)}
+      .nav .nav-wordmark{color:var(--dark)}
+      .nav .nav-burger span{background:var(--dark)}
+      .nav .nav-back{color:rgba(28,26,22,.72)}
     }
 
     /* ── A11Y: visible focus indicators on all interactive elements ── */
