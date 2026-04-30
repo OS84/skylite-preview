@@ -1045,7 +1045,17 @@
     .pp-proj-tile:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
     /* Mobile/tablet: collapse to 1-col, spec rail always visible (no hover on touch) */
     @media(max-width:1024px){.pp-projects-tiles{grid-template-columns:1fr;padding:0 48px}}
-    @media(max-width:600px){.pp-projects-tiles{padding:0 24px;gap:10px}.pp-proj-tile-spec{transform:translateX(0);opacity:1;width:50%}.pp-proj-tile-corner{opacity:1;width:30px;height:30px}.pp-proj-tile-arrow-line{width:36px}}
+    @media(max-width:600px){
+      .pp-projects-tiles{padding:0 24px;gap:10px}
+      /* On mobile, image is the hero — defer architect/year/product detail to the project page on tap */
+      .pp-proj-tile-spec{display:none}
+      /* Subtle corner accents only — no permanent dark overlay */
+      .pp-proj-tile-corner{opacity:.55;width:22px;height:22px}
+      /* Keep arrow line extended to signal tappability */
+      .pp-proj-tile-arrow-line{width:36px}
+      /* Lighter veil so the image shows through better on small screens */
+      .pp-proj-tile-veil{background:linear-gradient(180deg,transparent 60%,rgba(26,30,36,.55) 100%)}
+    }
 
 
     /* ── PROJECT DETAIL PAGE ── */
