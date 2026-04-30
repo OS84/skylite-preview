@@ -2709,18 +2709,32 @@ function renderVideos(pid){
 }
 
 
+// Internal flag — set true when goBackFromProject is mid-navigation, so the
+// goProject it dispatches doesn't double-push the destination back onto the stack.
+let _skNavBack = false;
+
 function goProject(slug){
   // Navigate to the project detail page. Falls back to lightbox if the detail
-  // page doesn't exist yet (only National Library has one as of the pilot).
+  // page doesn't exist yet.
 
-  // Track source page so goBackFromProject() can return the user where they came from.
-  // We avoid overwriting if navigating between two project pages (preserves original source).
-  try {
-    const _curr = (location.hash || '').slice(1);
-    if(!_curr.startsWith('project/')) {
-      sessionStorage.setItem('_sk_proj_src', _curr || 'home');
-    }
-  } catch(e){}
+  // Push the currently-visible page to the back stack so goBackFromProject
+  // can step back one navigation at a time (A → X → Y → back → X → back → A).
+  // Skipped when called from inside goBackFromProject itself.
+  if(!_skNavBack){
+    try {
+      const active = document.querySelector('[id^="page-"].active');
+      let currentId = '';
+      if(active){
+        const aid = active.id;
+        if(aid.startsWith('page-project-')) currentId = 'project/' + aid.slice('page-project-'.length);
+        else if(aid.startsWith('page-')) currentId = aid.slice('page-'.length);
+      }
+      if(!currentId) currentId = 'home';
+      const stack = JSON.parse(sessionStorage.getItem('_sk_nav_stack') || '[]');
+      stack.push(currentId);
+      sessionStorage.setItem('_sk_nav_stack', JSON.stringify(stack));
+    } catch(e){}
+  }
 
   const targetId = 'page-project-'+slug;
   const target = document.getElementById(targetId);
@@ -2750,12 +2764,25 @@ function goProject(slug){
 }
 
 function goBackFromProject(){
-  // Smart back: returns the user to whichever page launched the project detail view.
-  // Source is tracked by goProject(). Falls back to /projects index if no source recorded.
-  let src = '';
-  try { src = sessionStorage.getItem('_sk_proj_src') || ''; } catch(e){}
-  if(src === '' || src === 'home') return home();
-  if(typeof pages !== 'undefined' && pages.indexOf(src) >= 0) return go(src);
+  // Stack-based back: pop one entry and navigate there.
+  // Stack is pushed onto by goProject() on every project view.
+  // Going A → X → Y produces stack [A, X]; back from Y pops X (one step back).
+  let prev = '';
+  let stack = [];
+  try {
+    stack = JSON.parse(sessionStorage.getItem('_sk_nav_stack') || '[]');
+    prev = stack.pop() || '';
+    sessionStorage.setItem('_sk_nav_stack', JSON.stringify(stack));
+  } catch(e){}
+
+  if(!prev || prev === 'home') return home();
+  if(prev.startsWith('project/')){
+    // Navigate to the previous project without pushing onto stack again
+    _skNavBack = true;
+    try { goProject(prev.slice('project/'.length)); } finally { _skNavBack = false; }
+    return;
+  }
+  if(typeof pages !== 'undefined' && pages.indexOf(prev) >= 0) return go(prev);
   return go('projects');
 }
 
