@@ -3364,6 +3364,27 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElement
   }, {passive:true});
 })();
 
+// Quiet ribbon lead image: swipe to advance (delegated, works on all 5 ribbons that exist on product pages).
+// RTL convention — swipe LEFT = next, swipe RIGHT = previous (same as lightbox + reading direction).
+document.addEventListener('touchstart', function(e){
+  const lead = e.target.closest('.pp-ribbon-lead');
+  if(!lead) return;
+  const t = e.changedTouches[0];
+  lead._sx = t.screenX; lead._sy = t.screenY; lead._st = Date.now();
+}, {passive:true});
+document.addEventListener('touchend', function(e){
+  const lead = e.target.closest('.pp-ribbon-lead');
+  if(!lead || lead._sx == null) return;
+  const t = e.changedTouches[0];
+  const dx = t.screenX - lead._sx, dy = t.screenY - lead._sy;
+  const elapsed = Date.now() - lead._st;
+  if(Math.abs(dx) >= 50 && Math.abs(dx) > Math.abs(dy) * 1.4 && elapsed < 500){
+    // Derive pid from the lead's id (format: ribbon-lead-{pid})
+    const m = (lead.id || '').match(/^ribbon-lead-(.+)$/);
+    if(m && typeof _ribbonStep === 'function') _ribbonStep(m[1], dx < 0 ? 1 : -1);
+  }
+}, {passive:true});
+
 // ── Form submission (UI only — wire backend later) ──
 function submitForm(e, formId){
   e.preventDefault();
