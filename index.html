@@ -3321,6 +3321,49 @@ function openCM(){document.getElementById('contact-modal').classList.add('open')
 function closeCM(){document.getElementById('contact-modal').classList.remove('open');document.body.style.overflow='';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('contact-modal').classList.contains('open'))closeCM();});
 
+// ── Touch gestures (mobile) ──
+// Lightbox: swipe to navigate. RTL convention — swipe LEFT advances to next image,
+// swipe RIGHT goes to previous (matches the natural reading-direction flow).
+(function(){
+  const lb = document.getElementById('lightbox');
+  if(!lb) return;
+  let sx = 0, sy = 0, st = 0;
+  lb.addEventListener('touchstart', e => {
+    const t = e.changedTouches[0];
+    sx = t.screenX; sy = t.screenY; st = Date.now();
+  }, {passive:true});
+  lb.addEventListener('touchend', e => {
+    if(!lb.classList.contains('open')) return;
+    const t = e.changedTouches[0];
+    const dx = t.screenX - sx, dy = t.screenY - sy;
+    const elapsed = Date.now() - st;
+    // Require: ≥50px horizontal travel, horizontal dominant over vertical, finished within 500ms
+    if(Math.abs(dx) >= 50 && Math.abs(dx) > Math.abs(dy) * 1.4 && elapsed < 500){
+      if(typeof lbNav === 'function') lbNav(dx < 0 ? 1 : -1);
+    }
+  }, {passive:true});
+})();
+
+// Mobile drawer: swipe RIGHT to close (drawer slides in from right; swiping right pushes it back out).
+(function(){
+  const d = document.getElementById('nav-drawer');
+  if(!d) return;
+  let sx = 0, sy = 0, st = 0;
+  d.addEventListener('touchstart', e => {
+    const t = e.changedTouches[0];
+    sx = t.screenX; sy = t.screenY; st = Date.now();
+  }, {passive:true});
+  d.addEventListener('touchend', e => {
+    if(!d.classList.contains('open')) return;
+    const t = e.changedTouches[0];
+    const dx = t.screenX - sx, dy = t.screenY - sy;
+    const elapsed = Date.now() - st;
+    if(dx > 60 && Math.abs(dx) > Math.abs(dy) * 1.4 && elapsed < 600){
+      if(typeof toggleDrawer === 'function') toggleDrawer();
+    }
+  }, {passive:true});
+})();
+
 // ── Form submission (UI only — wire backend later) ──
 function submitForm(e, formId){
   e.preventDefault();
