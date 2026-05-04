@@ -1017,6 +1017,14 @@
     .pp-ribbon-meta-arr button:hover{border-color:var(--accent);background:rgba(43,122,140,.05)}
     .pp-ribbon-meta-arr button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
     .pp-ribbon-meta-arr svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.5}
+
+    /* ── Filter chip (sub-route URL filtering) ── */
+    .filter-chip{display:inline-flex;align-items:center;gap:14px;padding:10px 18px;margin:0 80px 24px;background:rgba(43,122,140,.08);border:1px solid var(--accent);border-radius:24px;color:var(--accent-deep);font-size:13px;font-weight:500;letter-spacing:.04em;direction:rtl}
+    .filter-chip strong{font-weight:700;color:var(--accent-deep)}
+    .filter-chip button{background:transparent;border:0;color:var(--accent-deep);cursor:pointer;font-size:12px;font-weight:500;letter-spacing:.04em;padding:6px 10px;border-right:1px solid rgba(43,122,140,.25);transition:color .2s var(--spring)}
+    .filter-chip button:hover{color:var(--dark)}
+    @media(max-width:1024px){.filter-chip{margin:0 48px 20px}}
+    @media(max-width:600px){.filter-chip{margin:0 24px 16px;font-size:12px;padding:8px 14px;gap:10px}}
     @media(max-width:1024px){.pp-media-grid--ribbon{padding:0 48px}}
     
     /* Lead-image arrow controls (Sprint D follow-up) */
@@ -2614,7 +2622,7 @@ function _renderRibbonMedia(pid, items, key, sec){
 }
 
 function _ribbonSetActive(pid, idx){
-  const items = MEDIA[pid];
+  const items = (typeof _currentMedia !== 'undefined' && _currentMedia[pid]) || MEDIA[pid];
   if(!items || idx < 0 || idx >= items.length) return;
   _ribbonState[pid] = idx;
   const it = items[idx];
@@ -2662,7 +2670,7 @@ function _ribbonSetActive(pid, idx){
 }
 
 function _ribbonStep(pid, dir){
-  const items = MEDIA[pid];
+  const items = (typeof _currentMedia !== 'undefined' && _currentMedia[pid]) || MEDIA[pid];
   if(!items) return;
   const cur = _ribbonState[pid] || 0;
   const next = (cur + dir + items.length) % items.length;
@@ -3372,16 +3380,136 @@ function updateMeta(pid) {
 })();
 
 const pages=['home','about','projects','penthouse','fixed','retractable','walkon','structural','smoke','windows','tech','canopies','shelf'];
-function go(id){pages.forEach(p=>{const el=document.getElementById('page-'+p);if(el){el.style.display='none';el.classList.remove('active')}});document.querySelectorAll('[id^="page-project-"]').forEach(el=>{el.style.display='none';el.classList.remove('active')});const t=document.getElementById('page-'+id);if(t){t.style.display='block';t.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});setTimeout(()=>{t.querySelectorAll('.rv:not(.on)').forEach(el=>obs.observe(el))},100);updateMeta(id)}}
-function home(){go('home')}
+
+// ─── Sub-route filtering (PILOT: fixed only) ───────────────────────
+// URL pattern: #pid/sub  →  page renders pid content but ribbon filters to items matching sub.
+// Existing top-level URLs (#fixed, #smoke, etc.) keep working unchanged. Once verified on fixed,
+// extend SUBTYPE_FILTERS to other categories.
+const SUBTYPE_FILTERS = {
+  fixed: {
+    'mono':        { match: '/חד שיפועי/',   label: 'חד שיפועי' },
+    'double':      { match: '/דו שיפועי/',   label: 'דו שיפועי' },
+    'window-well': { match: '/חצר אנגלית/',  label: 'חצר אנגלית' },
+  },
+};
+
+// _currentMedia tracks what's currently rendered per pid (filtered or full). _ribbonSetActive
+// + _ribbonStep read from this so prev/next steps through the active set, not the full MEDIA.
+const _currentMedia = {};
+const _currentSub = {};
+
+function parseHash(){
+  const h = (location.hash || '').slice(1);
+  if(!h) return { pid: 'home', sub: null };
+  if(h.indexOf('project/') === 0) return { pid: 'project', sub: h.slice('project/'.length) };
+  const slash = h.indexOf('/');
+  if(slash === -1) return { pid: h, sub: null };
+  return { pid: h.slice(0, slash), sub: h.slice(slash + 1) };
+}
+
+function go(id, sub){
+  const newHash = sub ? (id + '/' + sub) : id;
+  if(location.hash.slice(1) === newHash){
+    applyRoute(id, sub);
+  } else {
+    location.hash = newHash;
+    // hashchange listener picks it up async
+  }
+}
+function home(){ go('home'); }
+
+function applyRoute(id, sub){
+  pages.forEach(p=>{const el=document.getElementById('page-'+p);if(el){el.style.display='none';el.classList.remove('active')}});
+  document.querySelectorAll('[id^="page-project-"]').forEach(el=>{el.style.display='none';el.classList.remove('active')});
+  const t=document.getElementById('page-'+id);
+  if(t){
+    t.style.display='block';
+    t.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+    setTimeout(()=>{t.querySelectorAll('.rv:not(.on)').forEach(el=>obs.observe(el))},100);
+    updateMeta(id);
+    setTimeout(()=>applySubFilter(id, sub), 80);
+  }
+}
+
+function applySubFilter(pid, sub){
+  const subs = SUBTYPE_FILTERS[pid];
+  // No valid sub-route → restore full ribbon if it was previously filtered
+  if(!sub || !subs || !subs[sub]){
+    if(_currentSub[pid]){
+      _currentSub[pid] = null;
+      _currentMedia[pid] = MEDIA[pid];
+      const sec = document.getElementById('media-'+pid);
+      if(sec){
+        const allItems = MEDIA[pid] || [];
+        const key = 'media-'+pid;
+        const srcs = allItems.map(it => it.type === 'vid' ? (it.vidbase==='img' ? B : VB)+it.src : B+it.src);
+        const caps = allItems.map(_effCap);
+        const kinds = allItems.map(it => it.type === 'vid' ? 'vid' : 'img');
+        _galReg[key] = { srcs, caps, kinds };
+        _renderRibbonMedia(pid, allItems, key, sec);
+      }
+      hideFilterChip(pid);
+    }
+    return;
+  }
+  // Apply filter — render ribbon with subset of MEDIA[pid] whose src includes the path fragment
+  const filter = subs[sub];
+  _currentSub[pid] = sub;
+  const filtered = (MEDIA[pid] || []).filter(it => it.src && it.src.indexOf(filter.match) !== -1);
+  _currentMedia[pid] = filtered;
+  const sec = document.getElementById('media-'+pid);
+  if(sec){
+    const key = 'media-'+pid+'-'+sub;
+    const srcs = filtered.map(it => it.type === 'vid' ? (it.vidbase==='img' ? B : VB)+it.src : B+it.src);
+    const caps = filtered.map(_effCap);
+    const kinds = filtered.map(it => it.type === 'vid' ? 'vid' : 'img');
+    _galReg[key] = { srcs, caps, kinds };
+    _renderRibbonMedia(pid, filtered, key, sec);
+  }
+  showFilterChip(pid, filter.label);
+}
+
+function showFilterChip(pid, label){
+  const sec = document.getElementById('media-'+pid);
+  if(!sec) return;
+  let chip = document.getElementById('filter-chip-'+pid);
+  if(chip) chip.remove();
+  chip = document.createElement('div');
+  chip.id = 'filter-chip-'+pid;
+  chip.className = 'filter-chip';
+  chip.innerHTML = '<span>תצוגה מסוננת:</span><strong>' + label + '</strong><button onclick="go(\'' + pid + '\')" aria-label="הצג הכל">הצג הכל ×</button>';
+  sec.parentNode.insertBefore(chip, sec);
+}
+
+function hideFilterChip(pid){
+  const chip = document.getElementById('filter-chip-'+pid);
+  if(chip) chip.remove();
+}
+
 // Smart anchor navigation: navigate to a page first, then scroll to an anchor inside it
 function goAnchor(pid, anchorId){
   go(pid);
   setTimeout(() => {
     const el = document.getElementById(anchorId);
     if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-  }, 150);
+  }, 200);
 }
+
+// hashchange — handles browser back/forward + external URL openings (e.g. someone shares #fixed/mono)
+window.addEventListener('hashchange', () => {
+  const { pid, sub } = parseHash();
+  if(pid === 'project'){ if(sub) goProject(sub); }
+  else if(pages.indexOf(pid) >= 0){ applyRoute(pid, sub); }
+  else if(pid === '' || pid === 'home'){ applyRoute('home', null); }
+});
+
+// Initial route on first load — handles URLs like https://.../#fixed/mono
+(function(){
+  const { pid, sub } = parseHash();
+  if(pid === 'project'){ if(sub) goProject(sub); }
+  else if(pid !== 'home' && pages.indexOf(pid) >= 0){ applyRoute(pid, sub); }
+})();
 
 function techNav(btn,id){
   btn.closest('.tech-nav').querySelectorAll('.tech-nav-tab').forEach(t=>t.classList.remove('active'));
