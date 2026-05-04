@@ -3539,7 +3539,8 @@ function techNav(btn,id){
   });
 })();
 
-go('home');
+// (Removed leftover unconditional 'go('home')' — initial route is now handled by the init IIFE
+// near parseHash, which correctly applies #fixed/mono and other sub-routes from the URL.)
 
 
 // ── Video: play on click, pause when off-screen ──
