@@ -3382,15 +3382,20 @@ function updateMeta(pid) {
 
 const pages=['home','about','projects','penthouse','fixed','retractable','walkon','structural','smoke','windows','tech','canopies','shelf'];
 
-// ─── Sub-route filtering (PILOT: fixed only) ───────────────────────
+// ─── Sub-route filtering ───────────────────────────────────────────
 // URL pattern: #pid/sub  →  page renders pid content but ribbon filters to items matching sub.
-// Existing top-level URLs (#fixed, #smoke, etc.) keep working unchanged. Once verified on fixed,
-// extend SUBTYPE_FILTERS to other categories.
+// Existing top-level URLs (#fixed, #smoke, etc.) keep working unchanged. Add a key here only
+// when MEDIA[pid] actually has items under that path — empty filter results would render an
+// empty ribbon. Pyramid/arch under structural are intentionally absent (PROJECTS only, no MEDIA).
 const SUBTYPE_FILTERS = {
   fixed: {
     'mono':        { match: '/חד שיפועי/',   label: 'חד שיפועי' },
     'double':      { match: '/דו שיפועי/',   label: 'דו שיפועי' },
     'window-well': { match: '/חצר אנגלית/',  label: 'חצר אנגלית' },
+  },
+  structural: {
+    'dome': { match: '/כיפה/', label: 'כיפה' },
+    'cone': { match: '/חרוט/', label: 'חרוט' },
   },
 };
 
